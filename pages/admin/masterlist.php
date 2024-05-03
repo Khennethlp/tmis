@@ -131,7 +131,7 @@
             </form>
               <a href="" class="btn btn-success mr-2" title="Export Table" onclick="export_csv('mlist_table')" style="width: 100px;"><i class="fas fa-file-csv mr-2"></i>Export</a>
               <!-- <label for="" style="color: #ADACB5; font-size: 14px;">Export</label> -->
-              <a href="" class="btn btn-info mr-2" title="Print Table" style="width: 100px;"><i class="fas fa-print mr-2"></i>print</a>
+              <a href="" class="btn btn-info mr-2" title="Print Table" onclick="print()" style="width: 100px;"><i class="fas fa-print mr-2"></i>print</a>
               <!-- <label for="" style="color: #ADACB5; ">Print</label> -->
            </div>
               <div class="row mb-4">

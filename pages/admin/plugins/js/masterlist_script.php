@@ -96,9 +96,8 @@ const search_by_date = () => {
             document.getElementById("count_mlist").innerHTML = count;
         }
     });
+    }
 }
-}
-
 
 const count_mlist = () => {
     $.ajax({
@@ -535,4 +534,10 @@ const export_csv = (table_id, separator = ',') => {
         document.body.removeChild(link);
     }
 
+const print = () =>{
+    var from_date = document.getElementById("fromD_search").value;
+    var to_date = document.getElementById("toD_search").value;
+    window.open('../../process/admin/print/print.php?date_from=' + from_date + "&date_to=" + to_date, '_blank');
+
+}
 </script>

@@ -23,7 +23,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tms/pages/admin/index.php") {?>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/index.php") {?>
           <a href="index.php" class="nav-link active">
           <?php } else {?>
           <a href="index.php" class="nav-link">
@@ -35,7 +35,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tms/pages/admin/index2.php") {?>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/index2.php") {?>
           <a href="index2.php" class="nav-link active">
           <?php } else {?>
           <a href="index2.php" class="nav-link">
@@ -47,7 +47,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tms/pages/admin/inventory.php") {?>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/inventory.php") {?>
           <a href="inventory.php" class="nav-link active">
           <?php } else {?>
           <a href="inventory.php" class="nav-link">
@@ -59,7 +59,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tms/pages/admin/masterlist.php") {?>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/masterlist.php") {?>
           <a href="masterlist.php" class="nav-link active">
           <?php } else {?>
           <a href="masterlist.php" class="nav-link">
@@ -71,7 +71,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tms/pages/admin/accounts.php") {?>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/accounts.php") {?>
           <a href="accounts.php" class="nav-link active">
           <?php } else {?>
           <a href="accounts.php" class="nav-link">

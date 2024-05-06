@@ -19,6 +19,7 @@ if ($method == 'search_account_list') {
 				echo '<td>'.$j['emp_id'].'</td>';
 				echo '<td>'.$j['fullname'].'</td>';
 				echo '<td>'.$j['username'].'</td>';
+				echo '<td>'.$j['section'].'</td>';
 				echo '<td>'.strtoupper($j['role']).'</td>';
 			echo '</tr>';
 		}
@@ -43,6 +44,7 @@ if ($method == 'account_list') {
 				echo '<td>'.$j['emp_id'].'</td>';
 				echo '<td>'.$j['fullname'].'</td>';
 				echo '<td>'.$j['username'].'</td>';
+				echo '<td>'.$j['section'].'</td>';
 				echo '<td>'.strtoupper($j['role']).'</td>';
 			echo '</tr>';
 		}
@@ -58,6 +60,7 @@ if($method == 'add_account'){
 	$fullname = $_POST['fullname'];
 	$username = $_POST['username'];
 	$password = $_POST['password'];
+	$section = $_POST['section'];
 	$role = $_POST['role'];
 
 	$check_duplicate = "SELECT COUNT(*) FROM m_accounts WHERE emp_id = :emp_id ";
@@ -70,12 +73,13 @@ if($method == 'add_account'){
 		echo 'duplicate';
 	}else{
 		try{
-			$insert = "INSERT INTO m_accounts (emp_id, fullname, username, password, role) VALUES (:emp_id, :fullname, :username, :password, :role)";
+			$insert = "INSERT INTO m_accounts (emp_id, fullname, username, password, section,role) VALUES (:emp_id, :fullname, :username, :password, :section, :role)";
 			$stmt = $conn->prepare($insert);
 			$stmt->bindParam(':emp_id', $emp_id);
 			$stmt->bindParam(':fullname', $fullname);
 			$stmt->bindParam(':username', $username);
 			$stmt->bindParam(':password', $password);
+			$stmt->bindParam(':section', $section);
 			$stmt->bindParam(':role', $role);
 			$stmt->execute();
 

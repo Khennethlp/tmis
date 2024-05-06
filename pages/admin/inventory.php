@@ -41,6 +41,15 @@
             <!-- /.card-header -->
             <div class="card-body">
             <div class="row">
+                <form id="file_form" enctype="multipart/form-data">
+                <a href="" class="btn btn-warning mx-2 mb-2" title="Import to Table" data-toggle="modal" data-target="#import_mlist" style="width: 100px;"><i class="fas fa-file-import mr-2"></i>Import</a>
+                <!-- <label for="" style="color: #ADACB5; font-size: 14px;">Import</label> -->
+              </form>
+                <a href="" class="btn btn-success mx-2 mb-2" title="Export Table" onclick="export_csv('mlist_table')" style="width: 100px;"><i class="fas fa-file-csv mr-2"></i>Export</a>
+                <!-- <label for="" style="color: #ADACB5; font-size: 14px;">Export</label> -->
+                <a href="" class="btn btn-info mx-2 mb-2" title="Print Table" onclick="print()" style="width: 100px;"><i class="fas fa-print mr-2"></i>print</a>
+                <!-- <label for="" style="color: #ADACB5; ">Print</label> -->
+                
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
@@ -79,6 +88,7 @@
                         <th>Stock Address</th>
                         <th>Barcode Label</th>
                         <th>Quantity</th>
+                        <th>Date</th>
                         <!-- <th>Added By</th> -->
                       </tr>
                     </thead>

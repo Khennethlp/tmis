@@ -48,6 +48,7 @@ const search_accounts = () => {
         var fullname = document.getElementById('add_fullname').value;
         var username = document.getElementById('add_username').value;
         var password = document.getElementById('add_password').value;
+        var section = document.getElementById('add_section').value;
         var role = document.getElementById('add_user_type').value;
         
         if(emp_id === ''){
@@ -82,7 +83,16 @@ const search_accounts = () => {
             showConfirmButton: false,
             timer : 1000
             });
-        }else if(role === ''){
+        }else if(section === ''){
+            Swal.fire({
+            icon: 'info',
+            title: 'Please choose or input section !!!',
+            text: 'Information',
+            showConfirmButton: false,
+            timer : 1000
+            });
+        }
+        else if(role === ''){
             Swal.fire({
             icon: 'info',
             title: 'Please Choose Role !!!',
@@ -101,6 +111,7 @@ const search_accounts = () => {
                     fullname: fullname,
                     username: username,
                     password: password,
+                    section: section,
                     role: role,
                 },
                 success: function (response) {

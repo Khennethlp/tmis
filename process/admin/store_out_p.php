@@ -7,7 +7,7 @@ $method = $_POST['method'];
 if($method == 'partsout_list'){
 	$c = 0;
 
-	$query = "SELECT * FROM t_partsout";
+	$query = "SELECT * FROM t_partsout ORDER BY id DESC";
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -95,7 +95,7 @@ if($method == 'insert_partsout'){
 			}
 
 				 // Data doesn't exist in t_partsin, perform insertion into t_partsout
-				 $lot_address = ''; // Define lot_address
+				 //$lot_address = ''; // Define lot_address
 				 $partsin_sql = "INSERT INTO t_partsout (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
 								 VALUES (:qr, :partscode, 'N/A', :qty, :lot_address, :barcode_label, :updated_by)";
 				 $stmt3 = $conn->prepare($partsin_sql);

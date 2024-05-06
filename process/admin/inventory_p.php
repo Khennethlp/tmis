@@ -8,7 +8,7 @@ if($method == 'inventory_list'){
 
     //joined table of store_out & store_in history 
     // $get_history = "SELECT * FROM t_partsin_history ";
-    $get_history = "SELECT * FROM t_partsin_history";
+    $get_history = "SELECT * FROM t_partsin_history ORDER BY id DESC";
     $stmt = $conn->prepare($get_history);
     $stmt->execute();
 
@@ -24,6 +24,7 @@ if($method == 'inventory_list'){
 				echo '<td>'.$j['lot_address'].'</td>';
 				echo '<td>'.$j['barcode_label'].'</td>';
 				echo '<td>'.$j['quantity'].'</td>';
+				echo '<td>'.$j['date_updated'].'</td>';
 				// echo '<td>'.$j['updated_by'].'</td>';
 			echo '</tr>';
 		}

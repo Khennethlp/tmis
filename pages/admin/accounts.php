@@ -80,6 +80,7 @@
                     <th> Employee ID </th>
                     <th> Full Name </th>
                     <th> Username </th>
+                    <th> Section </th>
                     <th> User Type </th>
                   </thead>
                   <tbody id="list_of_accounts" style="text-align:center;"></tbody>

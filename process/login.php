@@ -37,7 +37,7 @@ if (isset($_POST['Login'])) {
 if (isset($_POST['Logout'])) {
     session_unset();
     session_destroy();
-    header('location: /tms/index.php');
+    header('location: /tmis/index.php');
     exit;
 }
 ?>

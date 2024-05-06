@@ -49,7 +49,7 @@ if($method == 'insert_partsin'){
     $stmt_check->execute();
     $count = $stmt_check->fetchColumn();
 
-    $quantity = 0;
+    
     if ($count > 0) {
         $update_qty = "UPDATE t_partsin_history ph INNER JOIN t_partsin tp ON ph.partcode = tp.partcode SET ph.quantity = ph.quantity + 1 WHERE tp.qr_code = :qr_code";
         $stmt = $conn->prepare($update_qty);
@@ -72,6 +72,7 @@ if($method == 'insert_partsin'){
             $stmt1->bindParam(':updated_by', $updated_by);
             $stmt1->execute();
 
+            $quantity = 0;
             $partsinHistorySql = "INSERT INTO t_partsin_history (qr_code, partcode, partname, packing_quantity, quantity, lot_address, barcode_label, updated_by)
             VALUES (:qr_code, :partcode, :partname, :packing_quantity, :quantity, :lot_address, :barcode_label, :updated_by) ";
             $stmt2 = $conn->prepare($partsinHistorySql);

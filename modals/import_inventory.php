@@ -1,14 +1,14 @@
-<div class="modal fade" id="import_mlist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="import_inv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel"><b>Import to Inventory</b></h4>
+        <h4 class="modal-title" id="exampleModalLabel"><b>Import Accounts</b></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="../../process/admin/import/import_mlist.php" enctype="multipart/form-data" method="POST">
+      <form action="../../process/admin/import/import_inventory.php" enctype="multipart/form-data" method="POST">
         <div class="modal-body">
           <label>File:</label>
           <input type="file" name="file" class="form-control-lg" accept=".csv">

@@ -4,6 +4,25 @@ function trim_white_space(event) {
     document.getElementById('store_in_qr').value = document.getElementById('store_in_qr').value.trim();
 }
 
+// Function to handle Enter key press event for both input fields
+const handleEnterKeyPress = (e) => {
+    // Check if the key pressed is Enter
+    if (e.key === 'Enter') {
+        // Prevent the default action of the Enter key, which is submitting the form
+        e.preventDefault();
+        // Focus on the other input field
+        if (e.target.id === 'store_in_qr') {
+            document.getElementById('store_in_address').focus();
+        } else {
+            document.getElementById('store_in_qr').focus();
+        }
+    }
+};
+
+// Listen for key press events on both input fields
+document.getElementById('store_in_qr').addEventListener('keypress', handleEnterKeyPress);
+document.getElementById('store_in_address').addEventListener('keypress', handleEnterKeyPress);
+
 document.addEventListener("DOMContentLoaded", () => {
         load_partsin();
         // getMlist();

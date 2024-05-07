@@ -16,17 +16,22 @@
 <?php
 //MODALS
 include '../../modals/logout_modal.php';
+
 include '../../modals/history_modal.php';
 include '../../modals/view_accounts.php';
+
 include '../../modals/add_mlist.php';
-include '../../modals/update_mlist.php';
 include '../../modals/add_account.php';
+
+include '../../modals/update_mlist.php';
 include '../../modals/update_history.php';
-include '../../modals/import_mlist.php';
-include '../../modals/import_account.php';
 include '../../modals/update_accounts.php';
-// include '../../modals/update_account.php';
-// include '../../modals/import_accounts.php';
+// include '../../modals/update_inventory.php';
+
+include '../../modals/import_account.php';
+include '../../modals/import_mlist.php';
+include '../../modals/import_inventory.php';
+
 ?>
 <!-- jQuery -->
 <script src="../../plugins/jquery/dist/jquery.min.js"></script>

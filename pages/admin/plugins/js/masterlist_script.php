@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     load_kanban_mlist();
     history_list();
     count_mlist();
-   
+
+    if(document.getElementById('mlist_search').value == ''){
+        load_kanban_mlist();
+    }
 });
 
 document.querySelector('#mlist_search').addEventListener("keyup", function(e) {

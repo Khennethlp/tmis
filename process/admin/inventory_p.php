@@ -9,7 +9,7 @@ if($method == 'inventory_list'){
     //joined table of store_out & store_in history 
     // $get_history = "SELECT * FROM t_partsin_history ";
     $get_history = "SELECT * FROM t_partsin_history ORDER BY id DESC";
-    $stmt = $conn->prepare($get_history);
+    $stmt = $conn->prepare($get_history, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
@@ -26,7 +26,7 @@ if($method == 'inventory_list'){
 				echo '<td>'.$j['barcode_label'].'</td>';
 				echo '<td>'.$j['quantity'].'</td>';
 				echo '<td>'.date('Y-M-d', strtotime($j['date_updated'])).'</td>';
-				// echo '<td>'.$j['updated_by'].'</td>';
+				echo '<td>'.$j['updated_by'].'</td>';
 			echo '</tr>';
 		}
 	}else{
@@ -59,13 +59,14 @@ if ($method == 'search_by_date') {
                 'barcode_label' => $j['barcode_label'],
                 'quantity' => $j['quantity'],
                 'date_updated' => $j['date_updated'],
+                'updated_by' => $j['updated_by'],
             ];
         }
     }
 
     // Output the total count of rows within the date range
     $count_rows = "SELECT COUNT(*) AS total_count FROM t_partsin_history WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
-    $stmt = $conn->prepare($count_rows);
+    $stmt = $conn->prepare($count_rows, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     $count_result = $stmt->fetch(PDO::FETCH_ASSOC);
     $result['count'] = $count_result['total_count'];
@@ -82,7 +83,7 @@ if($method == 'count_list'){
     // AS count FROM t_partsin_history) AS counts ";
 	$count_rows = "SELECT COUNT(partcode) AS count FROM t_partsin_history";
     $total = 0;
-    $stmt = $conn->prepare($count_rows);
+    $stmt = $conn->prepare($count_rows, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $total= $result['count'];
@@ -111,6 +112,7 @@ if($method == 'inventory_search'){
 			echo '<td>'.$j['barcode_label'].'</td>';
 			echo '<td>'.$j['quantity'].'</td>';
 			echo '<td>'.date('Y-M-d', strtotime($j['date_updated'])).'</td>';
+			echo '<td>'.$j['updated_by'].'</td>';
 			echo '</tr>';
 		}
 	}else{
@@ -128,7 +130,7 @@ if ($method == 'delete_data_arr') {
     $count = count($id_arr);
     foreach ($id_arr as $id) {
 		$query = "DELETE FROM `t_partsin_history` WHERE id = ?";
-		$stmt = $conn -> prepare($query);
+		$stmt = $conn -> prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 		$params = array($id);
 		$stmt -> execute($params);
 		$count--;

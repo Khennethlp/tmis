@@ -4,10 +4,6 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
-
-
-
-
 if($method == 'get_mlist'){
 	$query = "SELECT DISTINCT partname FROM m_kanban";
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));

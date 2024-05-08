@@ -20,18 +20,20 @@ if (isset($_POST['upload'])) {
                 $emp_id = $line[1];
                 $fullname = $line[2];
                 $username = $line[3];
-                $role = $line[4];
+                $password = $line[4];
+                $section = $line[5];
+                $role = $line[6];
 
                 // Form validation
-                if (empty($id) || empty($emp_id) || empty($fullname) || empty($username) || empty($role)) {
+                if (empty($id) || empty($emp_id) || empty($fullname) || empty($username) || empty($password) || empty($section) || empty($role)) {
                     $error++;
                     continue;
                 }
 
                 // Prepared statement to prevent SQL injection
-                $sql = "INSERT INTO m_accounts (emp_id, fullname, username, role) VALUES (?, ?, ?, ?)";
+                $sql = "INSERT INTO m_accounts (emp_id, fullname, username, password, section, role) VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
-                if ($stmt->execute([$emp_id, $fullname, $username, $role])) {
+                if ($stmt->execute([$emp_id, $fullname, $username, $password, $section, $role])) {
                     $error = 0;
                 } else {
                     $error++;

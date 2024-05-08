@@ -28,7 +28,8 @@ const load_kanban_mlist = () => {
           
         }, success: function (response) {
             document.getElementById("kanban_mlist").innerHTML = response;
-           
+            // count_mlist();
+            // load_mlist_pagination();
         }
     });
 }
@@ -543,4 +544,5 @@ const print = () =>{
     window.open('../../process/admin/print/print.php?date_from=' + from_date + "&date_to=" + to_date, '_blank');
 
 }
+
 </script>

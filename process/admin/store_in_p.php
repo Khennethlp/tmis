@@ -7,7 +7,7 @@ $method = $_POST['method'];
 if($method == 'partsin_list'){
 	$c = 0;
 
-	$query = "SELECT * FROM t_partsin_history ORDER BY id DESC";
+	$query = "SELECT * FROM t_partsin ORDER BY id DESC";
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -45,14 +45,14 @@ if($method == 'insert_partsin'){
     $p_qty = substr($qr, 33, 3 );
 
     $stmt_check = "SELECT COUNT(*) FROM t_partsin WHERE partcode = :partcode";
-    $stmt_check = $conn->prepare($stmt_check);
+    $stmt_check = $conn->prepare($stmt_check, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt_check->bindParam(':partcode', $partscode);
     $stmt_check->execute();
     $count = $stmt_check->fetchColumn();
     
     if ($count > 0) {
         $update_qty = "UPDATE t_partsin_history ph INNER JOIN t_partsin tp ON ph.partcode = tp.partcode SET ph.quantity = ph.quantity + 1 WHERE tp.qr_code = :qr_code";
-        $stmt = $conn->prepare($update_qty);
+        $stmt = $conn->prepare($update_qty, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
         $stmt->bindParam(':qr_code', $qr);
         $stmt->execute();
 
@@ -62,7 +62,7 @@ if($method == 'insert_partsin'){
             // Data does not exist in t_partsin, insert into both t_partsin and t_partsin_history
             $partsinSql = "INSERT INTO t_partsin (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
             VALUES (:qr_code, :partcode, :partname, :packing_quantity, :lot_address, :barcode_label, :updated_by) ";
-            $stmt1 = $conn->prepare($partsinSql);
+            $stmt1 = $conn->prepare($partsinSql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
             $stmt1->bindParam(':qr_code', $qr);
             $stmt1->bindParam(':partcode', $partscode);
             $stmt1->bindParam(':partname', $m_kanban);
@@ -75,7 +75,7 @@ if($method == 'insert_partsin'){
             $quantity = 1;
             $partsinHistorySql = "INSERT INTO t_partsin_history (qr_code, partcode, partname, packing_quantity, quantity, lot_address, barcode_label, updated_by)
             VALUES (:qr_code, :partcode, :partname, :packing_quantity, :quantity, :lot_address, :barcode_label, :updated_by) ";
-            $stmt2 = $conn->prepare($partsinHistorySql);
+            $stmt2 = $conn->prepare($partsinHistorySql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
             $stmt2->bindParam(':qr_code', $qr);
             $stmt2->bindParam(':partcode', $partscode);
             $stmt2->bindParam(':partname', $m_kanban);

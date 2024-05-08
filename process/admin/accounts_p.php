@@ -64,7 +64,7 @@ if($method == 'add_account'){
 	$role = $_POST['role'];
 
 	$check_duplicate = "SELECT COUNT(*) FROM m_accounts WHERE emp_id = :emp_id ";
-	$stmt_duplicate = $conn->prepare($check_duplicate);
+	$stmt_duplicate = $conn->prepare($check_duplicate, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt_duplicate->bindParam(':emp_id',$emp_id);
 	$stmt_duplicate->execute();
 	$count = $stmt_duplicate->fetchColumn();
@@ -74,7 +74,7 @@ if($method == 'add_account'){
 	}else{
 		try{
 			$insert = "INSERT INTO m_accounts (emp_id, fullname, username, password, section,role) VALUES (:emp_id, :fullname, :username, :password, :section, :role)";
-			$stmt = $conn->prepare($insert);
+			$stmt = $conn->prepare($insert, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 			$stmt->bindParam(':emp_id', $emp_id);
 			$stmt->bindParam(':fullname', $fullname);
 			$stmt->bindParam(':username', $username);
@@ -97,7 +97,7 @@ if($method == 'edit_account'){
     $id = $_POST['id'];
 
     $check = "SELECT * FROM m_kanban WHERE id = :id";
-    $stmt = $conn->prepare($check);
+    $stmt = $conn->prepare($check, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->bindParam(':id', $id);
     $stmt->execute();
 
@@ -110,7 +110,7 @@ if($method == 'edit_account'){
     }
 
     $update_qry = "UPDATE m_kanban SET partcode = :partcode, partname = :partname, packing_quantity = :qty WHERE id = :id";
-    $stmt = $conn->prepare($update_qry);
+    $stmt = $conn->prepare($update_qry, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->bindParam(':id', $id);
 	$stmt->bindParam(':partcode', $partcode);
 	$stmt->bindParam(':partname', $partname);
@@ -124,5 +124,20 @@ if($method == 'edit_account'){
 		$errorInfo = $stmt->errorInfo();
 		echo 'error: ' . $errorInfo[2];
     }
+}
+
+if($method == 'get_all_section'){
+	$query = "SELECT DISTINCT section FROM m_accounts";
+	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+	$stmt->execute();
+
+	  // Fetch results and generate HTML options
+	  $optionsHTML = '';
+	  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		  $section = $row['section'];
+		  $optionsHTML .= "<option value='$section'>$section</option>";
+	  }
+	  echo $optionsHTML;
+	  exit; // Terminate script execution
 }
 ?>

@@ -47,7 +47,7 @@ if($method == 'insert_partsout'){
 
 	 // Check if the data already exists in t_partsout
 	$stmt_duplicate = "SELECT COUNT(*) AS count FROM t_partsout WHERE qr_code = :qr ";
-	$stmt_duplicate = $conn->prepare($stmt_duplicate);
+	$stmt_duplicate = $conn->prepare($stmt_duplicate, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt_duplicate->bindParam(':qr', $qr);
 	$stmt_duplicate->execute();
 	$count = $stmt_duplicate->fetchColumn();
@@ -58,7 +58,7 @@ if($method == 'insert_partsout'){
 		try{
 			
 			$select = "SELECT * FROM t_partsin WHERE partcode= '$partscode'";
-			$stmt = $conn->prepare($select);
+			$stmt = $conn->prepare($select, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 			$stmt->execute();
 		
 			$data = [];
@@ -79,14 +79,14 @@ if($method == 'insert_partsout'){
 			// $del->execute();
 
 			$check_in = "SELECT COUNT(*) FROM t_partsin WHERE partcode='$partscode'";
-			$stmt = $conn->prepare($check_in);
+			$stmt = $conn->prepare($check_in, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 			$stmt->execute();
 			$count_in = $stmt->fetchColumn();
 
 		    if ($count_in > 0) {
 				// Data exists in t_partsin, perform deletion
 				$del_qry = "DELETE FROM t_partsin WHERE partcode = :partscode";
-				$del_stmt = $conn->prepare($del_qry);
+				$del_stmt = $conn->prepare($del_qry, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 				$del_stmt->bindParam(':partscode', $partscode);
 				$del_stmt->execute();
 			} else {
@@ -100,7 +100,7 @@ if($method == 'insert_partsout'){
 				 //$lot_address = ''; // Define lot_address
 				 $partsin_sql = "INSERT INTO t_partsout (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
 								 VALUES (:qr, :partscode, 'N/A', :qty, :lot_address, :barcode_label, :updated_by)";
-				 $stmt3 = $conn->prepare($partsin_sql);
+				 $stmt3 = $conn->prepare($partsin_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 				 $stmt3->bindParam(':qr', $qr);
 				 $stmt3->bindParam(':partscode', $partscode);
 				 $stmt3->bindParam(':qty', $qty);

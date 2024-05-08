@@ -77,7 +77,8 @@ if($method == 'kanban_mlist'){
 				echo '<td>'.$j['partcode'].'</td>';
 				echo '<td>'.$j['partname'].'</td>';
 				echo '<td>'.$j['packing_quantity'].'</td>';
-			echo '</tr>';
+				echo '<td>'.date('Y-M-d', strtotime($j['date_updated'])).'</td>';
+				echo '</tr>';
 		}
 	}else{
 		echo '<tr>';
@@ -118,7 +119,7 @@ if($method == 'save_mlist'){
 	$qty = $_POST['qty'];
 
 	$check_duplicate = "SELECT COUNT(*) FROM m_kanban WHERE partcode = :partcode";
-	$stmt_duplicate = $conn->prepare($check_duplicate);
+	$stmt_duplicate = $conn->prepare($check_duplicate, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt_duplicate->bindParam(':partcode', $partcode);
     $stmt_duplicate->execute();
     $count = $stmt_duplicate->fetchColumn();
@@ -128,7 +129,7 @@ if($method == 'save_mlist'){
 	}else{
 		try{
 			$insert = "INSERT INTO m_kanban (partcode, partname, packing_quantity) VALUES (:partcode, :partname, :qty)";
-			$stmt = $conn->prepare($insert);
+			$stmt = $conn->prepare($insert, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 			$stmt->bindParam(':partcode', $partcode);
 			$stmt->bindParam(':partname', $partname);
 			$stmt->bindParam(':qty', $qty);
@@ -148,7 +149,7 @@ if($method == 'edit_mlist'){
     $id = $_POST['id'];
 
     $check = "SELECT * FROM m_kanban WHERE id = :id";
-    $stmt = $conn->prepare($check);
+    $stmt = $conn->prepare($check, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->bindParam(':id', $id);
     $stmt->execute();
 
@@ -161,7 +162,7 @@ if($method == 'edit_mlist'){
     }
 
     $update_qry = "UPDATE m_kanban SET partcode = :partcode, partname = :partname, packing_quantity = :qty WHERE id = :id";
-    $stmt = $conn->prepare($update_qry);
+    $stmt = $conn->prepare($update_qry, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->bindParam(':id', $id);
 	$stmt->bindParam(':partcode', $partcode);
 	$stmt->bindParam(':partname', $partname);
@@ -181,7 +182,7 @@ if ($method == 'del_mlist') {
 	$id = $_POST['id'];
 
 	$query = "DELETE FROM m_kanban WHERE id = '$id'";
-	$stmt = $conn->prepare($query);
+	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	if ($stmt->execute()) {
 		echo 'success';
 	} else {
@@ -198,7 +199,7 @@ if($method == 'update_history'){
     $by_updated = $_POST['by_update'];
 
 	$check = "SELECT * FROM t_partsin_history WHERE id = :id";
-    $stmt = $conn->prepare($check);
+    $stmt = $conn->prepare($check, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->bindParam(':id', $id);
     $stmt->execute();
 
@@ -213,7 +214,7 @@ if($method == 'update_history'){
     }
 
 	$update_qry = "UPDATE t_partsin_history SET partcode = :partcode, partname = :partname, packing_quantity = :qty, lot_address = :lot_address, updated_by = :updated_by WHERE id = :id";
-    $stmt = $conn->prepare($update_qry);
+    $stmt = $conn->prepare($update_qry, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->bindParam(':id', $id);
 	$stmt->bindParam(':partcode', $partcode);
 	$stmt->bindParam(':partname', $partname);
@@ -235,7 +236,7 @@ if ($method == 'del_history') {
 	$id = $_POST['id'];
 
 	$query = "DELETE FROM t_partsin_history WHERE id = '$id'";
-	$stmt = $conn->prepare($query);
+	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	if ($stmt->execute()) {
 		echo 'success';
 	} else {
@@ -246,7 +247,7 @@ if ($method == 'del_history') {
 if($method == 'count_mlist'){
 
     $count_rows = "SELECT COUNT(*) AS total_count FROM m_kanban";
-    $stmt = $conn->prepare($count_rows);
+    $stmt = $conn->prepare($count_rows, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     echo $result['total_count'];

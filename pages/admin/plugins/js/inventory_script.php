@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 $(document).ready(function(){
-    $('#deleteBtn').css('display', 'none');
+    $('#deleteBtn').attr('disabled', true);
    
 });
 
@@ -91,6 +91,7 @@ const search_by_date = () => {
                 rowsHTML += '<td>' + row.barcode_label + '</td>';
                 rowsHTML += '<td>' + row.quantity + '</td>';
                 rowsHTML += '<td>' + row.date_updated + '</td>';
+                rowsHTML += '<td>' + row.updated_by + '</td>';
                 rowsHTML += '</tr>';
             });
             document.getElementById("inventory_table").innerHTML = rowsHTML;
@@ -126,10 +127,10 @@ const get_checked_length = () => {
         console.log(arr);
         var numberOfChecked = arr.length;
         if (numberOfChecked > 0) {
-            $('#deleteBtn').css('display', 'block');
+            $('#deleteBtn').attr('disabled', false);
         }
         else {
-            $('#deleteBtn').css('display', 'none');
+            $('#deleteBtn').attr('disabled', true);
         }
     }
 

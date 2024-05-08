@@ -30,9 +30,8 @@
           <div class="col-sm-4 mt-2">
             <!-- <span><b>Password:</b></span> -->
             <input type="text" list="section_list" id="add_section" class="form-control" placeholder="Select Section..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
-            <datalist id="section_list ">
-              <option value="IT"></option>
-              <option value="QA"></option>
+            <datalist id="section_list">
+            
             </datalist>
           </div>
           <div class="col-sm-4 mt-2">

@@ -16,10 +16,13 @@ if (!isset($_SESSION['username'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin</title>
+  <link href="https://cdn.datatables.net/v/dt/dt-2.0.7/datatables.min.css" rel="stylesheet">
 
   <link rel="icon" href="../../dist/img/warehouse.png" type="image/x-icon" />
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="../../dist/css/font.min.css">
+
+  <link rel="stylesheet" href="../../dist/css/datatable/dataTables.dataTables.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -28,6 +31,8 @@ if (!isset($_SESSION['username'])) {
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Sweet Alert -->
   <link rel="stylesheet" href="../../plugins/sweetalert2/dist/sweetalert2.min.css">
+
+  <link rel="stylesheet" href="../../plugins/datatable/dist/dataTables.dataTables.min.css">
   <style>
     .loader {
       border: 16px solid #f3f3f3;
@@ -70,6 +75,28 @@ if (!isset($_SESSION['username'])) {
     .b-border{
       border-bottom: 2px solid #AA2138 !important;
     }
+    .btn-func{
+      color: #fff;
+      background-color: #AA2138 !important;
+      border-bottom: 2px solid #ccc !important;
+    }
+    .btn-func:hover{
+      background-color: #942D3E !important;
+      border-bottom: 2px solid #45141C !important;
+      color: #fff;
+    }
+    .btn-del{
+      font-size: 13px; 
+      height: 35px; 
+      color: #45141C;
+      background: none;
+      border: 1px solid #45141C !important;
+    }
+    .btn-del:hover{
+      background-color: #942D3E !important;
+      color: #fff !important;
+    }
+
   </style>
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">

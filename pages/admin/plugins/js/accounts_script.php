@@ -2,6 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     load_accounts();
+    get_section();
 });
 
 document.querySelector('#searchReqBtn').addEventListener("keyup", function(e) {
@@ -313,4 +314,19 @@ const search_accounts = () => {
         link.click();
         document.body.removeChild(link);
     }
+
+    const get_section = () => {
+        $.ajax({
+        type: "POST",
+        url: "../../process/admin/accounts_p.php", // Replace with your endpoint to retrieve options
+        data: {
+            method: 'get_all_section', //get all sections from section column in m_accounts
+        },
+        success: function(response) {
+            // Parse response and populate datalist options
+            $('#section_list').html(response); 
+        }
+    });
+    }
+
 </script>

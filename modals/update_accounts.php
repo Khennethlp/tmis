@@ -31,11 +31,7 @@
           <div class="col-md-4">
             <label>Section:</label>
             <input type="text" name="section_edit" id="section_edit" class="form-control" list="section_list">
-            <datalist id="section_list">
-                <option value=""></option>
-                <option value="IT"></option>
-                <option value="QC"></option>
-            </datalist>
+            <datalist id="section_list"></datalist>
 
           </div>
           <div class="col-md-4">

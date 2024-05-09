@@ -3,11 +3,90 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
-if ($method == 'mlist_search') {
-	$mlist_search = $_POST['mlist_search'];
+function count_m_list($search_arr, $conn){
+    $query = "SELECT COUNT(id) AS total FROM m_kanban WHERE partcode LIKE :search OR partname LIKE :search OR packing_quantity LIKE :search";
+    $stmt = $conn->prepare($query);
+    $searchTerm = '%' . $search_arr['search'] . '%';
+    $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
+    $stmt->execute();
+    
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $total = $row['total'];
+
+    return $total;
+}
+
+if ($method == 'count_mlist') {
+    $mlist_search = $_POST['mlist_search'];
+
+    $search_arr = array(
+        "search" => $mlist_search,
+    );
+     count_m_list($search_arr, $conn);
+}
+
+
+if($method == 'kanban_mlist'){
+	$current_page = intval($_POST['current_page']);
 	$c = 0;
 
-	$query = "SELECT * FROM m_kanban WHERE partcode LIKE '$mlist_search%' OR partname LIKE '$mlist_search%' OR packing_quantity LIKE '$mlist_search%' ";
+	$results_per_page = 10;
+
+	$page_first_result = ($current_page - 1) * $results_per_page;
+
+	$c = $page_first_result;
+
+	$query = "SELECT * FROM m_kanban LIMIT ".$page_first_result.", ".$results_per_page;
+	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+	$stmt->execute();
+	if ($stmt->rowCount() > 0) {
+		foreach($stmt->fetchALL() as $j){
+			$c++;
+			// echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_mlist" onclick="get_mlist_details(&quot;'.$j['id'].'~!~'.$j['partcode'].'~!~'.$j['partname'].'~!~'.$j['packing_quantity'].'&quot;)">';
+				echo '<td>'.$c.'</td>';
+				echo '<td>'.$j['partcode'].'</td>';
+				echo '<td>'.$j['partname'].'</td>';
+				echo '<td>'.$j['packing_quantity'].'</td>';
+				echo '<td>'.date('Y-M-d', strtotime($j['date_updated'])).'</td>';
+				echo '</tr>';
+		}
+	}else{
+		echo '<tr>';
+			echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '</tr>';
+	}
+}
+
+if($method == 'm_list_pagination'){
+	$mlist_search = $_POST['mlist_search'];
+	// $fromD_search = $_POST['fromD_search'];
+	// $toD_search = $_POST['toD_search'];
+
+	$search_arr = array(
+		"search" => $mlist_search,
+	);
+
+	$results_per_page = 10;
+
+    $number_of_result = intval(count_m_list($search_arr, $conn));
+
+	$number_of_page = ceil($number_of_result / $results_per_page);
+
+    for ($page = 1; $page <= $number_of_page; $page++){
+        echo '<option value="'.$page.'">'.$page.'</option>';
+    }
+}
+
+if ($method == 'search_mlist') {
+	$mlist_search = $_POST['mlist_search'];
+	$current_page = intval($_POST['current_page']);
+	$c = 0;
+
+	$results_per_page = 10;
+	$page_first_result = ($current_page - 1) * $results_per_page;
+    $c = $page_first_result;
+
+	$query = "SELECT * FROM m_kanban WHERE partcode LIKE '$mlist_search%' OR partname LIKE '$mlist_search%' OR packing_quantity LIKE '$mlist_search%' LIMIT ".$page_first_result.", ".$results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	
@@ -19,6 +98,7 @@ if ($method == 'mlist_search') {
 			echo '<td>'.$j['partcode'].'</td>';
 			echo '<td>'.$j['partname'].'</td>';
 			echo '<td>'.$j['packing_quantity'].'</td>';
+			echo '<td>'.date('Y-M-d', strtotime($j['date_updated'])).'</td>';
 			echo '</tr>';
 		}
 	}else{
@@ -53,38 +133,13 @@ if ($method == 'search_by_date') {
     }
 
     // Output the total count of rows within the date range
-    $count_rows = "SELECT COUNT(*) AS total_count FROM m_kanban WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
-    $stmt = $conn->prepare($count_rows);
-    $stmt->execute();
-    $count_result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $result['count'] = $count_result['total_count'];
+    // $count_rows = "SELECT COUNT(*) AS total_count FROM m_kanban WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
+    // $stmt = $conn->prepare($count_rows);
+    // $stmt->execute();
+    // $count_result = $stmt->fetch(PDO::FETCH_ASSOC);
+    // $result['count'] = $count_result['total_count'];
 
-    echo json_encode($result); // Return data as JSON
-}
-
-if($method == 'kanban_mlist'){
-	
-	$c = 0;
-
-	$query = "SELECT * FROM m_kanban";
-	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	$stmt->execute();
-	if ($stmt->rowCount() > 0) {
-		foreach($stmt->fetchALL() as $j){
-			$c++;
-			echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_mlist" onclick="get_mlist_details(&quot;'.$j['id'].'~!~'.$j['partcode'].'~!~'.$j['partname'].'~!~'.$j['packing_quantity'].'&quot;)">';
-				echo '<td>'.$c.'</td>';
-				echo '<td>'.$j['partcode'].'</td>';
-				echo '<td>'.$j['partname'].'</td>';
-				echo '<td>'.$j['packing_quantity'].'</td>';
-				echo '<td>'.date('Y-M-d', strtotime($j['date_updated'])).'</td>';
-				echo '</tr>';
-		}
-	}else{
-		echo '<tr>';
-			echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
-		echo '</tr>';
-	}
+    // echo json_encode($result); // Return data as JSON
 }
 
 if($method == 'history_list'){

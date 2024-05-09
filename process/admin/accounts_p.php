@@ -3,18 +3,46 @@ include '../conn.php';
 
 $method = $_POST['method'];
 
-if ($method == 'search_account_list') {
-	$acc_search = $_POST['acc_search'];
-	// $user_type = $_POST['user_type'];
+function count_account_list($search_arr, $conn){
+	$query = "SELECT COUNT(id) AS total FROM m_accounts WHERE emp_id LIKE '".$search_arr['account']."%' OR fullname LIKE '".$search_arr['account']."%' OR username LIKE '".$search_arr['account']."%'";
+	$stmt = $conn->prepare($query);
+	$stmt->execute();
+	if($stmt->rowCount() > 0){
+		foreach($stmt->fetchALL() as $row){
+			$total = $row['total'];
+		}
+	}else{
+		$total = 0;
+	}
+	return $total;
+}
+
+if($method == 'count_account_list'){
+	$account = $_POST['account'];
+
+	$search_arr = array(
+		"account" => $account,
+	);
+	echo count_account_list($search_arr, $conn);
+}
+
+if ($method == 'account_list') {
+	$current_page = intval($_POST['current_page']);
 	$c = 0;
 
-	$query = "SELECT * FROM m_accounts WHERE emp_id LIKE '$acc_search%' OR username LIKE '$acc_search%' OR fullname LIKE '$acc_search%' OR role LIKE '$acc_search%'";
+	$results_per_page = 10;
+
+	$page_first_result = ($current_page - 1) * $results_per_page;
+
+	$c = $page_first_result;
+
+	$query = "SELECT * FROM m_accounts LIMIT ".$page_first_result.", ".$results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
 		foreach($stmt->fetchALL() as $j){
 			$c++;
-			// echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_account" onclick="get_accounts_details(&quot;'.$j['id'].'~!~'.$j['id_number'].'~!~'.$j['username'].'~!~'.$j['full_name'].'~!~'.$j['password'].'~!~'.$j['section'].'~!~'.$j['role'].'&quot;)">';
+			// echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_account" onclick="get_accounts_details(&quot;'.$j['id'].'~!~'.$j['emp_id'].'~!~'.$j['username'].'~!~'.$j['fullname'].'~!~'.$j['password'].'~!~'.$j['section'].'~!~'.$j['role'].'&quot;)">';
 				echo '<td>'.$c.'</td>';
 				echo '<td>'.$j['emp_id'].'</td>';
 				echo '<td>'.$j['fullname'].'</td>';
@@ -30,10 +58,34 @@ if ($method == 'search_account_list') {
 	}
 }
 
-if ($method == 'account_list') {
+if($method == 'account_list_pagination'){
+	$account = $_POST['account'];
+
+	$search_arr = array(
+		"account" => $account,
+	);
+
+	$results_per_page = 10;
+
+    $number_of_result = intval(count_account_list($search_arr, $conn));
+
+	$number_of_page = ceil($number_of_result / $results_per_page);
+
+    for ($page = 1; $page <= $number_of_page; $page++){
+        echo '<option value="'.$page.'">'.$page.'</option>';
+    }
+}
+
+if ($method == 'search_account_list') {
+	$account = $_POST['account'];
+	$current_page = intval($_POST['current_page']);
 	$c = 0;
 
-	$query = "SELECT * FROM m_accounts";
+	$results_per_page = 10;
+	$page_first_result = ($current_page - 1) * $results_per_page;
+    $c = $page_first_result;
+
+	$query = "SELECT * FROM m_accounts WHERE emp_id LIKE '$account%' OR username LIKE '$account%' OR fullname LIKE '$account%' LIMIT ".$page_first_result.", ".$results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -50,7 +102,7 @@ if ($method == 'account_list') {
 		}
 	}else{
 		echo '<tr>';
-			echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }

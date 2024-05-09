@@ -33,10 +33,6 @@ include '../../modals/import_mlist.php';
 include '../../modals/import_inventory.php';
 
 ?>
-<script>
-  let table = new DataTable('#kanban_mlist');
-</script>
-<script src="https://cdn.datatables.net/v/dt/dt-2.0.7/datatables.min.js"></script>
 <!-- jQuery -->
 <script src="../../plugins/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

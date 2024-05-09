@@ -1,8 +1,13 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
-    load_accounts();
+    // load_accounts();
+    // search_accounts();
     get_section();
+});
+
+$(document).ready(function() {
+    search_accounts(1);
 });
 
 document.querySelector('#searchReqBtn').addEventListener("keyup", function(e) {
@@ -12,22 +17,130 @@ document.querySelector('#searchReqBtn').addEventListener("keyup", function(e) {
     }
 });
 
-const load_accounts = () => {
+// get datalist table
+document.getElementById("account_table_pagination").addEventListener("keyup", e => {
+    var current_page = parseInt(document.getElementById("account_table_pagination").value.trim());
+    let total = sessionStorage.getItem('count_rows');
+    var last_page = parseInt(sessionStorage.getItem('last_page'));
+    if (e.which === 13) {
+        e.preventDefault();
+        console.log(total);
+        if (current_page != 0 && current_page <= last_page && total > 0) {
+            search_accounts(current_page);
+        }  
+    }
+});
+
+//get previous page
+const get_prev_page = () => {
+    var current_page = parseInt(sessionStorage.getItem('account_table_pagination'));
+    let total = sessionStorage.getItem('count_rows');
+    var prev_page = current_page - 1;
+    if (prev_page > 0 && total > 0) {
+        search_accounts(prev_page);
+    }
+}
+
+//get next page
+const get_next_page = () => {
+    var current_page = parseInt(sessionStorage.getItem('account_table_pagination'));
+    let total = sessionStorage.getItem('count_rows');
+    var last_page = parseInt(sessionStorage.getItem('last_page'));
+    var next_page = current_page + 1;
+    if (next_page <= last_page && total > 0) {
+        search_accounts(next_page);
+    }
+}
+
+// load account pagination
+const load_account_pagination = () => {
+    var account = sessionStorage.getItem('acc_search');
+    var current_page = sessionStorage.getItem('account_table_pagination');
+    $.ajax({
+        url:'../../process/admin/accounts_p.php',
+        type:'POST',
+        cache:false,
+        data:{
+            method:'account_list_pagination',
+            account: account,
+        },
+        success:function(response){
+            $('#account_table_paginations').html(response);
+            $('#account_table_pagination').val(current_page);
+            let last_page_check = document.getElementById("account_table_paginations").innerHTML;
+            if (last_page_check != '') {
+                let last_page = document.getElementById("account_table_paginations").lastChild.text;
+                sessionStorage.setItem('last_page',last_page);
+            }
+        }
+    });
+}
+
+//count acc
+const count_account = () => {
+    var account = sessionStorage.getItem('acc_search');
+    
+    $.ajax({
+        url:'../../process/admin/accounts_p.php',
+        type:'POST',
+        cache:false,
+        data:{
+            method:'count_account_list',
+            account:account,
+        },
+        success:function(response){
+            sessionStorage.setItem('count_rows', response);
+            var count = `Total: ${response}`;
+            $('#account_table_info').html(count);
+
+            if (response > 0) {
+                load_account_pagination();
+                document.getElementById("btnPrevPage").removeAttribute('disabled');
+                document.getElementById("btnNextPage").removeAttribute('disabled');
+                document.getElementById("account_table_pagination").removeAttribute('disabled');
+            } else {
+                document.getElementById("btnPrevPage").setAttribute('disabled',true);
+                document.getElementById("btnNextPage").setAttribute('disabled',true);
+                document.getElementById("account_table_pagination").setAttribute('disabled',true);
+
+            }
+        }
+    });
+}
+
+//load acc
+const load_accounts = current_page => {
         $.ajax({
             url: '../../process/admin/accounts_p.php',
             type: 'POST',
             cache: false,
             data: {
-                method: 'account_list'
-            }, success: function (response) {
+                method: 'account_list',
+                current_page:current_page
+            }, 
+            success: function (response) {
                 document.getElementById("list_of_accounts").innerHTML = response;
+                count_account();
+                load_account_pagination();
             }
         });
     }
 
-const search_accounts = () => {
+const search_accounts = current_page => {
         var acc_search = document.getElementById('acc_search').value;
         // var user_type = document.getElementById('user_type_search').value;
+        var savedSearch  = sessionStorage.getItem('acc_search');
+
+        if(current_page > 1){
+            switch(true){
+                case acc_search !== savedSearch:
+                case acc_search === savedSearch:
+                    break;
+                default:
+            }
+        }else{
+            sessionStorage.setItem('acc_search',acc_search);
+        }
 
         $.ajax({
             url: '../../process/admin/accounts_p.php',
@@ -35,10 +148,13 @@ const search_accounts = () => {
             cache: false,
             data: {
                 method: 'search_account_list',
-                acc_search: acc_search,
-                // user_type: user_type,
+                account: acc_search,
+                current_page: current_page
+               
             }, success: function (response) {
                 document.getElementById("list_of_accounts").innerHTML = response;
+                sessionStorage.setItem('account_table_pagination', current_page);
+                count_account();
             }
         });
     }

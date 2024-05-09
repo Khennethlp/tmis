@@ -52,7 +52,7 @@
                       <div class="input-group input-group-sm" style="width: 300px; float:right;">
                         <input type="search" name="table_search" id="acc_search" style="height: 35px; "  class="form-control float-right" placeholder="Search" autocomplete="off">
                         <div class="input-group-append">
-                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_accounts()">
+                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_accounts(1)">
                         <i class="fas fa-search"></i>
                         </button>
                         </div>
@@ -69,7 +69,7 @@
                 </select>
               </div> -->
               <div class="table-responsive dataTable dtr-inline collapsed" style="height: 400px; overflow: auto; display:inline-block;">
-                <table class="table table-head-fixed text-nowrap table-hover" id="accounts_table">
+                <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
                   <thead style="text-align:center;">
                     <th> # </th>
                     <th> Employee ID </th>
@@ -82,8 +82,28 @@
                 </table>
               </div>
               </div>
+              <!-- pagination -->
+              <div class="row mb-4">
+                  <div class="col-sm-12 col-md-9 col-9">
+                    <div class="dataTables_info pl-4" id="account_table_info" role="status" aria-live="polite"></div>
+                    <input type="hidden" id="count_rows">
+                  </div>
+                  <div class="col-sm-12 col-md-1 col-1">
+                    <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat" onclick="get_prev_page()">Prev</button>
+                  </div>
+                  <div class="col-sm-12 col-md-1 col-1">
+                    <input type="text" list="account_table_paginations" class="form-control" id="account_table_pagination">
+                    <datalist id="account_table_paginations"></datalist>
+                    <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
+                    </div> -->
+                  </div>
+                  <div class="col-sm-12 col-md-1 col-1">
+                    <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3" onclick="get_next_page()">Next</button>
+                  </div>
+                </div>
             </div>
             <!-- /.card-body -->
+            
           </div>
           <!-- /.card -->
         </div>

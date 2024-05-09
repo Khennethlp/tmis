@@ -1,13 +1,18 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
-    load_kanban_mlist();
-    history_list();
-    count_mlist();
+    // load_kanban_mlist();
+    // history_list();
+    // count_mlist();
+    // search_mlist(1);
 
-    if(document.getElementById('mlist_search').value == ''){
-        load_kanban_mlist();
-    }
+    // if(document.getElementById('mlist_search').value == ''){
+        // load_kanban_mlist();
+    // }
+});
+
+$(document).ready(function() {
+    search_mlist(1);
 });
 
 document.querySelector('#mlist_search').addEventListener("keyup", function(e) {
@@ -17,54 +22,146 @@ document.querySelector('#mlist_search').addEventListener("keyup", function(e) {
     }
 });
 
-const load_kanban_mlist = () => {
-    
-    $.ajax({
-        url: '../../process/admin/masterlist_p.php',
-        type: 'POST',
-        cache: false,
-        data: {
-            method: 'kanban_mlist' ,
-          
-        }, success: function (response) {
-            document.getElementById("kanban_mlist").innerHTML = response;
-            // count_mlist();
-            // load_mlist_pagination();
-        }
-    });
+// get datalist table
+document.getElementById("mlist_table_pagination").addEventListener("keyup", e => {
+    var current_page = parseInt(document.getElementById("mlist_table_pagination").value.trim());
+    let total = sessionStorage.getItem('count_rows');
+    var last_page = parseInt(sessionStorage.getItem('last_page'));
+    if (e.which === 13) {
+        e.preventDefault();
+        console.log(total);
+        if (current_page != 0 && current_page <= last_page && total > 0) {
+            search_mlist(current_page);
+        }  
+    }
+});
+
+//get previous page
+const get_prev_page = () => {
+    var current_page = parseInt(sessionStorage.getItem('mlist_table_pagination'));
+    let total = sessionStorage.getItem('count_rows');
+    var prev_page = current_page - 1;
+    if (prev_page > 0 && total > 0) {
+        search_mlist(prev_page);
+    }
 }
 
-
-const history_list = () => {
-    
-    $.ajax({
-        url: '../../process/admin/masterlist_p.php',
-        type: 'POST',
-        cache: false,
-        data: {
-            method: 'history_list' ,
-          
-        }, success: function (response) {
-            document.getElementById("history_list").innerHTML = response;
-           
-        }
-    });
+//get next page
+const get_next_page = () => {
+    var current_page = parseInt(sessionStorage.getItem('mlist_table_pagination'));
+    let total = sessionStorage.getItem('count_rows');
+    var last_page = parseInt(sessionStorage.getItem('last_page'));
+    var next_page = current_page + 1;
+    if (next_page <= last_page && total > 0) {
+        search_mlist(next_page);
+    }
 }
 
-const search_mlist = () => {
-    var mlist_search = document.getElementById('mlist_search').value;
-
+// load mlist pagination
+const load_mlist_pagination = () => {
+    var mlist_search = sessionStorage.getItem('mlist_search');
+    var current_page = sessionStorage.getItem('mlist_table_pagination');
     $.ajax({
         url: '../../process/admin/masterlist_p.php',
-        type: 'POST',
-        cache: false,
-        data: {
-            method: 'mlist_search',
+        type:'POST',
+        cache:false,
+        data:{
+            method:'m_list_pagination',
             mlist_search: mlist_search,
-        }, success: function (response) {
-            document.getElementById("kanban_mlist").innerHTML = response;
+        },
+        success:function(response){
+            $('#mlist_table_paginations').html(response);
+            $('#mlist_table_pagination').val(current_page);
+            let last_page_check = document.getElementById("mlist_table_paginations").innerHTML;
+            if (last_page_check != '') {
+                let last_page = document.getElementById("mlist_table_paginations").lastChild.text;
+                sessionStorage.setItem('last_page',last_page);
+            }
         }
     });
+}
+
+//count mlist
+const count_mlist = () => {
+    var mlist_search = sessionStorage.getItem('mlist_search');
+    
+    $.ajax({
+        url:'../../process/admin/masterlist_p.php',
+        type:'POST',
+        cache:false,
+        data:{
+            method:'count_mlist',
+            mlist_search: mlist_search,
+        },
+        success:function(response){
+            var count = `Total: ${response}`;
+            $('#mlist_table_info').html(count);
+            sessionStorage.setItem('count_rows', response);
+
+            if (response > 0) {
+                load_mlist_pagination();
+                document.getElementById("btnPrevPage").removeAttribute('disabled');
+                document.getElementById("btnNextPage").removeAttribute('disabled');
+                document.getElementById("mlist_table_pagination").removeAttribute('disabled');
+            } else {
+                document.getElementById("btnPrevPage").setAttribute('disabled',true);
+                document.getElementById("btnNextPage").setAttribute('disabled',true);
+                document.getElementById("mlist_table_pagination").setAttribute('disabled',true);
+
+            }
+        }
+    });
+    
+}
+
+const load_kanban_mlist = current_page => {
+    $.ajax({
+        url: '../../process/admin/masterlist_p.php',
+        type: 'POST',
+        cache: false,
+        data: {
+            method: 'kanban_mlist',
+            current_page: current_page
+          
+        }, success: function (response) {
+            document.getElementById("kanban_mlist").innerHTML = response;
+            count_mlist();
+            load_mlist_pagination();
+        }
+    });
+    
+}
+
+const search_mlist = current_page => {
+    var mlist_search = document.getElementById('mlist_search').value;
+   
+    var savedSearch_mlist  = sessionStorage.getItem('mlist_search');
+    
+    if(current_page > 1){
+            switch(true){
+                case mlist_search !== savedSearch_mlist:
+                case mlist_search === savedSearch_mlist:
+                    break;
+                default:
+            }
+        }else{
+            sessionStorage.setItem('mlist_search', mlist_search);
+        }
+        $.ajax({
+            url: '../../process/admin/masterlist_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'search_mlist',
+                mlist_search: mlist_search,
+                current_page: current_page
+            
+            }, success: function (response) {
+                document.getElementById("kanban_mlist").innerHTML = response;
+                sessionStorage.setItem('mlist_table_pagination', current_page);
+                count_mlist();
+            }
+        });
 }
 
 const search_by_date = () => {
@@ -103,19 +200,35 @@ const search_by_date = () => {
     }
 }
 
-const count_mlist = () => {
+// const count_mlist = () => {
+//     $.ajax({
+//         type: "POST",
+//         url: '../../process/admin/masterlist_p.php',
+//         data: {
+//             method: 'count_mlist',
+//             // count: count,
+//         },
+//         success: function (response) {
+//             document.getElementById("count_mlist").innerHTML = response;
+//         }
+//     });
+// }
+const history_list = () => {
+    
     $.ajax({
-        type: "POST",
         url: '../../process/admin/masterlist_p.php',
+        type: 'POST',
+        cache: false,
         data: {
-            method: 'count_mlist',
-            // count: count,
-        },
-        success: function (response) {
-            document.getElementById("count_mlist").innerHTML = response;
+            method: 'history_list' ,
+          
+        }, success: function (response) {
+            document.getElementById("history_list").innerHTML = response;
+           
         }
     });
 }
+
 const save_mlist = () => {
     var partcode = document.getElementById('partcode').value;
     var partname = document.getElementById('partname').value;

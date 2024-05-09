@@ -16,7 +16,6 @@ if (!isset($_SESSION['username'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin</title>
-  <link href="https://cdn.datatables.net/v/dt/dt-2.0.7/datatables.min.css" rel="stylesheet">
 
   <link rel="icon" href="../../dist/img/warehouse.png" type="image/x-icon" />
   <!-- Google Font: Source Sans Pro -->

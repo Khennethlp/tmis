@@ -97,7 +97,7 @@
               <input type="hidden" id="count_rows">
             </div>
             <div class="col-sm-12 col-md-1 col-1">
-              <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat" onclick="get_prev_page()">Prev</button>
+              <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_prev_page()">Prev</button>
             </div>
             <div class="col-sm-12 col-md-1 col-1">
               <input type="text" list="account_table_paginations" class="form-control" id="account_table_pagination">
@@ -106,7 +106,7 @@
                     </div> -->
             </div>
             <div class="col-sm-12 col-md-1 col-1">
-              <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3" onclick="get_next_page()">Next</button>
+              <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
             </div>
           </div>
         </div>

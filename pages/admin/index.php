@@ -109,8 +109,6 @@
               <div class="col-sm-12 col-md-1 col-1">
                 <input type="text" list="partsin_table_paginations" class="form-control" id="partsin_table_pagination">
                 <datalist id="partsin_table_paginations"></datalist>
-                <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
-                    </div> -->
               </div>
               <div class="col-sm-12 col-md-1 col-1">
                 <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3" onclick="get_next_page()">Next</button>

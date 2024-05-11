@@ -83,7 +83,7 @@ if (isset($_SESSION['username'])) {
           <div class="row">
             <div class="col">
               <center>
-                <!-- <a href="pages/viewer/">Go Back to Home Page</a> -->
+                <a href="pages/viewer/">Go Back to Home Page</a>
               </center>
             </div>
           </div>

@@ -24,7 +24,34 @@ include('plugins/navbar/index_navbar.php');
 
     <!-- Main content -->
     <div class="content">
-      
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="" id="store_in_address" placeholder="SCAN RACK QR..." style="border: 1px solid black;" autofocus>
+            </div>
+            <div class="col-md-6">
+              <input type="password" class="form-control" name="" id="store_in_qr" placeholder="SCAN KANBAN QR TO STORE IN..." onchange="insert_partsin()" oninput="trim_white_space(event);" style="border: 1px solid black;"  autocomplete="off">
+              </div>
+          </div>
+        </div>
+      </div>
+        <div class="table-responsive dataTable dtr-inline collapsed" style="height: 400px; overflow: auto; display:inline-block;">
+          <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
+            <thead style="text-align:center;">
+              <th>#</th>
+              <th>Part Code</th>
+              <th>Part Name</th>
+              <th>Packing Qty</th>
+              <th>Stock Address</th>
+              <th>Barcode Label</th>
+              <th>Date</th>
+              <th>By</th>
+            </thead>
+            <tbody id="partsin_table" style="text-align:center;">
+          </tbody>
+          </table>
+        </div>
     </div>
     <!-- /.content -->
   </div>
@@ -33,4 +60,5 @@ include('plugins/navbar/index_navbar.php');
 <?php
 include('plugins/footer.php');
 include('plugins/js/index_script.php');
+include('plugins/js/partsin_script.php');
 ?>

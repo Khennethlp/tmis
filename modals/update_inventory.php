@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <input type="hidden" id="id_history" name="id_history">
+          <input type="hidden" id="id_history" name="id_history">
           <div class="col-sm-4">
             <span><b>Part Code:</b></span>
             <input type="text" id="partcode_update" class="form-control" style="height:35px; border: 1px solid black; font-size: 15px;" placeholder="" autocomplete="off">
@@ -36,7 +36,7 @@
         <br>
       </div>
       <div class="modal-footer" style="background:#fff;">
-      <div class="col-sm-3">
+        <div class="col-sm-3">
           <button class="btn btn-block" onclick="delete_history()" style="color:#111;height:34px;border-radius:.25rem;background: #DFE2E2;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Delete</button>
         </div>
         <div class="col-sm-3">

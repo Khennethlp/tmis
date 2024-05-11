@@ -13,10 +13,8 @@
           <h5 style="text-align:center;">Confirm Logout</h5>
         </div>
         <div class="modal-footer">
-         <input type="submit" value="Logout" class="btn btn-danger col-sm-12" name="Logout">
-         <button type="submit" class="close btn btn-outline-muted text-sm col-sm-12" data-dismiss="modal" aria-label="Close">Cancel</button>
-          
-         
+          <input type="submit" value="Logout" class="btn btn-danger col-sm-12" name="Logout">
+          <button type="submit" class="close btn btn-outline-muted text-sm col-sm-12" data-dismiss="modal" aria-label="Close">Cancel</button>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <input type="hidden" id="id_acc" name="id_acc">
+          <input type="hidden" id="id_acc" name="id_acc">
           <div class="col-sm-4">
             <span><b>EmployeeID:</b></span>
             <input type="text" id="empId_edit" class="form-control" style="height:35px; border: 1px solid black; font-size: 15px;" placeholder="" autocomplete="off">
@@ -36,17 +36,17 @@
           </div>
           <div class="col-md-4">
             <label>User Type:</label>
-                <select id="user_type_edit" class="form-control">
-                  <option value="">Select User Type</option>
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                </select>
+            <select id="user_type_edit" class="form-control">
+              <option value="">Select User Type</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
           </div>
         </div>
         <br>
       </div>
       <div class="modal-footer" style="background:#fff;">
-      <div class="col-sm-3">
+        <div class="col-sm-3">
           <button class="btn btn-block" onclick="" style="color:#111;height:34px;border-radius:.25rem;background: #DFE2E2;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Delete </button>
         </div>
         <div class="col-sm-3">

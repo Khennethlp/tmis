@@ -46,9 +46,9 @@ if (isset($_POST['upload'])) {
                         location.replace("../../../pages/admin/masterlist.php");
                     </script>';
             } else {
-                echo '<script>
+                  echo '<script>
                         alert("WITH ERROR! # OF ERRORS ' . $error . '");
-                        location.replace("../../../pages/admin/masterlist.php");
+                        location.replace("../../../pages/admin/inventory.php");
                     </script>';
             }
         } else {

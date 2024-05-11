@@ -152,7 +152,7 @@ const get_next_page = () => {
     }
 }
 
-// load account pagination
+// load partsin pagination
 const load_partsin_pagination = () => {
     var partsin = sessionStorage.getItem('partsin_search');
     var current_page = sessionStorage.getItem('partsin_table_pagination');

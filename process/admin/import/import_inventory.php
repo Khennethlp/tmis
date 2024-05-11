@@ -12,7 +12,7 @@ if (isset($_POST['upload'])) {
             $error = 0;
             while (($line = fgetcsv($csvFile)) !== false) {
                 //skip the first column in csv file
-                $line = array_slice($line, 1); 
+                $line = array_slice($line, 1);
 
                 //remove the date column
                 array_splice($line, -2, 1);
@@ -33,7 +33,7 @@ if (isset($_POST['upload'])) {
                 $updated_by = $line[7];
 
                 // Form validation
-                if ( empty($partcode) || empty($partname) || empty($packing_quantity) || empty($quantity) || empty($lot_address) || empty($barcode_label) || empty($updated_by)) {
+                if (empty($partcode) || empty($partname) || empty($packing_quantity) || empty($quantity) || empty($lot_address) || empty($barcode_label) || empty($updated_by)) {
                     $error++;
                     continue;
                 }
@@ -78,4 +78,3 @@ if (isset($_POST['upload'])) {
 
 // Close database connection
 $conn = null;
-?>

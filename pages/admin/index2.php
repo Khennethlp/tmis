@@ -1,5 +1,5 @@
-<?php include 'plugins/navbar.php';?>
-<?php include 'plugins/sidebar/admin_bar.php';?>
+<?php include 'plugins/navbar.php'; ?>
+<?php include 'plugins/sidebar/admin_bar.php'; ?>
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -36,85 +36,96 @@
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
-              
+
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-            <div class="row">
-              <div class="col-md-12 mb-3">
-                <!-- <form id="MyForm" action="../../process/admin/store_in_out_p.php" method="post"> -->
-                <div class="row">
-                
-                  <div class="col-md-12">
-                    <!-- <label for="store_in_qr">Scan QR TO STORE OUT:</label> -->
-                    <!-- <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange="insert_partsout()" oninput="trim_white_space(event);" style="border: 1px solid black;" autofocus autocomplete="off"> -->
-                    <!-- <input type="submit" value="Submit" class="form-control" name="del_qr" id="del_qr" style="display: none;"> -->
-                      <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 40px;">
-                    <input type="search" name="table_search" id="partsout_search" style="height: 40px; "  class="form-control float-right" placeholder="Search" autocomplete="off">
-                    <div class="input-group-append">
-                    <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_partsout(1)">
-                    <i class="fas fa-search"></i>
+              <div class="row align-items-center">
+                <div class="col-md-12 mb-3">
+                  <div class="dt-buttons btn-group flex-wrap">
+                    <form id="file_form" enctype="multipart/form-data">
+                      <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_inv" tabindex="0" type="button">
+                        <span><i class="fas fa-file-import mr-1"></i> IMPORT INVENTORY</span>
+                      </button>
+                    </form>
+                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
+                      <span><i class="fas fa-file-export mr-1"></i> EXPORT INVENTORY</span>
                     </button>
+                  </div>
+                  <div class="col-sm-6 float-right">
+                    <div class="input-group input-group-sm mb-1" style="width: 300px; float:right;">
+                      <input type="date" id="fromD_search" class="form-control" style="height: 40px; " placeholder="From Date" autocomplete="off">
+                      <input type="date" id="toD_search" class="form-control" style="height: 40px; " placeholder="To Date" autocomplete="off">
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_by_date()">
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 40px;">
+                      <input type="search" name="table_search" id="partsout_search" style="height: 40px; " class="form-control float-right" placeholder="Search" autocomplete="off">
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_partsout(1)">
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                    </div>
                 </div>
-                <!-- </form> -->
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="card-body table-responsive p-0" style="height: 400px;">
-                <table class="table table-head-fixed text-nowrap">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Part Code</th>
-                        <th>Part Name</th>
-                        <th>Packing Qty</th>
-                        <th>Stock Address</th>
-                        <th>Barcode Label</th>
-                        <th>Date</th>
-                        <th>By</th>
-                      </tr>
-                    </thead>
-                    <tbody id="partsout_table"></tbody>
-                  </table>
+              <div class="row">
+                <div class="col-12">
+                  <div class="card-body table-responsive p-0" style="height: 400px;">
+                    <table class="table table-head-fixed text-nowrap">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Part Code</th>
+                          <th>Part Name</th>
+                          <th>Packing Qty</th>
+                          <th>Stock Address</th>
+                          <th>Barcode Label</th>
+                          <th>Date</th>
+                          <th>By</th>
+                        </tr>
+                      </thead>
+                      <tbody id="partsout_table"></tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <hr>
-         <!-- pagination -->
-          <div class="row mb-4">
-            <div class="col-sm-12 col-md-9 col-9">
-              <div class="dataTables_info pl-4" id="partsout_table_info" role="status" aria-live="polite"></div>
-              <input type="hidden" id="count_rows">
-            </div>
-            <div class="col-sm-12 col-md-1 col-1">
-              <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat" onclick="get_prev_page()">Prev</button>
-            </div>
-            <div class="col-sm-12 col-md-1 col-1">
-              <input type="text" list="partsout_table_paginations" class="form-control" id="partsout_table_pagination">
-              <datalist id="partsout_table_paginations"></datalist>
-              <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
+            <hr>
+            <!-- pagination -->
+            <div class="row mb-4">
+              <div class="col-sm-12 col-md-9 col-9">
+                <div class="dataTables_info pl-4" id="partsout_table_info" role="status" aria-live="polite"></div>
+                <input type="hidden" id="count_rows">
+              </div>
+              <div class="col-sm-12 col-md-1 col-1">
+                <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat" onclick="get_prev_page()">Prev</button>
+              </div>
+              <div class="col-sm-12 col-md-1 col-1">
+                <input type="text" list="partsout_table_paginations" class="form-control" id="partsout_table_pagination">
+                <datalist id="partsout_table_paginations"></datalist>
+                <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
               </div> -->
-            </div>
-            <div class="col-sm-12 col-md-1 col-1">
-              <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3" onclick="get_next_page()">Next</button>
+              </div>
+              <div class="col-sm-12 col-md-1 col-1">
+                <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3" onclick="get_next_page()">Next</button>
+              </div>
             </div>
           </div>
+          <!-- /.card-body -->
         </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
+        <!-- /.card -->
       </div>
-      <!-- /.row -->
+      <!-- /.col -->
     </div>
-  </section>
+    <!-- /.row -->
+</div>
+</section>
 </div>
 
-<?php include 'plugins/footer.php';?>
-<?php include 'plugins/js/partsout_script.php';?>
+<?php include 'plugins/footer.php'; ?>
+<?php include 'plugins/js/partsout_script.php'; ?>

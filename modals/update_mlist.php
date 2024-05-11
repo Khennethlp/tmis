@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <input type="hidden" id="id_mlist" name="id_mlist">
+          <input type="hidden" id="id_mlist" name="id_mlist">
           <div class="col-sm-4">
             <span><b>Part Code:</b></span>
             <input type="text" id="partcode_edit" class="form-control" style="height:35px; border: 1px solid black; font-size: 15px;" placeholder="" autocomplete="off">
@@ -28,7 +28,7 @@
         <br>
       </div>
       <div class="modal-footer" style="background:#fff;">
-      <div class="col-sm-3">
+        <div class="col-sm-3">
           <button class="btn btn-block" onclick="delete_mlist()" style="color:#111;height:34px;border-radius:.25rem;background: #DFE2E2;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Delete Masterlist</button>
         </div>
         <div class="col-sm-3">

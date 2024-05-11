@@ -18,7 +18,7 @@
           <div class="col-sm-4">
             <span><b>Part Name:</b></span>
             <input type="text" id="partname" class="form-control" style="height:35px; border: 1px solid black; font-size: 15px;" placeholder="" autocomplete="off">
-          </div> 
+          </div>
           <div class="col-sm-4">
             <span><b>Packing Quantity</b></span>
             <input type="number" id="qty" class="form-control" style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">

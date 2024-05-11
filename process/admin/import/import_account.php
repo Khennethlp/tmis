@@ -70,4 +70,3 @@ if (isset($_POST['upload'])) {
 
 // Close database connection
 $conn = null;
-?>

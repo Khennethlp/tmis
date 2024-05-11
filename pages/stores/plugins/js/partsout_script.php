@@ -1,17 +1,10 @@
 <script>
-function trim_white_space(event) {
-    document.getElementById('store_out_qr').value = document.getElementById('store_out_qr').value.trim();
-
-}
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     load_partsout();
-// });
-
-$(document).ready(function() {
-    search_partsout(1);
+// Call count_partsout function to initially populate total count
+$(document).ready(function () {
+    count_partsout();
+    load_partsout();
 });
-
+// JavaScript part
 document.getElementById("partsout_table_pagination").addEventListener("keyup", e => {
     var current_page = parseInt(document.getElementById("partsout_table_pagination").value.trim());
     let total = sessionStorage.getItem('count_rows');
@@ -20,7 +13,6 @@ document.getElementById("partsout_table_pagination").addEventListener("keyup", e
         e.preventDefault();
         console.log(total);
         if (current_page != 0 && current_page <= last_page && total > 0) {
-            search_partsout(current_page);
         }  
     }
 });
@@ -31,7 +23,6 @@ const get_prev_page = () => {
     let total = sessionStorage.getItem('count_rows');
     var prev_page = current_page - 1;
     if (prev_page > 0 && total > 0) {
-        search_partsout(prev_page);
     }
 }
 
@@ -42,45 +33,17 @@ const get_next_page = () => {
     var last_page = parseInt(sessionStorage.getItem('last_page'));
     var next_page = current_page + 1;
     if (next_page <= last_page && total > 0) {
-        search_partsout(next_page);
     }
 }
 
-// load account pagination
-const load_partsout_pagination = () => {
-    var partsout = sessionStorage.getItem('partsout_search');
-    var current_page = sessionStorage.getItem('partsout_table_pagination');
-    $.ajax({
-        url: "../../process/admin/store_out_p.php",
-        type:'POST',
-        cache:false,
-        data:{
-            method:'partsout_pagination',
-            partsout: partsout,
-        },
-        success:function(response){
-            $('#partsout_table_paginations').html(response);
-            $('#partsout_table_pagination').val(current_page);
-            let last_page_check = document.getElementById("partsout_table_paginations").innerHTML;
-            if (last_page_check != '') {
-                let last_page = document.getElementById("partsout_table_paginations").lastChild.text;
-                sessionStorage.setItem('last_page',last_page);
-            }
-        }
-    });
-}
-
-//count partsout
 const count_partsout = () => {
-    var partsout = sessionStorage.getItem('partsout_search');
-    
     $.ajax({
-        url: "../../process/admin/store_out_p.php",
+        url: "../../process/stores/store_out_p.php",
         type:'POST',
         cache:false,
         data:{
             method: 'count_partsout_list',
-            partsout: partsout,
+           
         },
         success:function(response){
             sessionStorage.setItem('count_rows', response);
@@ -102,130 +65,43 @@ const count_partsout = () => {
     });
 }
 
-    const load_partsout = current_page => {
-    $.ajax({
-        url: '../../process/admin/store_out_p.php',
-        type: 'POST',
-        cache: false,
-        data: {
-            method: 'partsout_list'
-        }, success: function (response) {
-            document.getElementById("partsout_table").innerHTML = response;
-            count_partsout();
-            load_partsout_pagination();
-        }
-    });
-    }
-
-    const search_partsout = current_page => {
-    var partsout = document.getElementById('partsout_search').value;
-    var savedSearch  = sessionStorage.getItem('partsout_search');
-
-    if(current_page > 1){
-        switch(true){
-            case partsout !== savedSearch:
-            case partsout === savedSearch:
-                break;
-            default:
-        }
-    }else{
-        sessionStorage.setItem('partsout_search', partsout);
-    }
+const load_partsout_pagination = () => {
+    var partsout = sessionStorage.getItem('partsout_table');
+    var current_page = sessionStorage.getItem('partsout_table_pagination');
 
     $.ajax({
-        url: '../../process/admin/store_out_p.php',
-        type: 'POST',
-        cache: false,
-        data: {
-            method: 'search_partsout',
+        url: "../../process/stores/store_out_p.php",
+        type:'POST',
+        cache:false,
+        data:{
+            method:'partsout_pagination',
             partsout: partsout,
-            current_page: current_page
-            
-        }, success: function (response) {
-            document.getElementById("partsout_table").innerHTML = response;
-            sessionStorage.setItem('partsout_table_pagination', current_page);
-            count_partsout();
+        },
+        success:function(response){
+            $('#partsout_table_paginations').html(response);
+            $('#partsout_table_pagination').val(current_page);
+            let last_page_check = document.getElementById("partsout_table_paginations").innerHTML;
+            if (last_page_check != '') {
+                let last_page = document.getElementById("partsout_table_paginations").lastChild.text;
+                sessionStorage.setItem('last_page',last_page);
+            }
         }
     });
 }
 
-    const insert_partsout = () => {
-    console.log('Inserting parts...');
-    var store_out_qr = document.getElementById('store_out_qr').value;
-
-    console.log(store_out_qr);
-
-    if(store_out_qr === ''){
-        Swal.fire({
-            icon: 'info',
-            title: 'Please Scan QR !!!',
-            text: 'Information',
-            showConfirmButton: false,
-            timer : 1000
-        });
-            
-            $('#store_out_qr').focus();
-            load_partsout();
-    } else {
-        $.ajax({
-            type: "POST",
-            url: "../../process/admin/store_out_p.php",
-            cache: false,
-            data: {
-                method: 'insert_partsout',
-                store_out_qr: store_out_qr,
-               
-            },
-            success: function (response) {
-                if(response == 'success'){
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Successfully Recorded !!!',
-                        text: 'Success',
-                        showConfirmButton: false,
-                        timer : 1000
-                    });
-                    
-                    $('#store_out_qr').val('');
-                   
-                    load_partsout();
-
-                } else if(response == 'duplicate'){
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Already Stored out Data !!!',
-                        text: 'Information',
-                        showConfirmButton: false,
-                        timer : 1000
-                    });
-                    
-                    $('#store_out_qr').val('');
-                   
-                    load_partsout();
-                } else if(response == 'undefined'){
-                    Swal.fire({
-                        icon: 'info',
-                        title: 'Not in Store in !!!',
-                        text: 'Information',
-                        showConfirmButton: false,
-                        timer : 1000
-                    });
-                    
-                    $('#store_out_qr').val('');
-                   
-                    load_partsout();
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error !!!',
-                        text: 'Error',
-                        showConfirmButton: false,
-                        timer : 1000
-                    });
-                    load_partsout();
-                }
-            }
-        });
-    }
+const load_partsout = current_page => {
+    $.ajax({
+        url: '../../process/stores/store_out_p.php',
+        type: 'POST',
+        cache: false,
+        data: {
+            method: 'partsout_list',
+            current_page: current_page,
+        }, 
+        success: function (response) {
+            document.getElementById("partsout_table").innerHTML = response;
+        }
+    });
 };
+
 </script>

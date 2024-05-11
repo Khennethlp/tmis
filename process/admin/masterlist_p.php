@@ -10,10 +10,14 @@ function count_m_list($search_arr, $conn){
     $stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
     $stmt->execute();
     
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    $total = $row['total'];
-
-    return $total;
+	if($stmt->rowCount() > 0){
+		foreach($stmt->fetchALL() as $row){
+			$total = $row['total'];
+		}
+	}else{
+		$total = 0;
+	}
+	 return $total;
 }
 
 if ($method == 'count_mlist') {
@@ -52,13 +56,14 @@ if($method == 'kanban_mlist'){
 		}
 	}else{
 		echo '<tr>';
-			echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }
 
 if($method == 'm_list_pagination'){
-	$mlist_search = $_POST['mlist_search'];
+	// $mlist_search = $_POST['mlist_search'];
+	$mlist_search = isset($_POST['mlist_search']) ? $_POST['mlist_search'] : ''; // Check if mlist_search is set
 	// $fromD_search = $_POST['fromD_search'];
 	// $toD_search = $_POST['toD_search'];
 
@@ -67,9 +72,7 @@ if($method == 'm_list_pagination'){
 	);
 
 	$results_per_page = 10;
-
     $number_of_result = intval(count_m_list($search_arr, $conn));
-
 	$number_of_page = ceil($number_of_result / $results_per_page);
 
     for ($page = 1; $page <= $number_of_page; $page++){
@@ -79,7 +82,9 @@ if($method == 'm_list_pagination'){
 
 if ($method == 'search_mlist') {
 	$mlist_search = $_POST['mlist_search'];
-	$current_page = intval($_POST['current_page']);
+	// $current_page = intval($_POST['current_page']);
+
+	$current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
 	$c = 0;
 
 	$results_per_page = 10;

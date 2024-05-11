@@ -58,6 +58,8 @@
                       <div class="col-sm-1">
                         <button class="btn btn-del" id="deleteBtn" onclick="delete_data_arr()" ><i class="fas fa-trash"></i></button>
                       </div>
+                        <div class="col-sm-7"></div>
+
                       <div class="input-group input-group-sm" style="width: 300px; float:right;">
                           <input type="search" name="table_search" id="mlist_search" style="height: 40px; "  class="form-control float-right" placeholder="Search" autocomplete="off">
                           <div class="input-group-append">
@@ -66,8 +68,7 @@
                           </button>
                           </div>
                         </div>
-                        <div class="col-sm-4"></div>
-                        <div class="input-group input-group-sm" style="width: 300px; float:right;">
+                        <!-- <div class="input-group input-group-sm" style="width: 300px; float:right;">
                             <input type="date" id="fromD_search" class="form-control" style="height: 40px; " placeholder="From Date" autocomplete="off">
                             <input type="date" id="toD_search" class="form-control" style="height: 40px; " placeholder="To Date" autocomplete="off">
     
@@ -76,7 +77,7 @@
                             <i class="fas fa-search"></i>
                             </button>
                             </div>
-                          </div>
+                          </div> -->
                       </div>
                 <div class="table-responsive p-0" style="height: 350px;">
                   <table class="table table-head-fixed text-nowrap" id="inv_tbl">

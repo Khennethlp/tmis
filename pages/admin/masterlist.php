@@ -48,8 +48,8 @@
                 </div>
                 <div class="col-sm-12">
                 <div class="row">
-                  
-                      <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 8px;">
+                  <div class="col-sm-8"></div>
+                      <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 40px;">
                         <input type="search" name="table_search" id="mlist_search" style="height: 40px; "  class="form-control float-right" placeholder="Search" autocomplete="off">
                         <div class="input-group-append">
                         <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_mlist(1)">
@@ -58,7 +58,7 @@
                         </div>
                       </div>
                       <!-- <div class="col-sm-5"></div> -->
-                        <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 515px;">
+                        <!-- <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 515px;">
                           <input type="date" id="fromD_search" class="form-control" style="height: 40px; " placeholder="From Date">
                           <input type="date" id="toD_search" class="form-control" style="height: 40px; " placeholder="To Date">
   
@@ -67,7 +67,7 @@
                           <i class="fas fa-search"></i>
                           </button>
                           </div>
-                        </div>
+                        </div> -->
                   </div>
                 </div>
               </div>

@@ -3,7 +3,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // load_kanban_mlist();
     // history_list();
-    // count_mlist();
     // search_mlist(1);
 
     // if(document.getElementById('mlist_search').value == ''){
@@ -125,7 +124,7 @@ const load_kanban_mlist = current_page => {
           
         }, success: function (response) {
             document.getElementById("kanban_mlist").innerHTML = response;
-            count_mlist();
+            // count_mlist();
             load_mlist_pagination();
         }
     });
@@ -154,7 +153,7 @@ const search_mlist = current_page => {
             data: {
                 method: 'search_mlist',
                 mlist_search: mlist_search,
-                current_page: current_page
+                current_page: current_page,
             
             }, success: function (response) {
                 document.getElementById("kanban_mlist").innerHTML = response;
@@ -170,7 +169,7 @@ const search_by_date = () => {
 
     if(from_date === '' && to_date === ''){
         load_kanban_mlist();
-        count_mlist();
+        // count_mlist();
     }else{
     $.ajax({
         url: '../../process/admin/masterlist_p.php',

@@ -1,8 +1,8 @@
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand-md navbar-dark bg-gray-dark text-light border-bottom-0">
   <a href="" class="navbar-brand ml-2">
-    <img src="../../dist/img/logo.png" alt="Web Template Logo" class="brand-image elevation-3 bg-light p-1" style="opacity: .8">
-    <span class="brand-text font-weight-light text-light"><b>WEB</b> Template</span>
+    <img src="../../dist/img/warehouse.png" alt="Web Template Logo" class="brand-image elevation-3 bg-light p-1 rounded" style="opacity: .8">
+    <span class="brand-text font-weight-light text-light"><b>TMIS</b></span>
   </a>
 
   <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,11 +12,14 @@
   <div class="collapse navbar-collapse order-3" id="navbarCollapse">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a href="" class="nav-link active"><i class="fas fa-home"></i> Homepage</a>
+      </li> -->
+      <li class="nav-item">
+        <a href="#" class="nav-link"><i class="fas fa-download"></i> Store-in</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link"><i class="fas fa-plus"></i> Menu</a>
+        <a href="#" class="nav-link"><i class="fas fa-upload"></i> Store-out</a>
       </li>
       <li class="nav-item">
         <a href="/k_temp/" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>

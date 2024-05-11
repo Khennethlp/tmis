@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="Web Template" />
-  <meta name="keywords" content="Web Template" />
+  <meta name="description" content="tmis" />
+  <meta name="keywords" content="tmis" />
 
   <title>Viewer</title>
 
@@ -23,5 +23,5 @@
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   </noscript>
 
-  <link rel="icon" type="image/x-icon" href="../../dist/img/logo.ico">
+  <link rel="icon" type="image/x-icon" href="../../dist/img/warehouse.png">
 </head>

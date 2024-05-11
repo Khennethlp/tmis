@@ -18,11 +18,11 @@ if (isset($_POST['Login'])) {
             $_SESSION['username'] = $username;
             $_SESSION['name'] = $name;
             $_SESSION['role'] = $role;
-            if ($role == 'admin') {
+            if ($_SESSION['username'] == $username && $role == 'admin') {
                 header('location: pages/admin/index.php'); // admin/index.php
                 exit;
-            } elseif ($role == 'user') {
-                header('location: pages/user/index.php');// user/index.php
+            } elseif ($_SESSION['username'] == $username && $role == 'user') {
+                header('location: pages/stores/index.php');// user/index.php
                 exit;
             }
         }

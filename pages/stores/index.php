@@ -53,6 +53,25 @@ include('plugins/navbar/index_navbar.php');
           </table>
         </div>
     </div>
+     <!-- pagination -->
+     <div class="row mb-4">
+        <div class="col-sm-12 col-md-9 col-9">
+          <div class="dataTables_info pl-4" id="partsin_table_info" role="status" aria-live="polite"></div>
+          <input type="hidden" id="count_rows">
+        </div>
+        <div class="col-sm-12 col-md-1 col-1">
+          <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat" onclick="get_prev_page()">Prev</button>
+        </div>
+        <div class="col-sm-12 col-md-1 col-1">
+          <input type="text" list="partsin_table_paginations" class="form-control" id="partsin_table_pagination">
+          <datalist id="partsin_table_paginations"></datalist>
+          <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
+          </div> -->
+        </div>
+        <div class="col-sm-12 col-md-1 col-1">
+          <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3" onclick="get_next_page()">Next</button>
+        </div>
+      </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

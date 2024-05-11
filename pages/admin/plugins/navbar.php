@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
   header('location:../../');
   exit;
 } else if ($_SESSION['role'] == 'user') {
-  header('location: ../../page/user/pagination.php');
+  header('location: ../../pages/stores/index.php');
   exit;
 }
 ?>  

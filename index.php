@@ -80,13 +80,13 @@ if (isset($_SESSION['username'])) {
               <!-- <button type="button" href="#" target="_blank" class="btn bg-danger btn-block" id="wi">Work Instruction</button> -->
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col">
               <center>
-                <a href="pages/viewer/">Go Back to Home Page</a>
+                <a href="pages/stores/">Go Back to Home Page</a>
               </center>
             </div>
-          </div>
+          </div> -->
         </form>
       </div>
     </div>

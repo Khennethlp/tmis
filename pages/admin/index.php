@@ -42,13 +42,21 @@
             <div class="card-body">
             <div class="row">
               <div class="col-md-12 mb-3">
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-md-6">
                     <input type="text" class="form-control" name="" id="store_in_address" placeholder="SCAN RACK QR..." style="border: 1px solid black;" autofocus>
                   </div>
                   <div class="col-md-6">
-                    <input type="password" class="form-control" name="" id="store_in_qr" placeholder="SCAN KANBAN QR TO STORE IN..." onchange="insert_partsin()" oninput="trim_white_space(event);" style="border: 1px solid black;"  autocomplete="off">
+                    <input type="password" class="form-control" name="" id="store_in_qr" placeholder="SCAN KANBAN QR TO STORE IN..."  oninput="trim_white_space(event);" style="border: 1px solid black;"  autocomplete="off">
                     </div>
+                </div> -->
+                <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 40px;">
+                  <input type="search" name="table_search" id="partsin_search" style="height: 40px; "  class="form-control float-right" placeholder="Search" autocomplete="off">
+                  <div class="input-group-append">
+                  <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_partsin(1)">
+                  <i class="fas fa-search"></i>
+                  </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -75,6 +83,25 @@
             </div>
           </div>
           <hr>
+             <!-- pagination -->
+             <div class="row mb-4">
+                  <div class="col-sm-12 col-md-9 col-9">
+                    <div class="dataTables_info pl-4" id="partsin_table_info" role="status" aria-live="polite"></div>
+                    <input type="hidden" id="count_rows">
+                  </div>
+                  <div class="col-sm-12 col-md-1 col-1">
+                    <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat" onclick="get_prev_page()">Prev</button>
+                  </div>
+                  <div class="col-sm-12 col-md-1 col-1">
+                    <input type="text" list="partsin_table_paginations" class="form-control" id="partsin_table_pagination">
+                    <datalist id="partsin_table_paginations"></datalist>
+                    <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
+                    </div> -->
+                  </div>
+                  <div class="col-sm-12 col-md-1 col-1">
+                    <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3" onclick="get_next_page()">Next</button>
+                  </div>
+                </div>
         </div>
             <!-- /.card-body -->
           </div>

@@ -84,7 +84,6 @@ if ($method == 'insert_partsout') {
 				$data[] = $res;
 			}
 			foreach ($data as $row) {
-				// Access 'partcode' and 'partname' columns for each row
 				//    $id = $row['id'];
 				$lot_address = $row['lot_address'];
 			}
@@ -111,7 +110,7 @@ if ($method == 'insert_partsout') {
 				// Data not found in t_partsin, echo 'undefined' and rollback transaction
 				echo 'undefined';
 				$conn->rollBack();
-				exit(); // Exit the script as no further action is needed
+				exit();
 			}
 
 			// Data doesn't exist in t_partsin, perform insertion into t_partsout
@@ -128,8 +127,6 @@ if ($method == 'insert_partsout') {
 			$stmt3->execute();
 
 			echo 'success';
-
-
 			$conn->commit();
 		} catch (Exception $e) {
 			echo 'error: ' . $e->getMessage();

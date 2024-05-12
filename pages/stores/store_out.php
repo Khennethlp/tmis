@@ -31,7 +31,7 @@ include('plugins/navbar/index_navbar.php');
               <input type="text" class="form-control" name="" id="store_in_address" placeholder="SCAN RACK QR..." style="border: 1px solid black;" autofocus>
             </div> -->
           <div class="col-md-12">
-            <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange="insert_partsout()" oninput="trim_white_space(event);" style="border: 1px solid black;" autofocus autocomplete="off">
+            <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange="insert_partsout()" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autofocus autocomplete="off">
           </div>
         </div>
       </div>
@@ -53,8 +53,9 @@ include('plugins/navbar/index_navbar.php');
       </table>
     </div>
   </div>
+  <!-- /.content -->
   <!-- pagination -->
-  <div class="row mb-4">
+  <div class="row mb-1">
     <div class="col-sm-12 col-md-9 col-9">
       <div class="dataTables_info pl-4" id="partsout_table_info" role="status" aria-live="polite"></div>
       <input type="hidden" id="count_rows">
@@ -69,10 +70,9 @@ include('plugins/navbar/index_navbar.php');
               </div> -->
     </div>
     <div class="col-sm-12 col-md-1 col-1">
-      <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
+      <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_next_page()">Next</button>
     </div>
   </div>
-  <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 

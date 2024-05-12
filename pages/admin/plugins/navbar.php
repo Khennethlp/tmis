@@ -67,16 +67,16 @@ if (!isset($_SESSION['username'])) {
       100% { transform: rotate(1080deg); }
     } 
     .active{
-      background-color: #AA2138 !important;
+      background-color: #29339B !important;
       border-bottom: 2px solid #ffffff !important;
       color: #fff;
     }
     .b-border{
-      border-bottom: 2px solid #AA2138 !important;
+      border-bottom: 2px solid #29339B !important;
     }
     .btn-func{
       color: #fff;
-      background-color: #AA2138 !important;
+      background-color: #29339B !important;
       border-bottom: 2px solid #ccc !important;
     }
     .btn-func:hover{

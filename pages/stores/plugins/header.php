@@ -54,8 +54,8 @@ include '../../process/login.php';
 
   <style>
     .nav-active{
-      background-color: #AA2138 !important;
-      color: #fff;
+      background-color: #29339B !important;
+      color: #ffffff;
       border-radius: 5px !important;
       /* border-bottom: 2px solid #ffffff !important; */
     }

@@ -76,7 +76,7 @@
                             </button>
                             </div>
                           </div> -->
-              <div class="table-responsive" style="height: 300px; overflow: auto; display:inline-block;">
+              <div class="table-responsive" style="height: 535px; overflow: auto; display:inline-block;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="mlist_table">
                   <thead style="text-align:center;">
                     <th> # </th>

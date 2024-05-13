@@ -67,7 +67,7 @@ if (!isset($_SESSION['username'])) {
       100% { transform: rotate(1080deg); }
     } 
     .active{
-      background-color: #29339B !important;
+      background-color: #000EA4 !important;
       border-bottom: 2px solid #ffffff !important;
       color: #fff;
     }
@@ -76,11 +76,11 @@ if (!isset($_SESSION['username'])) {
     }
     .btn-func{
       color: #fff;
-      background-color: #29339B !important;
+      background-color: #000EA4 !important;
       border-bottom: 2px solid #ccc !important;
     }
     .btn-func:hover{
-      background-color: #942D3E !important;
+      background-color: #29339B !important;
       border-bottom: 2px solid #45141C !important;
       color: #fff;
     }
@@ -94,6 +94,9 @@ if (!isset($_SESSION['username'])) {
     .btn-del:hover{
       background-color: #942D3E !important;
       color: #fff !important;
+    }
+    .subBtn:hover{
+      background-color: #29339B !important;
     }
 
   </style>

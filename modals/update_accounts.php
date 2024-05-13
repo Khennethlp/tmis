@@ -50,7 +50,7 @@
           <button class="btn btn-block" onclick="" style="color:#111;height:34px;border-radius:.25rem;background: #DFE2E2;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Delete </button>
         </div>
         <div class="col-sm-3">
-          <button class="btn btn-block" id="update_btn" onclick="" style="color:#fff;height:34px;border-radius:.25rem;background: #87A878;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);">Update </button>
+          <button class="btn subBtn btn-block" id="update_btn" onclick="" style="color:#fff;height:34px;border-radius:.25rem;background: #000EA4;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);">Update </button>
         </div>
       </div>
     </div>

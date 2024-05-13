@@ -28,7 +28,7 @@
       </div>
       <div class="modal-footer" style="background:#fff;">
         <div class="col-sm-3">
-          <button class="btn btn-block" onclick="save_mlist()" style="background: #87A878 !important;color:#fff;height:34px;border-radius:.25rem;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);">Add</button>
+          <button class="btn btn-block" onclick="save_mlist()" style="background: #000EA4 !important;color:#fff;height:34px;border-radius:.25rem;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);">Add</button>
         </div>
       </div>
     </div>

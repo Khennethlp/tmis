@@ -76,7 +76,7 @@
                   <option value="user">User</option>
                 </select>
               </div> -->
-            <div class="table-responsive dataTable dtr-inline collapsed" style="height: 400px; overflow: auto; display:inline-block;">
+            <div class="table-responsive dataTable dtr-inline collapsed" style="height: 535px; overflow: auto; display:inline-block;">
               <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
                 <thead style="text-align:center;">
                   <th> # </th>

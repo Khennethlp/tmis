@@ -10,7 +10,7 @@ $(document).ready(function() {
     search_accounts(1);
 });
 
-document.querySelector('#searchReqBtn').addEventListener("keyup", function(e) {
+document.querySelector('#acc_search').addEventListener("keyup", function(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
         search_accounts(); // Call your search function

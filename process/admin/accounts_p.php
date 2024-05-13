@@ -79,7 +79,7 @@ if ($method == 'account_list_pagination') {
 
 if ($method == 'search_account_list') {
 	$account = $_POST['account'];
-	$current_page = intval($_POST['current_page']);
+	$current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
 	$c = 0;
 
 	$results_per_page = 10;

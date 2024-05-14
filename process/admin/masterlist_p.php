@@ -109,7 +109,7 @@ if ($method == 'search_mlist') {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="5" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }
@@ -168,7 +168,7 @@ if ($method == 'history_list') {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="5" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }

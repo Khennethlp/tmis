@@ -4,29 +4,13 @@ function trim_white_space(event) {
     document.getElementById('store_in_qr').value = document.getElementById('store_in_qr').value.trim();
 }
 
-// Function to handle Enter key press event for both input fields
-// const handleEnterKeyPress = (e) => {
-//     // Check if the key pressed is Enter
-//     if (e.key === 'Enter') {
-//         // Prevent the default action of the Enter key, which is submitting the form
-//         e.preventDefault();
-//         // Focus on the other input field
-//         if (e.target.id === 'store_in_qr') {
-//             document.getElementById('store_in_address').focus();
-//         } else {
-//             document.getElementById('store_in_qr').focus();
-//         }
-//     }
-// };
+document.querySelector('#partsin_search').addEventListener("keyup", function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        search_partsin(); // Call your search function
+    }
+});
 
-// Listen for key press events on both input fields
-// document.getElementById('store_in_qr').addEventListener('keypress', handleEnterKeyPress);
-// document.getElementById('store_in_address').addEventListener('keypress', handleEnterKeyPress);
-
-// document.addEventListener("DOMContentLoaded", () => {
-//         // load_partsin();
-//         // getMlist();
-// });
 $(document).ready(function() {
     search_partsin(1);
 });
@@ -256,6 +240,34 @@ const search_partsin = current_page => {
         }
     });
 }
+
+const export_csv = (table_id, separator = ',') => {
+        // Select rows from table_id
+        var rows = document.querySelectorAll('table#' + table_id + ' tr');
+        // Construct csv
+        var csv = [];
+        for (var i = 0; i < rows.length; i++) {
+            var row = [], cols = rows[i].querySelectorAll('td, th');
+            for (var j = 0; j < cols.length; j++) {
+                var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+                data = data.replace(/"/g, '""');
+                // Push escaped string
+                row.push('"' + data + '"');
+            }
+            csv.push(row.join(separator));
+        }
+        var csv_string = csv.join('\n');
+        // Download it
+        var filename = 'Export-Partsin' + '_' + new Date().toLocaleDateString() + '.csv';
+        var link = document.createElement('a');
+        link.style.display = 'none';
+        link.setAttribute('target', '_blank');
+        link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv_string));
+        link.setAttribute('download', filename);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
     
 //     function getMlist() {
 //     // AJAX call to retrieve data from server

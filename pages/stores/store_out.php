@@ -31,11 +31,12 @@ include('plugins/navbar/index_navbar.php');
               <input type="text" class="form-control" name="" id="store_in_address" placeholder="SCAN RACK QR..." style="border: 1px solid black;" autofocus>
             </div> -->
           <div class="col-md-12">
-            <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange="insert_partsout()" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autofocus autocomplete="off">
+            <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange="save_to_local_storage()" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autofocus autocomplete="off">
           </div>
         </div>
       </div>
     </div>
+    <a href="" class="float-right" onclick="clearLocalStorage()">Clear All</a>
     <div class="table-responsive dataTable dtr-inline collapsed" style="height: 400px; overflow: auto; display:inline-block;">
       <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
         <thead style="text-align:center;">
@@ -45,8 +46,7 @@ include('plugins/navbar/index_navbar.php');
           <th>Packing Qty</th>
           <th>Stock Address</th>
           <th>Barcode Label</th>
-          <th>Date</th>
-          <th>By</th>
+
         </thead>
         <tbody id="partsout_table" style="text-align:center;">
         </tbody>
@@ -55,24 +55,7 @@ include('plugins/navbar/index_navbar.php');
   </div>
   <!-- /.content -->
   <!-- pagination -->
-  <div class="row mb-1">
-    <div class="col-sm-12 col-md-9 col-9">
-      <div class="dataTables_info pl-4" id="partsout_table_info" role="status" aria-live="polite"></div>
-      <input type="hidden" id="count_rows">
-    </div>
-    <div class="col-sm-12 col-md-1 col-1">
-      <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_prev_page()">Prev</button>
-    </div>
-    <div class="col-sm-12 col-md-1 col-1">
-      <input type="text" list="partsout_table_paginations" class="form-control" id="partsout_table_pagination">
-      <datalist id="partsout_table_paginations"></datalist>
-      <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
-              </div> -->
-    </div>
-    <div class="col-sm-12 col-md-1 col-1">
-      <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_next_page()">Next</button>
-    </div>
-  </div>
+
 </div>
 <!-- /.content-wrapper -->
 

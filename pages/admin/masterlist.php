@@ -23,7 +23,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <div class="card card-danger card-outline">
+          <div class="card card-primary card-outline">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-users"></i>&nbsp; Masterlist</h3>
               <div class="card-tools">

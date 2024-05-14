@@ -58,7 +58,7 @@ if ($method == 'partsout_list') {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="8" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }
@@ -83,7 +83,7 @@ if ($method == 'partsout_pagination') {
 
 if ($method == 'search_partsout') {
 	$partsout = $_POST['partsout'];
-	$current_page = intval($_POST['current_page']);
+	$current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
 	$c = 0;
 
 	$results_per_page = 10;
@@ -109,7 +109,7 @@ if ($method == 'search_partsout') {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="8" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }

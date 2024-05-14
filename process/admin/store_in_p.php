@@ -57,7 +57,7 @@ if ($method == 'partsin_list') {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="8" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }
@@ -82,9 +82,9 @@ if ($method == 'partsin_pagination') {
 
 if ($method == 'search_partsin') {
 	$partsin = $_POST['partsin'];
-	$current_page = intval($_POST['current_page']);
+	$current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
 	$c = 0;
-
+	
 	$results_per_page = 10;
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
@@ -108,7 +108,7 @@ if ($method == 'search_partsin') {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="8" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }

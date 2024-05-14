@@ -67,21 +67,21 @@ if (!isset($_SESSION['username'])) {
       100% { transform: rotate(1080deg); }
     } 
     .active{
-      background-color: #000EA4 !important;
+      background-color: #275DAD !important; /*#000EA4*/
       border-bottom: 2px solid #ffffff !important;
       color: #fff;
     }
     .b-border{
-      border-bottom: 2px solid #29339B !important;
+      border-bottom: 2px solid #275DAD !important;
     }
     .btn-func{
       color: #fff;
-      background-color: #000EA4 !important;
+      background-color: #275DAD !important;
       border-bottom: 2px solid #ccc !important;
     }
     .btn-func:hover{
-      background-color: #29339B !important;
-      border-bottom: 2px solid #45141C !important;
+      background-color: #4881D5 !important;/*#275DAD*/
+      border-bottom: 2px solid #5B616A !important;
       color: #fff;
     }
     .btn-del{

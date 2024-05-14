@@ -25,7 +25,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <div class="card card-danger card-outline">
+          <div class="card card-primary card-outline">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-download"></i> Store Out</h3>
               <div class="card-tools">
@@ -43,17 +43,17 @@
               <div class="row align-items-center">
                 <div class="col-md-12 mb-3">
                   <div class="dt-buttons btn-group flex-wrap">
-                    <form id="file_form" enctype="multipart/form-data">
+                    <!-- <form id="file_form" enctype="multipart/form-data">
                       <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_inv" tabindex="0" type="button">
                         <span><i class="fas fa-file-import mr-1"></i> IMPORT INVENTORY</span>
                       </button>
-                    </form>
-                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
-                      <span><i class="fas fa-file-export mr-1"></i> EXPORT INVENTORY</span>
+                    </form> -->
+                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('partsout_tbl')" type="button">
+                      <span><i class="fas fa-file-export mr-1"></i> EXPORT</span>
                     </button>
                   </div>
                   <div class="col-sm-6 float-right">
-                    <div class="input-group input-group-sm mb-1" style="width: 300px; float:right;">
+                    <!-- <div class="input-group input-group-sm mb-1" style="width: 300px; float:right;">
                       <input type="date" id="fromD_search" class="form-control" style="height: 40px; " placeholder="From Date" autocomplete="off">
                       <input type="date" id="toD_search" class="form-control" style="height: 40px; " placeholder="To Date" autocomplete="off">
                       <div class="input-group-append">
@@ -61,7 +61,7 @@
                           <i class="fas fa-search"></i>
                         </button>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 40px;">
                       <input type="search" name="table_search" id="partsout_search" style="height: 40px; " class="form-control float-right" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
@@ -76,7 +76,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="card-body table-responsive p-0" style="height: 535px;">
-                    <table class="table table-head-fixed text-nowrap">
+                    <table class="table table-head-fixed text-nowrap" id="partsout_tbl">
                       <thead>
                         <tr>
                           <th>#</th>

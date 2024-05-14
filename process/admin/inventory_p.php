@@ -63,7 +63,7 @@ if ($method == 'inventory_list') {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="10" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }
@@ -116,7 +116,7 @@ if ($method == 'inventory_search') {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+		echo '<td colspan="10" style="text-align:center; color:red;">No Result !!!</td>';
 		echo '</tr>';
 	}
 }

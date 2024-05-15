@@ -44,7 +44,7 @@
                 <!-- <div class="card"> -->
 
                 <div class="row mb-4">
-                  <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()"><i class="fas fa-trash"></i></button>
+                  <!-- <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()"><i class="fas fa-trash"></i></button> -->
                   <div class="col-sm-7">
                     <div class="dt-buttons btn-group flex-wrap">
                       <form id="file_form" enctype="multipart/form-data">
@@ -57,7 +57,7 @@
                       </button>
                     </div>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-5">
                     <div class="input-group input-group-sm" style="width: 300px; float:right;">
                       <input type="search" name="table_search" id="inv_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
@@ -83,7 +83,7 @@
                   <table class="table table-head-fixed text-nowrap" id="inv_tbl">
                     <thead>
                       <tr>
-                        <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th>
+                        <!-- <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th> -->
                         <th>#</th>
                         <th>Part Code</th>
                         <th>Part Name</th>

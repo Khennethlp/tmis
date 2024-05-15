@@ -5,7 +5,7 @@ $method = $_POST['method'];
 
 function count_inv_list($search_arr, $conn)
 {
-	$query = "SELECT COUNT(id) AS total FROM t_partsin_history WHERE partcode LIKE :search OR partname LIKE :search OR packing_quantity LIKE :search OR barcode_label LIKE :search OR lot_address LIKE :search OR quantity LIKE :search";
+	$query = "SELECT COUNT(id) AS total FROM t_partsin_history WHERE partcode LIKE :search OR partname LIKE :search OR packing_quantity LIKE :search OR barcode_label LIKE :search OR lot_address LIKE :search";
 	$stmt = $conn->prepare($query);
 	$searchTerm = '%' . $search_arr['search'] . '%';
 	$stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
@@ -40,16 +40,14 @@ if ($method == 'inventory_list') {
 
 	//joined table of store_out & store_in history 
 	// $get_history = "SELECT * FROM t_partsin_history ";
-	$get_history = "SELECT * FROM t_partsin_history ORDER BY id DESC LIMIT " . $page_first_result . ", " . $results_per_page;
-	$stmt = $conn->prepare($get_history, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+	$get_inv = "SELECT id, partcode, partname, packing_quantity, lot_address, barcode_label, date_updated, updated_by,count(partcode) as Qty from t_partsin GROUP by partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	$stmt = $conn->prepare($get_inv, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 
 	if ($stmt->rowCount() > 0) {
 		foreach ($stmt->fetchALL() as $j) {
 			$c++;
-			// echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_account" onclick="get_accounts_details(&quot;'.$j['id'].'~!~'.$j['id_number'].'~!~'.$j['username'].'~!~'.$j['full_name'].'~!~'.$j['password'].'~!~'.$j['section'].'~!~'.$j['role'].'&quot;)">';
 			echo '<tr>';
-			// echo '<td><input type="checkbox" name="selected[]" class="selected" id="selected[]" value="' . $j['id'] . '" onclick="get_checked_length()"  style="cursor:pointer;"></td>';
 			echo '<td>' . $c . '</td>';
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
@@ -84,7 +82,6 @@ if ($method == 'inv_pagination') {
 	}
 }
 
-
 if ($method == 'inventory_search') {
 	$inventory_search = $_POST['inventory_search'];
 	$c = 0;
@@ -94,22 +91,21 @@ if ($method == 'inventory_search') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = "SELECT * FROM t_partsin_history WHERE partcode LIKE '$inventory_search%' OR partname LIKE '$inventory_search%' OR packing_quantity LIKE '$inventory_search%' OR lot_address LIKE '$inventory_search%' OR barcode_label LIKE '$inventory_search%' OR quantity LIKE '$inventory_search% ' LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode LIKE '$inventory_search%' OR b.partname LIKE '$inventory_search%' GROUP by partcode ASC LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 
 	if ($stmt->rowCount() > 0) {
 		foreach ($stmt->fetchALL() as $j) {
 			$c++;
-			// echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_inventory" onclick="get_inventory_details(&quot;'.$j['id'].'~!~'.$j['partcode'].'~!~'.$j['partname'].'~!~'.$j['packing_quantity'].'~!~'.$j['lot_address'].'~!~'.$j['barcode_label'].'~!~'.$j['quantity'].'~!~'.'&quot;)">';
-			echo '<td><input type="checkbox" name="selected[]" class="selected" id="selected[]" value="' . $j['id'] . '" onclick="get_checked_length()"  style="cursor:pointer;"></td>';
+			// echo '<td><input type="checkbox" name="selected[]" class="selected" id="selected[]" value="' . $j['id'] . '" onclick="get_checked_length()"  style="cursor:pointer;"></td>';
 			echo '<td>' . $c . '</td>';
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . $j['quantity'] . '</td>';
+			echo '<td>' . $j['Qty'] . '</td>';
 			echo '<td>' . date('Y-M-d', strtotime($j['date_updated'])) . '</td>';
 			echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
@@ -162,10 +158,10 @@ if ($method == 'search_by_date') {
 // counting total rows of t_partsin and t_partsin_history
 // if ($method == 'count_list') {
 
-	// query for joined table of t_partsin and t_partsin_history
-	// $count_rows = "SELECT SUM(count) AS total_count FROM 
-	// (SELECT COUNT(partcode) AS count FROM t_partsin UNION ALL SELECT COUNT(partcode) 
-	// AS count FROM t_partsin_history) AS counts ";
+// query for joined table of t_partsin and t_partsin_history
+// $count_rows = "SELECT SUM(count) AS total_count FROM 
+// (SELECT COUNT(partcode) AS count FROM t_partsin UNION ALL SELECT COUNT(partcode) 
+// AS count FROM t_partsin_history) AS counts ";
 // 	$count_rows = "SELECT COUNT(partcode) AS count FROM t_partsin_history";
 // 	$total = 0;
 // 	$stmt = $conn->prepare($count_rows, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));

@@ -100,6 +100,7 @@ if ($method == 'search_mlist') {
 		foreach ($stmt->fetchALL() as $j) {
 			$c++;
 			echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_mlist" onclick="get_mlist_details(&quot;' . $j['id'] . '~!~' . $j['partcode'] . '~!~' . $j['partname'] . '~!~' . $j['packing_quantity'] . '&quot;)">';
+			echo '<td><input type="checkbox" name="selected[]" class="selected" id="selected[]" value="' . $j['id'] . '" onclick="get_checked_length()"  style="cursor:pointer;"></td>';
 			echo '<td>' . $c . '</td>';
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';

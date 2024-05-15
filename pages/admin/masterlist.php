@@ -38,7 +38,9 @@
             <!-- /.card-header -->
             <div class="card-body">
               <div class="col-sm-12 mb-4">
+                
                 <div class="row align-items-center">
+                  <button class="btn btn-del" id="deleteBtn" onclick="delete_data_arr()"><i class="fas fa-trash"></i></button>
                   <div class="col-sm-6">
                     <div class="dt-buttons btn-group flex-wrap">
                       <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#add_mlist" tabindex="0" type="button">
@@ -52,8 +54,8 @@
                       </button>
                     </div>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="input-group input-group-sm" style="width: 300px; float:right;">
+                  <div class="col-sm-5">
+                    <div class="input-group input-group-sm" style="width: 250px; float:right;">
                       <input type="search" name="table_search" id="mlist_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
                         <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_mlist(1)">
@@ -79,6 +81,7 @@
               <div class="table-responsive" style="height: 535px; overflow: auto; display:inline-block;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="mlist_table">
                   <thead style="text-align:center;">
+                  <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th>
                     <th> # </th>
                     <th> Part Code </th>
                     <th> Part Name </th>

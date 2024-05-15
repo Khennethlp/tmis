@@ -31,7 +31,7 @@ include('plugins/navbar/index_navbar.php');
             <input type="text" class="form-control" name="" id="store_in_address" placeholder="SCAN STOCK QR..." style="border: 1px solid black; height: 50px;" autofocus>
           </div>
           <div class="col-md-6">
-            <input type="password" class="form-control" name="" id="store_in_qr" placeholder="SCAN KANBAN QR TO STORE IN..." onchange="save_to_local_storage()" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autocomplete="off">
+            <input type="password" class="form-control" name="" id="store_in_qr" placeholder="SCAN KANBAN QR TO STORE IN..." onchange="insert_partsin(); save_to_local_storage();" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autocomplete="off">
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@ include('plugins/navbar/index_navbar.php');
         <thead style="text-align:center;">
           <th>#</th>
           <th>Part Code</th>
-          <th>Part Name</th>
+          <!-- <th>Part Name</th> -->
           <th>Packing Qty</th>
           <th>Stock Address</th>
           <th>Barcode Label</th>

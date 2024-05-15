@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 $(document).ready(function() {
+    $('#deleteBtn').attr('disabled', true);
     search_mlist(1);
 });
 
@@ -655,6 +656,113 @@ const print = () =>{
     var to_date = document.getElementById("toD_search").value;
     window.open('../../process/admin/print/print.php?date_from=' + from_date + "&date_to=" + to_date, '_blank');
 
+}
+const selectAll = (checkbox) => {
+      //check all data
+        var select_all = document.getElementById('select_all');
+        if (select_all.checked == true) {
+            console.log('checked');
+            $('.selected').each((i, el) => {
+                el.checked = true;
+            });
+        }
+        else {
+            console.log('unchecked');
+            $('.selected').each((i, el) => {
+                el.checked = false;
+            });
+        }
+        get_checked_length();
+}
+
+const get_checked_length = () => {
+        var arr = [];
+        $('input.selected:checkbox:checked').each((i, el) => {
+            arr.push($(el).val());
+        });
+        console.log(arr);
+        var numberOfChecked = arr.length;
+        if (numberOfChecked > 0) {
+            $('#deleteBtn').attr('disabled', false);
+        }
+        else {
+            $('#deleteBtn').attr('disabled', true);
+        }
+    }
+
+// delete data arr
+const delete_data_arr = () => {
+ var arr = [];
+    $('input.selected:checkbox:checked').each((i, el) => {
+        arr.push($(el).val());
+    });
+    console.log(arr);
+
+    var numberOfChecked = arr.length;
+    if (numberOfChecked > 0) {
+        $.ajax({
+            url: '../../process/admin/masterlist_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'delete_data_arr',
+                id_arr: arr
+            },
+            beforeSend: (jqXHR, settings) => {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Loading',
+                    text: 'Please Wait',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                jqXHR.url = settings.url;
+                jqXHR.type = settings.type;
+            },
+            success: response => {
+                setTimeout(() => {
+                    swal.close();
+                    if (response == 'success') {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Data Deleted',
+                        text: 'Successfully',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    load_inventory();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: `Error: ${response}`,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+                }, 500);
+            }
+        })
+        .fail((jqXHR, textStatus, errorThrown) => {
+        console.log(jqXHR);
+        
+        Swal.fire({
+            icon: 'error',
+            title: 'System Error',
+            text: `Error: url: ${jqXHR.url}, method: ${jqXHR.type} ( HTTP ${jqXHR.status} - ${jqXHR.statusText} ) Press F12 to see Console Log for more info.`,
+            showConfirmButton: false,
+            timer: 2000
+        });
+        });
+    } else {
+        Swal.fire({
+            icon: 'info',
+            title: 'No checkbox checked',
+            text: 'No checkbox checked',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    }
 }
 
 </script>

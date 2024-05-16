@@ -48,8 +48,8 @@ if ($method == 'partsout_list') {
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>'; // barcode label
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . date('Y-M-d', strtotime($j['date_updated'])) . '</td>';
-			echo '<td>' . $j['updated_by'] . '</td>';
+			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . $j['updated_by'] . '</td>';
 
 			echo '</tr>';
 		}
@@ -99,8 +99,8 @@ if ($method == 'search_partsout') {
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . date('Y-M-d', strtotime($j['date_updated'])) . '</td>';
-			echo '<td>' . $j['updated_by'] . '</td>';
+			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}
 	} else {

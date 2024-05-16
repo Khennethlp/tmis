@@ -52,7 +52,7 @@ if ($method == 'kanban_mlist') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . date('Y-M-d', strtotime($j['date_updated'])) . '</td>';
+			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
 			echo '</tr>';
 		}
 	} else {
@@ -105,7 +105,7 @@ if ($method == 'search_mlist') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . date('Y-M-d', strtotime($j['date_updated'])) . '</td>';
+			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
 			echo '</tr>';
 		}
 	} else {
@@ -164,7 +164,7 @@ if ($method == 'history_list') {
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>';
-			echo '<td>' . $j['updated_by'] . '</td>';
+			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}
 	} else {
@@ -312,4 +312,19 @@ if ($method == 'count_mlist') {
 	$stmt->execute();
 	$result = $stmt->fetch(PDO::FETCH_ASSOC);
 	echo $result['total_count'];
+}
+
+if ($method == 'get_all_mlist') {
+	$query = "SELECT DISTINCT partname FROM m_kanban";
+	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+	$stmt->execute();
+
+	// Fetch results and generate HTML options
+	$optionsHTML = '';
+	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		$section = $row['partname'];
+		$optionsHTML .= "<option value='$section'>$section</option>";
+	}
+	echo $optionsHTML;
+	exit; // Terminate script execution
 }

@@ -1,4 +1,4 @@
-<body class="hold-transition layout-top-nav accent-primary">
+<body class="hold-transition layout-top-nav accent-primary dark-mode">
 <div class="wrapper">
 
   <!-- Preloader -->

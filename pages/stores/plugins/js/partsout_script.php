@@ -5,29 +5,11 @@
     }
     document.addEventListener("DOMContentLoaded", () => {
         load_partsout();
-        // validations();
     });
 
-    let isRefresh = false;
-
-    window.addEventListener('beforeunload', function() {
-        if(!isRefresh) {
-            localStorage.clear();
-        }
-        console.log("Local storage cleared.");
-    });
-    window.addEventListener('unload', function() {
-        isRefresh = true;
-        // localStorage.clear();
-        // console.log("Local storage cleared.");
-    });
-
-    function clearLocalStorage() {
-        localStorage.clear();
-        console.log("Local storage cleared");
-
-        // Optionally, you can also clear the displayed table
-        document.getElementById('partsin_table').innerHTML = '';
+    function clearSessionStorage() {
+        sessionStorage.removeItem("store_out_entries");
+        console.log("Session storage cleared");
     }
 
     const insert_partsout = () => {
@@ -101,16 +83,19 @@
     };
 
     const load_partsout = () => {
-        var entries = JSON.parse(localStorage.getItem("entries")) || [];
+        var store_out_entries = JSON.parse(sessionStorage.getItem("store_out_entries")) || [];
+        var store_in_entries = JSON.parse(sessionStorage.getItem("store_in_entries")) || [];
+
         var store_out_qr = document.getElementById("store_out_qr").value;
-        
+
         $.ajax({
             url: '../../process/stores/store_out_p.php',
             type: 'POST',
             cache: false,
             data: {
                 method: 'partsout_list',
-                entries: JSON.stringify(entries),
+                store_out_entries: JSON.stringify(store_out_entries),
+                store_in_entries: JSON.stringify(store_in_entries),
                 store_out_qr: store_out_qr,
             },
             success: function(response) {
@@ -124,34 +109,32 @@
         var store_out_qr = document.getElementById("store_out_qr").value;
 
         // Create an entry object
-        var entry = {
+        var store_out_entry = {
             store_out_qr: store_out_qr,
         };
 
-        // Retrieve existing entries from local storage
-        var entries = JSON.parse(localStorage.getItem("entries")) || [];
+        // Retrieve existing entries from session storage
+        var store_out_entries = JSON.parse(sessionStorage.getItem("store_out_entries")) || [];
 
         // Check if a similar entry already exists
-        var isDuplicate = entries.some(existingEntry => 
-            existingEntry.store_in_qr === entry.store_in_qr
+        var isDuplicate = store_out_entries.some(existingEntry =>
+            existingEntry.store_in_qr === store_out_entry.store_in_qr
         );
+
         if(!isDuplicate) {
-            // Add the new entry
-            entries.push(entry);
-    
-            // Save the updated array back to local storage
-            localStorage.setItem("entries", JSON.stringify(entries));
-    
-            // Reload the parts out list
-            load_partsout();
-    
-            // Clear the input field and set focus
-            document.getElementById("store_out_qr").value = '';
-            document.getElementById("store_out_qr").focus();
-    
-            console.log("Data saved to local storage");
-        }else {
+        store_out_entries.push(store_out_entry);
+
+        sessionStorage.setItem("store_out_entries", JSON.stringify(store_out_entries));
+
+        load_partsout();
+
+        // Clear the input field and set focus
+        document.getElementById("store_out_qr").value = '';
+        document.getElementById("store_out_qr").focus();
+
+        console.log("Data saved to session storage");
+        } else {
             console.log("Entry already exists in session storage");
-    }
+        }
     };
 </script>

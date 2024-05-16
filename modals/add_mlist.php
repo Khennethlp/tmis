@@ -17,7 +17,10 @@
           </div>
           <div class="col-sm-4">
             <span><b>Part Name:</b></span>
-            <input type="text" id="partname" class="form-control" style="height:35px; border: 1px solid black; font-size: 15px;" placeholder="" autocomplete="off">
+            <!-- <input type="text" id="partname" class="form-control" style="height:35px; border: 1px solid black; font-size: 15px;" placeholder="" autocomplete="off"> -->
+            <input type="text" list="mlist_list" id="partname" class="form-control" placeholder="Select mlist..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
+            <datalist id="mlist_list"></datalist>
+            
           </div>
           <div class="col-sm-4">
             <span><b>Packing Quantity</b></span>

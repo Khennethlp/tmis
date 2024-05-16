@@ -76,23 +76,23 @@ if (!isset($_SESSION['username'])) {
     }
     .btn-func{
       color: #fff;
-      background-color: #275DAD !important;
-      border-bottom: 2px solid #ccc !important;
+      /* background-color: #275DAD !important; */
+      border-bottom: 1px solid #ccc !important;
     }
     .btn-func:hover{
-      background-color: #4881D5 !important;/*#275DAD*/
-      border-bottom: 2px solid #5B616A !important;
-      color: #fff;
+      /* background-color: #4881D5 !important;#275DAD */
+      border-bottom: 1px solid #5B616A !important;
+      color: #4881D5;
     }
     .btn-del{
       font-size: 13px; 
       height: 35px; 
-      color: #45141C;
+      color: #F85A3E;
       background: none;
       border: 1px solid #45141C !important;
     }
     .btn-del:hover{
-      background-color: #942D3E !important;
+      background-color: #F85A3E !important;
       color: #fff !important;
     }
     .subBtn:hover{
@@ -101,7 +101,7 @@ if (!isset($_SESSION['username'])) {
 
   </style>
 </head>
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed dark-mode">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -116,7 +116,7 @@ if (!isset($_SESSION['username'])) {
   </div>
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark ">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">

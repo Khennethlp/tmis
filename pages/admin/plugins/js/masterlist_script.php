@@ -1,18 +1,13 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
-    // load_kanban_mlist();
-    // history_list();
-    // search_mlist(1);
-
-    // if(document.getElementById('mlist_search').value == ''){
-        // load_kanban_mlist();
-    // }
+    get_masterlist();
 });
 
 $(document).ready(function() {
     $('#deleteBtn').attr('disabled', true);
     search_mlist(1);
+    // get_masterlist();
 });
 
 document.querySelector('#mlist_search').addEventListener("keyup", function(e) {
@@ -764,5 +759,19 @@ const delete_data_arr = () => {
         })
     }
 }
+
+const get_masterlist = () => {
+        $.ajax({
+        type: "POST",
+        url: "../../process/admin/masterlist_p.php", // Replace with your endpoint to retrieve options
+        data: {
+            method: 'get_all_mlist', //get all sections from section column in m_accounts
+        },
+        success: function(response) {
+            // Parse response and populate datalist options
+            $('#mlist_list').html(response); 
+        }
+    });
+    }
 
 </script>

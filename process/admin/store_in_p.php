@@ -6,7 +6,7 @@ $method = $_POST['method'];
 
 function count_partsin($search_arr, $conn)
 {
-	$query = "SELECT COUNT(id) AS total FROM t_partsin_history WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
+	$query = "SELECT COUNT(id) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -49,8 +49,8 @@ if ($method == 'partsin_list') {
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . date('Y-M-d', strtotime($j['date_updated'])) . '</td>';
-			echo '<td>' . $j['updated_by'] . '</td>';
+			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}
 	} else {
@@ -85,7 +85,7 @@ if ($method == 'search_partsin') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode LIKE '$partsin%' OR b.partname LIKE '$partsin%' GROUP by partcode ASC LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode LIKE '$partsin%' OR b.partname LIKE '$partsin%' GROUP by partcode ASC LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -98,8 +98,8 @@ if ($method == 'search_partsin') {
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . date('Y-M-d', strtotime($j['date_updated'])) . '</td>';
-			echo '<td>' . $j['updated_by'] . '</td>';
+			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}
 	} else {

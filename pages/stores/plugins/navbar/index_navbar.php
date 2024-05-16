@@ -21,7 +21,7 @@
           <?php } else {?>
           <a href="index.php" class="nav-link">
           <?php } ?>
-            <i class="nav-icon fas fa-download"></i>
+            <i class="nav-icon fas fa-download text-success"></i>
               Store-in
           </a>
         </li>
@@ -31,7 +31,7 @@
           <?php } else {?>
           <a href="store_out.php" class="nav-link">
           <?php } ?>
-            <i class="nav-icon fas fa-upload"></i>
+            <i class="nav-icon fas fa-upload text-danger"></i>
               Store-out
           </a>
         </li>

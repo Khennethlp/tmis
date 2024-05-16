@@ -36,13 +36,13 @@ include('plugins/navbar/index_navbar.php');
         </div>
       </div>
     </div>
-    <a href="" class="float-right" onclick="clearLocalStorage()">Clear All</a>
+    <a href="" class="float-right" onclick="clearSessionStorage()">Clear All</a>
     <div class="table-responsive dataTable dtr-inline collapsed" style="height: 400px; overflow: auto; display:inline-block;">
       <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
         <thead style="text-align:center;">
           <th>#</th>
           <th>Part Code</th>
-          <th>Part Name</th>
+          <!-- <th>Part Name</th> -->
           <th>Packing Qty</th>
           <th>Stock Address</th>
           <th>Barcode Label</th>

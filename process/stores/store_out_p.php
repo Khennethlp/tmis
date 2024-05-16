@@ -5,15 +5,30 @@ include '../login.php';
 $method = isset($_POST['method']) ? $_POST['method'] : '';
 
 if ($method == 'partsout_list') {
-    $entries = json_decode($_POST['entries'], true);
+    $store_out_entries = json_decode($_POST['store_out_entries'], true);
+    $store_in_entries = json_decode($_POST['store_in_entries'], true);
+
     $store_out_qr = $_POST['store_out_qr'];
+
+    $stock_address = 'N/A';
+    if (!empty($store_in_entries) && !empty($store_out_entries)) {
+        foreach ($store_out_entries as &$out_entry) {
+            $store_out_qr = $out_entry['store_out_qr'];
+            foreach ($store_in_entries as $in_entry) {
+                if ($store_out_qr === $in_entry['store_in_qr']) {
+                    $out_entry['store_in_address'] = $in_entry['store_in_address'];
+                }
+            }
+        }
+    }
 
     $updated_by = $_SESSION['name'];
     $c = 0;  // Initialize $c to avoid undefined variable error
 
-    if (!empty($entries)) {
-        foreach ($entries as $entry) {
+    if (!empty($store_out_entries)) {
+        foreach ($store_out_entries as $entry) {
             $store_out_qr = $entry['store_out_qr'];
+            $stock_address = isset($entry['store_in_address']) ? $entry['store_in_address'] : ' ';
 
             // Remove white spaces
             $qr = preg_replace('/\s+/', '', $store_out_qr);
@@ -21,16 +36,16 @@ if ($method == 'partsout_list') {
             // Get values from the $qr
             $partscode = substr($qr, 21, 5);
             $barcode_label = substr($qr, 5, 16);
-            $qty = substr($qr, 33, 3);
+            $qty = substr($qr, 33, 3); //packing_quantity
 
             // Output table rows
             $c++;
             echo '<tr>';
             echo '<td>' . $c . '</td>';
             echo '<td>' . $partscode . '</td>';
-            echo '<td> N/A </td>';
+            // echo '<td> N/A </td>';
             echo '<td>' . $qty . '</td>';
-            echo '<td>' . 'N/A' . '</td>'; // Placeholder for store_in_address
+            echo '<td>' . $stock_address. '</td>'; // Placeholder for store_in_address
             echo '<td>' . $barcode_label . '</td>';
             echo '</tr>';
         } 
@@ -63,6 +78,12 @@ if($method == 'insert_partsout'){
 	$count = $stmt_duplicate->fetchColumn();
 
     if ($count > 0) {
+
+        // $del_qry = "DELETE FROM t_partsin_history WHERE qr_code = :qr LIMIT 1";
+        // $del_stmt = $conn->prepare($del_qry);
+        // $del_stmt->bindParam(':qr', $qr);
+        // $del_stmt->execute();
+
 		echo 'duplicate';
 	}else {
         try{
@@ -82,7 +103,7 @@ if($method == 'insert_partsout'){
             
             $conn->beginTransaction();
 
-            $check_store_in = "SELECT COUNT(*) FROM t_partsin WHERE qr_code = :qr";
+            $check_store_in = "SELECT COUNT(*) AS count FROM t_partsin WHERE qr_code = :qr";
             $stmt = $conn->prepare($check_store_in);
             $stmt->bindParam(':qr', $qr);
             $stmt->execute();
@@ -94,12 +115,7 @@ if($method == 'insert_partsout'){
                 $del_stmt = $conn->prepare($del_qry);
                 $del_stmt->bindParam(':qr', $qr);
                 $del_stmt->execute();
-            }else if($count_store_out <= 1){
-                $del_qry = "DELETE FROM t_partsin WHERE qr_code = :qr";
-                $del_stmt = $conn->prepare($del_qry);
-                $del_stmt->bindParam(':qr', $qr);
-                $del_stmt->execute();
-            } else {
+            }else {
                 echo 'undefined';
 				$conn->rollBack();
 				exit();

@@ -31,12 +31,12 @@ include('plugins/navbar/index_navbar.php');
             <input type="text" class="form-control" name="" id="store_in_address" placeholder="SCAN STOCK QR..." style="border: 1px solid black; height: 50px;" autofocus>
           </div>
           <div class="col-md-6">
-            <input type="password" class="form-control" name="" id="store_in_qr" placeholder="SCAN KANBAN QR TO STORE IN..." onchange="insert_partsin(); save_to_local_storage();" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autocomplete="off">
+            <input type="password" class="form-control" name="" id="store_in_qr" placeholder="SCAN KANBAN QR TO STORE IN..." onchange="insert_partsin(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autocomplete="off">
           </div>
         </div>
       </div>
     </div>
-    <a href="" class="float-right" onclick="clearLocalStorage()">Clear All</a>
+    <a href="" class="float-right" onclick="clearSessionStorage()">Clear All</a>
     <div class="table-responsive dataTable dtr-inline collapsed" style="height: 400px; overflow: auto; display:inline-block;">
       <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
         <thead style="text-align:center;">

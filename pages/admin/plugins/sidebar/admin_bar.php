@@ -52,7 +52,7 @@
           <?php } else {?>
           <a href="inventory.php" class="nav-link">
           <?php } ?>
-            <i class="nav-icon fas fa-list"></i>
+            <i class="nav-icon fas fa-tasks"></i>
             <p>
               Inventory
             </p>

@@ -27,7 +27,7 @@
         <div class="col-sm-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-file-alt"></i> Inventory</h3>
+              <h3 class="card-title"><i class="fas fa-tasks"></i> Inventory</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -49,11 +49,11 @@
                     <div class="dt-buttons btn-group flex-wrap">
                       <form id="file_form" enctype="multipart/form-data">
                         <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_inv" tabindex="0" type="button">
-                          <span><i class="fas fa-file-import mr-1"></i> IMPORT INVENTORY</span>
+                          <span><i class="fas fa-file-import mr-1"></i> Import</span>
                         </button>
                       </form>
                       <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
-                        <span><i class="fas fa-file-export mr-1"></i> EXPORT INVENTORY</span>
+                        <span><i class="fas fa-file-csv mr-1"></i> Export</span>
                       </button>
                     </div>
                   </div>
@@ -92,7 +92,7 @@
                         <th>Barcode Label</th>
                         <th>Quantity</th>
                         <th>Date</th>
-                        <th>By</th>
+                        <!-- <th>By</th> -->
                       </tr>
                     </thead>
                     <tbody id="inventory_table"></tbody>

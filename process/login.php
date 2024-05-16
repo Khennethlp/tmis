@@ -40,4 +40,5 @@ if (isset($_POST['Logout'])) {
     header('location: /tmis/index.php');
     exit;
 }
+
 ?>

@@ -49,7 +49,7 @@
                       </button>
                     </form> -->
                     <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('partsout_tbl')" type="button">
-                      <span><i class="fas fa-file-export mr-1"></i> EXPORT</span>
+                      <span><i class="fas fa-file-csv mr-1"></i> Export</span>
                     </button>
                   </div>
                   <div class="col-sm-6 float-right">
@@ -86,7 +86,7 @@
                           <th>Stock Address</th>
                           <th>Barcode Label</th>
                           <th>Date</th>
-                          <th>By</th>
+                          <!-- <th>By</th> -->
                         </tr>
                       </thead>
                       <tbody id="partsout_table"></tbody>

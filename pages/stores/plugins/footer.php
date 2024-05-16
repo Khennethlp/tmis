@@ -5,7 +5,14 @@
       <b>Version</b> 1.0.0
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2024 Khennethlp.</strong>
+    <strong>Copyright &copy; <script>   
+        var currentYear = new Date().getFullYear();
+        if (currentYear === 2024) {
+          document.write(currentYear);
+        } else {
+          document.write("2024 - " + currentYear);
+        };</script>. 
+        Khennethlp.</strong>
     All rights reserved.
   </footer>
   <?php

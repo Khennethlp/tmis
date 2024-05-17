@@ -1,4 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
+<?php include 'plugins/preloader.php'; ?>
 <?php include 'plugins/sidebar/admin_bar.php'; ?>
 
 <div class="content-wrapper">
@@ -27,15 +28,15 @@
         <div class="col-sm-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-users"></i>&nbsp; Accounts Management </h3>
-              <div class="card-tools">
+              <h3 class="card-title"><i class="fas fa-users mr-2"></i>&nbsp; Accounts Management </h3>
+              <!-- <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
-              </div>
+              </div> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -66,7 +67,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            
 
             <!-- <div class="col-sm-2">
               <label>User Type:</label>
@@ -76,7 +77,7 @@
                   <option value="user">User</option>
                 </select>
               </div> -->
-            <div class="table-responsive dataTable dtr-inline collapsed" style="height: 535px; overflow: auto; display:inline-block;">
+            <div class="table-responsive dataTable dtr-inline collapsed" style="height: 350px; overflow: auto; display:inline-block;">
               <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
                 <thead style="text-align:center;">
                   <th> # </th>
@@ -90,6 +91,7 @@
               </table>
             </div>
           </div>
+          <hr>
           <!-- pagination -->
           <div class="row mb-4">
             <div class="col-sm-12 col-md-9 col-9">
@@ -109,6 +111,7 @@
               <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
             </div>
           </div>
+        </div>
         </div>
         <!-- /.card-body -->
 

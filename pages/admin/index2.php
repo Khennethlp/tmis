@@ -1,4 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
+<?php include 'plugins/preloader.php'; ?>
 <?php include 'plugins/sidebar/admin_bar.php'; ?>
 
 <div class="content-wrapper">
@@ -27,15 +28,15 @@
         <div class="col-sm-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-download"></i> Store Out</h3>
-              <div class="card-tools">
+              <h3 class="card-title"><i class="fas fa-upload mr-2"></i> Store Out</h3>
+              <!-- <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
-              </div>
+              </div> -->
 
             </div>
             <!-- /.card-header -->
@@ -75,7 +76,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <div class="card-body table-responsive p-0" style="height: 535px;">
+                  <div class="card-body table-responsive p-0" style="height: 350px;">
                     <table class="table table-head-fixed text-nowrap" id="partsout_tbl">
                       <thead>
                         <tr>

@@ -36,9 +36,7 @@ if ($method == 'kanban_mlist') {
 	$c = 0;
 
 	$results_per_page = 10;
-
 	$page_first_result = ($current_page - 1) * $results_per_page;
-
 	$c = $page_first_result;
 
 	$query = "SELECT * FROM m_kanban LIMIT " . $page_first_result . ", " . $results_per_page;

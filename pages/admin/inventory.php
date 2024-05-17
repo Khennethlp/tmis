@@ -1,4 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
+<?php include 'plugins/preloader.php'; ?>
 <?php include 'plugins/sidebar/admin_bar.php'; ?>
 
 <div class="content-wrapper">
@@ -27,15 +28,15 @@
         <div class="col-sm-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-tasks"></i> Inventory</h3>
-              <div class="card-tools">
+              <h3 class="card-title"><i class="fas fa-tasks mr-2"></i> Inventory</h3>
+              <!-- <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
-              </div>
+              </div> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -79,7 +80,15 @@
                           </button>
                           </div>
                         </div> -->
-                <div class="table-responsive p-0" style="height: 535px;">
+                <div class="row mb-2" id="t_t1_breadcrumb">
+                <div class="col-12">
+                  <ol class="breadcrumb bg-dark mb-0">
+                    <li class="breadcrumb-item"><a href="#" onclick="load_inventory()">Back</a></li>
+                    <li class="breadcrumb-item" id="lbl_c1"></li>
+                  </ol>
+                </div>
+              </div>
+                <div class="table-responsive p-0" style="height: 350px;">
                   <table class="table table-head-fixed text-nowrap" id="inv_tbl">
                     <thead>
                       <tr>
@@ -106,6 +115,7 @@
                
               </div> -->
             </div>
+            <hr>
                <!-- pagination -->
                <div class="row mb-4">
                 <div class="col-sm-12 col-md-9 col-9">

@@ -66,6 +66,12 @@ if (!isset($_SESSION['username'])) {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(1080deg); }
     } 
+    body.light-mode{
+      color: black;
+    }
+    body.dark-mode{
+      color: white;
+    }
     .active{
       background-color: #275DAD !important; /*#000EA4*/
       border-bottom: 2px solid #ffffff !important;
@@ -75,45 +81,45 @@ if (!isset($_SESSION['username'])) {
       border-bottom: 2px solid #275DAD !important;
     }
     .btn-func{
-      color: #fff;
+      color: #3B83EF ;
       /* background-color: #275DAD !important; */
       border-bottom: 1px solid #ccc !important;
     }
+    
     .btn-func:hover{
       /* background-color: #4881D5 !important;#275DAD */
-      border-bottom: 1px solid #5B616A !important;
-      color: #4881D5;
+      border-bottom: 2px solid #5B616A !important;
+      color: #80B3FF;
     }
     .btn-del{
       font-size: 13px; 
       height: 35px; 
-      color: #F85A3E;
+      color: #FF7676;
       background: none;
-      border: 1px solid #45141C !important;
+      border: 1px solid #ccc !important;
     }
     .btn-del:hover{
-      background-color: #F85A3E !important;
+      background-color: #FF7676 !important;
       color: #fff !important;
     }
     .subBtn:hover{
       background-color: #29339B !important;
     }
+    .nav-link {
+      cursor: pointer;
+    }
 
+    .custom-switch {
+      display: flex;
+      align-items: center;
+    }
+    .nav-link.no-caret::after {
+      display: none;
+    }
   </style>
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed dark-mode">
 <div class="wrapper">
-
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="../../dist/img/warehouse.png" alt="logo" height="60" width="60">
-    <noscript>
-      <br>
-      <span>We are facing <strong>Script</strong> issues. Kindly enable <strong>JavaScript</strong>!!!</span>
-      <br>
-      <span>Call IT Personnel Immediately!!! They will fix it right away.</span>
-    </noscript>
-  </div>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark ">
@@ -126,11 +132,26 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
+      <div class="row">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle no-caret" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-v"></i>
         </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1">
+              <label class="custom-control-label " id="theme_label" for="customSwitch1">Dark Mode</label>
+            </div>
+          </a>
+        </div>
       </li>
+        <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+      </div>
     </ul>
   </nav>
   <!-- /.navbar -->

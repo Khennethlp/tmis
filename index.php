@@ -41,12 +41,12 @@ if (isset($_SESSION['username'])) {
       <?php }  unset($_SESSION['status']); ?>
     </div>
     <div class="login-logo">
-      <!-- <img src="dist/img/warehouse.png" style="height:25vh; width: 25vw;"> -->
+      <img src="dist/img/warehouse.png" style="height:10vh; width: 6vw;">
       <h2><b>TUBE MAKING INVENTORY SYSTEM</b></h2>
     </div>
     <!-- /.login-logo -->
-    <div class="card rounded">
-      <div class="card-body login-card-body ">
+    <div class="card">
+      <div class="card-body login-card-body rounded">
         <p class="login-box-msg"><b>Sign in to start your session</b></p>
 
         <form action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" id="login_form">

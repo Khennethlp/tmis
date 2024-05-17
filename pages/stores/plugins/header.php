@@ -54,10 +54,25 @@ include '../../process/login.php';
 
   <style>
     .nav-active{
-      background-color: #29339B !important;
+      background-color: #3765AA !important;
       color: #ffffff;
       border-radius: 5px !important;
       /* border-bottom: 2px solid #ffffff !important; */
+    }
+    .btnClearSession{
+      color: #ffffff;
+      border-bottom: 1px solid #ccc !important;
+    }
+    .btnClearSession:hover{
+      color: #cccccc !important;
+      border-bottom: 1px solid #ccc !important;
+    }
+    .custom-switch {
+      display: flex;
+      align-items: center;
+    }
+    .nav-link.no-caret::after {
+      display: none;
     }
   </style>
 </head>

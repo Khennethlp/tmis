@@ -1,9 +1,9 @@
 <div class="modal fade bd-example-modal-xl" id="update_mlist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background: #fff;">
+      <div class="modal-header bg-dark">
         <h5 class="modal-title " id="exampleModalLabel">
-          <b>Add Masterlist</b>
+          <b>Update Masterlist</b>
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -27,12 +27,12 @@
         </div>
         <br>
       </div>
-      <div class="modal-footer" style="background:#fff;">
+      <div class="modal-footer bg-dark">
         <div class="col-sm-3">
-          <button class="btn btn-block" onclick="delete_mlist()" style="color:#111;height:34px;border-radius:.25rem;background: #DFE2E2;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Delete</button>
+          <button class="btn btn-block btn-del" onclick="delete_mlist()" style="color:#111;height:34px;border-radius:.25rem;background: #DFE2E2;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Delete</button>
         </div>
         <div class="col-sm-3">
-          <button class="btn subBtn btn-block" id="update_btn" onclick="mlist_update()" style="color:#fff;height:34px;border-radius:.25rem;background: #000EA4;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);">Update</button>
+          <button class="btn subBtn btn-block" id="update_btn" onclick="mlist_update()" style="color:#fff;height:34px;border-radius:.25rem;background: #3765AA;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);">Update</button>
         </div>
       </div>
     </div>

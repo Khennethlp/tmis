@@ -1,4 +1,5 @@
 <?php include 'plugins/navbar.php'; ?>
+<?php include 'plugins/preloader.php'; ?>
 <?php include 'plugins/sidebar/admin_bar.php'; ?>
 
 <div class="content-wrapper">
@@ -25,15 +26,15 @@
         <div class="col-sm-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-users"></i>&nbsp; Masterlist</h3>
-              <div class="card-tools">
+              <h3 class="card-title"><i class="fas fa-users mr-2"></i>&nbsp; Masterlist</h3>
+              <!-- <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-tool" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
                 </button>
-              </div>
+              </div> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -77,7 +78,7 @@
                             </button>
                             </div>
                           </div> -->
-              <div class="table-responsive" style="height: 535px; overflow: auto; display:inline-block;">
+              <div class="table-responsive" style="height: 350px; overflow: auto; display:inline-block;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="mlist_table">
                   <thead style="text-align:center;">
                     <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th>
@@ -93,6 +94,7 @@
               <div class="row">
                 <!-- <p>Total: <span id="count_mlist"></span> </p> -->
               </div>
+              <hr>
               <!-- pagination -->
               <div class="row mb-4">
                 <div class="col-sm-12 col-md-9 col-9">

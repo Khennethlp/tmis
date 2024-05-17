@@ -5,7 +5,7 @@ $method = $_POST['method'];
 
 function count_inv_list($search_arr, $conn)
 {
-	$query = "SELECT COUNT(id) AS total FROM t_partsin_history WHERE partcode LIKE :search OR partname LIKE :search OR packing_quantity LIKE :search OR barcode_label LIKE :search OR lot_address LIKE :search";
+	$query = "SELECT COUNT(DISTINCT qr_code) AS total FROM t_partsin_history WHERE partcode LIKE :search OR partname LIKE :search OR packing_quantity LIKE :search OR barcode_label LIKE :search OR lot_address LIKE :search ";
 	$stmt = $conn->prepare($query);
 	$searchTerm = '%' . $search_arr['search'] . '%';
 	$stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
@@ -31,6 +31,7 @@ if ($method == 'count_list') {
 }
 
 if ($method == 'inventory_list') {
+	// $inventory_search = $_POST['inventory_search'];
 	$current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
 	$c = 0;
 
@@ -38,23 +39,36 @@ if ($method == 'inventory_list') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
+	echo '<thead>
+			<tr>
+			<th>#</th>
+			<th>Part Code</th>
+			<th>Part Name</th>
+			<th>Packing Qty</th>
+			<th>Stock Address</th>
+			<th>Barcode Label</th>
+			<th>Quantity</th>
+			<th>Date</th>
+			</tr>
+		</thead>';
+
 	//joined table of store_out & store_in history 
 	// $get_history = "SELECT * FROM t_partsin_history ";
-	$get_inv = "SELECT id, partcode, partname, packing_quantity, lot_address, barcode_label, date_updated, updated_by,count(partcode) as Qty from t_partsin GROUP by partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	$get_inv = "SELECT id, qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, date_updated, updated_by,count(partcode) as Qty from t_partsin GROUP by partcode LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($get_inv, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 
 	if ($stmt->rowCount() > 0) {
 		foreach ($stmt->fetchALL() as $j) {
 			$c++;
-			echo '<tr>';
+			echo '<tr style="cursor:pointer;" class="modal-trigger" onclick="load_t_t2(&quot;'.$j['partcode'].'~!~'.$j['qr_code'].'&quot;)">';
 			echo '<td>' . $c . '</td>';
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . $j['quantity'] . '</td>';
+			echo '<td>' . $j['Qty'] . '</td>';
 			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
@@ -66,9 +80,50 @@ if ($method == 'inventory_list') {
 	}
 }
 
-if ($method == 'inv_pagination') {
-	$inv_search = isset($_POST['inv_search']) ? $_POST['inv_search'] : ''; // Check if mlist_search is set
+if($method == 'load_t_t2'){
+	$qr_code = $_POST['qr_code'];
+	$c = 0;
 
+	echo '<thead>
+			<tr>
+			<th>#</th>
+			<th>Part Code</th>
+			<th>Part Name</th>
+			<th>Packing Qty</th>
+			<th>Stock Address</th>
+			<th>Barcode Label</th>
+			<th>Date</th>
+			</tr>
+		</thead>';
+
+		$query = "SELECT DISTINCT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin) as b ON a.partcode = b.partcode WHERE b.qr_code = '$qr_code'";
+		$stmt = $conn->prepare($query);
+		$stmt->execute();
+		$rows = $stmt->fetchAll();
+
+		if(count($rows) > 0){
+			foreach($rows as $j){
+				$c++;
+				echo '<tr>';
+				echo '<td>'. $c .'</td>';
+				echo '<td>'. $j['partcode'] .'</td>';
+				echo '<td>'. $j['partname'] .'</td>';
+				echo '<td>'. $j['packing_quantity'] .'</td>';
+				echo '<td>'. $j['lot_address'] .'</td>';
+				echo '<td>'. $j['barcode_label'] .'</td>';
+				echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+				echo '</tr>';
+				
+			}
+		}else{
+			echo '<tr>';
+			echo '<td colspan="6" style="text-align:center; color:red;">No Result !!!</td>';
+			echo '</tr>';
+		}
+}
+
+if ($method == 'inv_pagination') {
+	$inv_search =  $_POST['inv_search']; 
 	$search_arr = array(
 		"search" => $inv_search,
 	);
@@ -91,7 +146,7 @@ if ($method == 'inventory_search') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode LIKE '$inventory_search%' OR b.partname LIKE '$inventory_search%' GROUP by partcode ASC LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode LIKE '$inventory_search%' OR b.partname LIKE '$inventory_search%' GROUP by partcode ASC LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 
@@ -99,6 +154,7 @@ if ($method == 'inventory_search') {
 		foreach ($stmt->fetchALL() as $j) {
 			$c++;
 			// echo '<td><input type="checkbox" name="selected[]" class="selected" id="selected[]" value="' . $j['id'] . '" onclick="get_checked_length()"  style="cursor:pointer;"></td>';
+			echo '<tr style="cursor:pointer;" class="modal-trigger" onclick="load_t_t2(&quot;'.$j['partcode'].'~!~'.$j['qr_code'].'&quot;)">';
 			echo '<td>' . $c . '</td>';
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
@@ -117,43 +173,43 @@ if ($method == 'inventory_search') {
 	}
 }
 
-if ($method == 'search_by_date') {
-	$from_date = $_POST['from_date'];
-	$to_date = $_POST['to_date'];
-	$c = 0;
+// if ($method == 'search_by_date') {
+// 	$from_date = $_POST['from_date'];
+// 	$to_date = $_POST['to_date'];
+// 	$c = 0;
 
-	$query = "SELECT * FROM t_partsin_history WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
-	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	$stmt->execute();
+// 	$query = "SELECT * FROM t_partsin_history WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
+// 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+// 	$stmt->execute();
 
-	$result['rows'] = []; // Initialize an array to store rows
+// 	$result['rows'] = []; // Initialize an array to store rows
 
-	if ($stmt->rowCount() > 0) {
-		foreach ($stmt->fetchAll() as $j) {
-			$c++;
-			$result['rows'][] = [
-				'id' => $j['id'],
-				'partcode' => $j['partcode'],
-				'partname' => $j['partname'],
-				'packing_quantity' => $j['packing_quantity'],
-				'lot_address' => $j['lot_address'],
-				'barcode_label' => $j['barcode_label'],
-				'quantity' => $j['quantity'],
-				'date_updated' => $j['date_updated'],
-				'updated_by' => $j['updated_by'],
-			];
-		}
-	}
+// 	if ($stmt->rowCount() > 0) {
+// 		foreach ($stmt->fetchAll() as $j) {
+// 			$c++;
+// 			$result['rows'][] = [
+// 				'id' => $j['id'],
+// 				'partcode' => $j['partcode'],
+// 				'partname' => $j['partname'],
+// 				'packing_quantity' => $j['packing_quantity'],
+// 				'lot_address' => $j['lot_address'],
+// 				'barcode_label' => $j['barcode_label'],
+// 				'quantity' => $j['quantity'],
+// 				'date_updated' => $j['date_updated'],
+// 				'updated_by' => $j['updated_by'],
+// 			];
+// 		}
+// 	}
 
-	// Output the total count of rows within the date range
-	$count_rows = "SELECT COUNT(*) AS total_count FROM t_partsin_history WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
-	$stmt = $conn->prepare($count_rows, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	$stmt->execute();
-	$count_result = $stmt->fetch(PDO::FETCH_ASSOC);
-	$result['count'] = $count_result['total_count'];
+// 	// Output the total count of rows within the date range
+// 	$count_rows = "SELECT COUNT(*) AS total_count FROM t_partsin_history WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
+// 	$stmt = $conn->prepare($count_rows, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+// 	$stmt->execute();
+// 	$count_result = $stmt->fetch(PDO::FETCH_ASSOC);
+// 	$result['count'] = $count_result['total_count'];
 
-	echo json_encode($result); // Return data as JSON
-}
+// 	echo json_encode($result); // Return data as JSON
+// }
 
 // counting total rows of t_partsin and t_partsin_history
 // if ($method == 'count_list') {
@@ -173,6 +229,7 @@ if ($method == 'search_by_date') {
 // }
 
 //delete arr
+
 if ($method == 'delete_data_arr') {
 	$id_arr = [];
 	$id_arr = $_POST['id_arr'];

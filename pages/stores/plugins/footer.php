@@ -37,5 +37,6 @@
 <script src="../../dist/js/adminlte.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/popup_center.js"></script>
+<script src="plugins/js/custom.js"></script>
 </div>
 <!-- ./wrapper -->

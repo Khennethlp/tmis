@@ -52,10 +52,16 @@
   <!-- Right navbar links -->
   <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
     <li class="nav-item">
+      <a class="nav-link">
+        <i class="fas fa-user-circle mr-1"></i>
+        <?php echo strtoupper(isset($_SESSION['username']) ? $_SESSION['username'] : 'No User'); ?>
+      </a>
+    </li>
+    <!-- <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen" role="button">
         <i class="fas fa-expand-arrows-alt"></i>
       </a>
-    </li>
+    </li> -->
   </ul>
 </nav>
 <!-- /.navbar -->

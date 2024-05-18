@@ -89,7 +89,7 @@
                 </div>
               </div>
                 <div class="table-responsive p-0" style="height: 350px;">
-                  <table class="table table-head-fixed text-nowrap" id="inv_tbl">
+                  <table class="table table-head-fixed text-nowrap table-hover" id="inv_tbl">
                     <thead>
                       <tr>
                         <!-- <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th> -->

@@ -32,9 +32,7 @@ if ($method == 'account_list') {
 	$c = 0;
 
 	$results_per_page = 10;
-
 	$page_first_result = ($current_page - 1) * $results_per_page;
-
 	$c = $page_first_result;
 
 	$query = "SELECT * FROM m_accounts LIMIT " . $page_first_result . ", " . $results_per_page;
@@ -67,9 +65,7 @@ if ($method == 'account_list_pagination') {
 	);
 
 	$results_per_page = 10;
-
 	$number_of_result = intval(count_account_list($search_arr, $conn));
-
 	$number_of_page = ceil($number_of_result / $results_per_page);
 
 	for ($page = 1; $page <= $number_of_page; $page++) {
@@ -92,7 +88,7 @@ if ($method == 'search_account_list') {
 	if ($stmt->rowCount() > 0) {
 		foreach ($stmt->fetchALL() as $j) {
 			$c++;
-			echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_account" onclick="get_accounts_details(&quot;' . $j['id'] . '~!~' . $j['emp_id'] . '~!~' . $j['username'] . '~!~' . $j['fullname'] . '~!~' . $j['password'] . '~!~' . $j['section'] . '~!~' . $j['role'] . '&quot;)">';
+			echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_account" onclick="get_accounts_details(&quot;' . $j['id'] . '~!~' . $j['emp_id'] . '~!~' . $j['fullname'] . '~!~' . $j['username'] . '~!~' . $j['password'] . '~!~' . $j['section'] . '~!~' . $j['role'] . '&quot;)">';
 			echo '<td>' . $c . '</td>';
 			echo '<td>' . $j['emp_id'] . '</td>';
 			echo '<td>' . $j['fullname'] . '</td>';
@@ -144,30 +140,23 @@ if ($method == 'add_account') {
 }
 
 if ($method == 'edit_account') {
-	$partcode = $_POST['partcode'];
-	$partname = $_POST['partname'];
-	$qty = $_POST['qty'];
 	$id = $_POST['id'];
+	$emp_id = $_POST['emp_id'];
+	$fullname = $_POST['fullname'];
+	$username = $_POST['username'];
+	$password = $_POST['password'];
+	$section = $_POST['section'];
+	$user_type = $_POST['user_type'];
 
-	$check = "SELECT * FROM m_kanban WHERE id = :id";
-	$stmt = $conn->prepare($check, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	$stmt->bindParam(':id', $id);
-	$stmt->execute();
-
-	if ($stmt->rowCount() > 0) {
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
-		$partcodes = $row['partcode'];
-		$partnames = $row['partname'];
-		$qtys = $row['packing_quantity'];
-		$id = $row['id'];
-	}
-
-	$update_qry = "UPDATE m_kanban SET partcode = :partcode, partname = :partname, packing_quantity = :qty WHERE id = :id";
+	$update_qry = "UPDATE m_accounts SET emp_id = :emp_id, fullname = :fullname, username = :username, password = :password, section = :section, role = :user_type WHERE id = :id";
 	$stmt = $conn->prepare($update_qry, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->bindParam(':id', $id);
-	$stmt->bindParam(':partcode', $partcode);
-	$stmt->bindParam(':partname', $partname);
-	$stmt->bindParam(':qty', $qty);
+	$stmt->bindParam(':emp_id', $emp_id);
+	$stmt->bindParam(':fullname', $fullname);
+	$stmt->bindParam(':username', $username);
+	$stmt->bindParam(':password', $password);
+	$stmt->bindParam(':section', $section );
+	$stmt->bindParam(':user_type', $user_type );
 
 	if ($stmt->execute()) {
 		echo 'success';
@@ -176,6 +165,18 @@ if ($method == 'edit_account') {
 		// If there's an error, print error information
 		$errorInfo = $stmt->errorInfo();
 		echo 'error: ' . $errorInfo[2];
+	}
+}
+
+if ($method == 'del_account') {
+	$id = $_POST['id'];
+
+	$query = "DELETE FROM m_accounts WHERE id = '$id'";
+	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+	if ($stmt->execute()) {
+		echo 'success';
+	} else {
+		echo 'error';
 	}
 }
 

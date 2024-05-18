@@ -115,6 +115,7 @@
             },
             success: function(response) {
                 document.getElementById("inv_tbl").innerHTML = response;
+                document.getElementById("inv_search").innerText = '';
                 document.getElementById("lbl_c1").innerHTML = '';
                 $('#t_t1_breadcrumb').hide();
                 count_inventory();
@@ -198,7 +199,7 @@
         if (current_page > 1) {
             switch (true) {
                 case inventory_search !== savedSearch_inv:
-                    inventory_search = savedSearch_inv;
+                    inventory_search == savedSearch_inv;
                     break;
                 default:
             }
@@ -215,7 +216,6 @@
                 current_page: current_page,
             },
             success: function(response) {
-
                 document.getElementById("inventory_table").innerHTML = response;
                 sessionStorage.setItem('inv_table_pagination', current_page);
                 count_inventory();

@@ -30,7 +30,6 @@ if ($method == 'count_mlist') {
 	count_m_list($search_arr, $conn);
 }
 
-
 if ($method == 'kanban_mlist') {
 	$current_page = intval($_POST['current_page']);
 	$c = 0;
@@ -325,4 +324,21 @@ if ($method == 'get_all_mlist') {
 	}
 	echo $optionsHTML;
 	exit; // Terminate script execution
+}
+if ($method == 'delete_data_arr') {
+	$id_arr = [];
+	$id_arr = $_POST['id_arr'];
+
+	$count = count($id_arr);
+	foreach ($id_arr as $id) {
+		$query = "DELETE FROM m_kanban WHERE id = ?";
+		$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+		$params = array($id);
+		$stmt->execute($params);
+		$count--;
+	}
+
+	if ($count == 0) {
+		echo 'success';
+	}
 }

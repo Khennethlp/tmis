@@ -48,10 +48,10 @@
                         <span><i class="fas fa-user-plus mr-1"></i>New User</span>
                       </button>
                       <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_acc" tabindex="0" type="button">
-                        <span><i class="fas fa-file-import mr-1"></i>IMPORT</span>
+                        <span><i class="fas fa-file-import mr-1"></i>Import</span>
                       </button>
                       <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('accounts_table')" type="button">
-                        <span><i class="fas fa-file-csv mr-1"></i>EXPORT</span>
+                        <span><i class="fas fa-file-csv mr-1"></i>Export</span>
                       </button>
                     </div>
                   </div>

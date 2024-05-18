@@ -60,11 +60,11 @@ include '../../process/login.php';
       /* border-bottom: 2px solid #ffffff !important; */
     }
     .btnClearSession{
-      color: #ffffff;
+      color: #ffffff ;
       border-bottom: 1px solid #ccc !important;
     }
     .btnClearSession:hover{
-      color: #cccccc !important;
+      /* color: #cccccc !important; */
       border-bottom: 1px solid #ccc !important;
     }
     .custom-switch {

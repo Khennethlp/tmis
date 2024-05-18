@@ -52,6 +52,7 @@
                     <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('partsin_tbl')" type="button">
                       <span><i class="fas fa-file-csv mr-1"></i> Export</span>
                     </button>
+                    <!-- <button class="btn btn-func buttons-excel buttons-html5" onclick="print()">Print</button> -->
                   </div>
                   <div class="col-sm-6 float-right">
                     <!-- <div class="input-group input-group-sm mb-1" style="width: 300px; float:right;">

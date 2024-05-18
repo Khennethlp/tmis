@@ -123,10 +123,43 @@
         });
     }
 
+    const count_t2 = () => {
+        var get_qr =sessionStorage.getItem('qr_code');
+
+        $.ajax({
+            url: '../../process/admin/inventory_p.php',
+            type: 'POST',
+            cache: false,
+            data: {
+                method: 'count_t2',
+                get_qr: get_qr,
+            },
+            success: function(response) {
+                sessionStorage.setItem('count_rows', response);
+                var count = `Total: ${response}`;
+                $('#inv_table_info').html(count);
+
+                if (response > 0) {
+                    load_inv_pagination();
+                    document.getElementById("btnPrevPage").removeAttribute('disabled');
+                    document.getElementById("btnNextPage").removeAttribute('disabled');
+                    document.getElementById("inv_table_pagination").removeAttribute('disabled');
+                } else {
+                    document.getElementById("btnPrevPage").setAttribute('disabled', true);
+                    document.getElementById("btnNextPage").setAttribute('disabled', true);
+                    document.getElementById("inv_table_pagination").setAttribute('disabled', true);
+
+                }
+            }
+        });
+    }
+
     const load_t_t2 = param => {
         var string = param.split('~!~');
         var partcode = string[0];
         var qr_code = string[1];
+
+        var set_qr =sessionStorage.setItem('qr_code', qr_code);
 
         $.ajax({
             url: '../../process/admin/inventory_p.php',
@@ -140,7 +173,7 @@
                 document.getElementById("inv_tbl").innerHTML = response;
                 document.getElementById("lbl_c1").innerHTML = partcode;
                 $('#t_t1_breadcrumb').show();
-
+                count_t2();
             }
         });
     }

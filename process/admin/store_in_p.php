@@ -6,7 +6,7 @@ $method = $_POST['method'];
 
 function count_partsin($search_arr, $conn)
 {
-	$query = "SELECT COUNT(id) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
+	$query = "SELECT COUNT(DISTINCT qr_code) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {

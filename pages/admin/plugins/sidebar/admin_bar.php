@@ -13,7 +13,7 @@
         <img src="../../dist/img/user.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="index.php" class="d-block"><?=htmlspecialchars($_SESSION['name']);?></a>
+        <a href="index.php" class="d-block"><?= htmlspecialchars($_SESSION['name']); ?></a>
       </div>
     </div>
 
@@ -23,66 +23,66 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/index.php") {?>
-          <a href="index.php" class="nav-link active">
-          <?php } else {?>
-          <a href="index.php" class="nav-link">
-          <?php } ?>
-            <i class="nav-icon fas fa-download"></i>
-            <p>
-              Store-in
-            </p>
-          </a>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/index.php") { ?>
+            <a href="index.php" class="nav-link active">
+            <?php } else { ?>
+              <a href="index.php" class="nav-link">
+              <?php } ?>
+              <i class="nav-icon fas fa-download"></i>
+              <p>
+                Store-in
+              </p>
+              </a>
         </li>
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/index2.php") {?>
-          <a href="index2.php" class="nav-link active">
-          <?php } else {?>
-          <a href="index2.php" class="nav-link">
-          <?php } ?>
-            <i class="nav-icon fas fa-upload"></i>
-            <p>
-              Store-out
-            </p>
-          </a>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/index2.php") { ?>
+            <a href="index2.php" class="nav-link active">
+            <?php } else { ?>
+              <a href="index2.php" class="nav-link">
+              <?php } ?>
+              <i class="nav-icon fas fa-upload"></i>
+              <p>
+                Store-out
+              </p>
+              </a>
         </li>
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/inventory.php") {?>
-          <a href="inventory.php" class="nav-link active">
-          <?php } else {?>
-          <a href="inventory.php" class="nav-link">
-          <?php } ?>
-            <i class="nav-icon fas fa-tasks"></i>
-            <p>
-              Inventory
-            </p>
-          </a>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/inventory.php") { ?>
+            <a href="inventory.php" class="nav-link active">
+            <?php } else { ?>
+              <a href="inventory.php" class="nav-link">
+              <?php } ?>
+              <i class="nav-icon fas fa-tasks"></i>
+              <p>
+                Inventory
+              </p>
+              </a>
         </li>
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/masterlist.php") {?>
-          <a href="masterlist.php" class="nav-link active">
-          <?php } else {?>
-          <a href="masterlist.php" class="nav-link">
-          <?php } ?>
-            <i class="nav-icon fas fa-users"></i>
-            <p>
-              Masterlist
-            </p>
-          </a>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/masterlist.php") { ?>
+            <a href="masterlist.php" class="nav-link active">
+            <?php } else { ?>
+              <a href="masterlist.php" class="nav-link">
+              <?php } ?>
+              <i class="nav-icon far fa-list-alt"></i>
+              <p>
+                Masterlist
+              </p>
+              </a>
         </li>
         <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/accounts.php") {?>
-          <a href="accounts.php" class="nav-link active">
-          <?php } else {?>
-          <a href="accounts.php" class="nav-link">
-          <?php } ?>
-            <i class="nav-icon fas fa-user-cog"></i>
-            <p>
-              Accounts Management
-            </p>
-          </a>
+          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/admin/accounts.php") { ?>
+            <a href="accounts.php" class="nav-link active">
+            <?php } else { ?>
+              <a href="accounts.php" class="nav-link">
+              <?php } ?>
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Accounts Management
+              </p>
+              </a>
         </li>
-        <?php include 'logout.php';?>
+        <?php include 'logout.php'; ?>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

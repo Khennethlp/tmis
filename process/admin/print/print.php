@@ -1,16 +1,24 @@
 <?php
 require_once '../../conn.php'; 
 
-if(isset($_GET['date_from']) && isset($_GET['date_to'])){
-    $from_d = $_GET['date_from'];
-    $to_d = $_GET['date_to'];
+if(isset($_GET['q'])){
+    $search = $_GET['q'];
+    // $to_d = $_GET['date_to'];
 
-    $get_from_date = "SELECT * FROM t_partsin_history WHERE DATE(date_updated) BETWEEN '$from_d' AND '$to_d'";
-    $stmt = $conn->prepare($get_from_date, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+    if (!empty($search)) {
+        // If $search is not empty, filter by partcode
+        $get_search = "SELECT * FROM t_partsin WHERE partcode = '$search%'";
+        $stmt = $conn->prepare($get_search);
+    } else {
+        // If $search is empty, fetch all records
+        $get_search = "SELECT * FROM t_partsin";
+        $stmt = $conn->prepare($get_search);
+    }
+    
     $stmt->execute();
     $c = 0;
-
     if ($stmt->rowCount() > 0) {
+
         echo '<div class="table-responsive">';
         echo '<table class="table table-striped table-bordered">';
         echo '<thead class="thead-dark">';

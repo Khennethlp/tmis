@@ -21,6 +21,30 @@ function count_inv_list($search_arr, $conn)
 	return $total;
 }
 
+function count_t2($search_arr, $conn){
+	$query = "SELECT count(qr_code) AS total FROM t_partsin WHERE qr_code = '". $search_arr['get_qr']."' ";
+	$stmt = $conn->prepare($query);
+	$stmt->execute();
+	if($stmt->rowCount() > 0){
+		foreach ($stmt->fetchALL() as $row){
+			$total = $row['total'];
+		}
+	}else{
+		$total = 0;
+	}
+	return $total;
+}
+
+if($method == 'count_t2'){
+	$get_qr = $_POST['get_qr'];
+
+	$search_arr = array(
+		"get_qr" => $get_qr,
+	);
+
+	echo count_t2($search_arr, $conn);
+}
+
 if ($method == 'count_list') {
 	$inv_search = $_POST['inv_search'];
 
@@ -52,9 +76,8 @@ if ($method == 'inventory_list') {
 			</tr>
 		</thead>';
 
-	//joined table of store_out & store_in history 
-	// $get_history = "SELECT * FROM t_partsin_history ";
-	$get_inv = "SELECT id, qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, date_updated, updated_by,count(partcode) as Qty from t_partsin GROUP by partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	//joined table of m_kanban tbl & partsin tbl
+	$get_inv = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode GROUP BY partcode LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($get_inv, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 

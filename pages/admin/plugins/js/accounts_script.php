@@ -13,7 +13,7 @@ $(document).ready(function() {
 document.querySelector('#acc_search').addEventListener("keyup", function(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
-        search_accounts(); // Call your search function
+        search_accounts(1); // Call your search function
     }
 });
 

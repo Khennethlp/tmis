@@ -113,9 +113,9 @@ if (!isset($_SESSION['username'])) {
       display: flex;
       align-items: center;
     }
-    .nav-link.no-caret::after {
-      display: none;
-    }
+    /* .nav-link.no-caret::after {
+      display: block;
+    } */
   </style>
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed dark-mode">
@@ -135,7 +135,8 @@ if (!isset($_SESSION['username'])) {
       <div class="row">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle no-caret" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-ellipsis-v"></i>
+          <!-- <i class="fas fa-ellipsis-v mr-2"></i> -->
+          Theme
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item">

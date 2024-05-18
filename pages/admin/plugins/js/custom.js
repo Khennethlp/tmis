@@ -10,12 +10,14 @@
         if (theme === 'dark') {
           body.classList.add('dark-mode');
           body.classList.remove('light-mode');
+          theme_label.innerHTML = 'Light ';
           theme_label.style.color = 'white';
           // btnTxtColor.forEach(button => button.style.color = 'white');
           toggleSwitch.checked = true;
         } else {
           body.classList.add('light-mode');
           body.classList.remove('dark-mode');
+          theme_label.innerHTML = 'Dark ';
           theme_label.style.color = 'black';
           // btnTxtColor.forEach(button => button.style.color = 'black');
           toggleSwitch.checked = false;

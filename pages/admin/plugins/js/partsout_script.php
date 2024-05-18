@@ -7,7 +7,7 @@ function trim_white_space(event) {
 document.querySelector('#partsout_search').addEventListener("keyup", function(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
-        search_partsout(); // Call your search function
+        search_partsout(1); // Call your search function
     }
 });
 $(document).ready(function() {

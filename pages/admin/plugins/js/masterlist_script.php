@@ -13,7 +13,7 @@ $(document).ready(function() {
 document.querySelector('#mlist_search').addEventListener("keyup", function(e) {
     if (e.key === 'Enter') {
         e.preventDefault();
-        search_mlist(); // Call your search function
+        search_mlist(1); // Call your search function
     }
 });
 

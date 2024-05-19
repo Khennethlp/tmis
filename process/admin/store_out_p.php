@@ -6,7 +6,7 @@ $method = $_POST['method'];
 
 function count_partsout($search_arr, $conn)
 {
-	$query = "SELECT COUNT(id) AS total FROM t_partsout WHERE partcode LIKE '" . $search_arr['partsout'] . "%' OR partname LIKE '" . $search_arr['partsout'] . "%'";
+	$query = "SELECT COUNT(DISTINCT qr_code) AS total FROM t_partsout WHERE partcode LIKE '" . $search_arr['partsout'] . "%' OR partname LIKE '" . $search_arr['partsout'] . "%'";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -35,7 +35,7 @@ if ($method == 'partsout_list') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = "SELECT * FROM t_partsout LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated from t_partsout GROUP by partcode ) as b ON a.partcode = b.partcode LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -86,7 +86,7 @@ if ($method == 'search_partsout') {
 	$c = $page_first_result;
 
 	// $query = "SELECT * FROM t_partsout WHERE partcode LIKE '$partsout%' OR partname LIKE '$partsout%' LIMIT " . $page_first_result . ", " . $results_per_page;
-	$query = "SELECT a.partcode, a.packing_quantity, a.lot_address, a.barcode_label, a.date_updated, a.updated_by, b.partcode, b.partname FROM t_partsout a INNER JOIN m_kanban b ON a.partcode = b.partcode;";
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated from t_partsout GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode LIKE '$partsout%' OR b.partname LIKE '$partsout%' LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {

@@ -41,10 +41,9 @@
             <!-- /.card-header -->
             <div class="card-body">
               <!-- <div class="row"> -->
-              <div class="col-sm-12">
+              <div class="col-12 col-md-6 col-lg-12 mb-4">
                 <!-- <div class="card"> -->
-
-                <div class="row mb-4">
+                <div class="row align-items-center">
                   <!-- <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()"><i class="fas fa-trash"></i></button> -->
                   <div class="col-sm-7">
                     <div class="dt-buttons btn-group flex-wrap">
@@ -58,8 +57,9 @@
                       </button>
                     </div>
                   </div>
-                  <div class="col-sm-5">
-                    <div class="input-group input-group-sm" style="width: 300px; float:right;">
+                  <div class="col-lg-2"></div>
+                  <div class="col-12 col-md-6 col-lg-3">
+                    <div class="input-group input-group-sm" style="margin: 8px;">
                       <input type="search" name="table_search" id="inv_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
                         <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_inv(1)">
@@ -68,6 +68,7 @@
                       </div>
                     </div>
                   </div>
+                </div>
                 </div>
 
                 <!-- <div class="input-group input-group-sm" style="width: 300px; float:right;">
@@ -108,7 +109,7 @@
                   </table>
                 </div>
 
-              </div>
+              
               <!-- </div> -->
               <!-- <div class="row">
                 <p>&nbsp;&nbsp;&nbsp;&nbsp; Total: &nbsp;<span id="count"></span></p>

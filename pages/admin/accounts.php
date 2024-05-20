@@ -40,9 +40,9 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <div class="col-sm-12 mb-2">
+              <div class="col-12 mb-2 mb-4">
                 <div class="row align-items-center">
-                  <div class="col-sm-6">
+                  <div class="col-12 col-md-6 col-lg-6">
                     <div class="dt-buttons btn-group flex-wrap">
                       <button class="btn btn-func buttons-add buttons-html5" data-toggle="modal" data-target="#add_acc" tabindex="0" type="button">
                         <span><i class="fas fa-user-plus mr-1"></i>New User</span>
@@ -55,9 +55,10 @@
                       </button>
                     </div>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="input-group input-group-sm" style="width: 300px; float:right;">
-                      <input type="search" name="table_search" id="acc_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
+                  <div class="col-sm-3"></div>
+                  <div class="col-12 col-md-6 col-lg-3">
+                    <div class="input-group input-group-sm">
+                      <input type="search" name="table_search" id="acc_search" style="height: 40px;" class="form-control" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
                         <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_accounts(1)">
                           <i class="fas fa-search"></i>
@@ -67,9 +68,9 @@
                   </div>
                 </div>
               </div>
-            
 
-            <!-- <div class="col-sm-2">
+
+              <!-- <div class="col-sm-2">
               <label>User Type:</label>
                 <select id="user_type_search" class="form-control">
                   <option value="">Select User Type</option>
@@ -77,41 +78,41 @@
                   <option value="user">User</option>
                 </select>
               </div> -->
-            <div class="table-responsive dataTable dtr-inline collapsed" style="height: 350px; overflow: auto; display:inline-block;">
-              <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
-                <thead style="text-align:center;">
-                  <th> # </th>
-                  <th> Employee ID </th>
-                  <th> Full Name </th>
-                  <th> Username </th>
-                  <th> Section </th>
-                  <th> User Type </th>
-                </thead>
-                <tbody id="list_of_accounts" style="text-align:center;"></tbody>
-              </table>
+              <div class="table-responsive dataTable dtr-inline collapsed" style="height: 350px; overflow: auto; display:inline-block;">
+                <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
+                  <thead style="text-align:center;">
+                    <th> # </th>
+                    <th> Employee ID </th>
+                    <th> Full Name </th>
+                    <th> Username </th>
+                    <th> Section </th>
+                    <th> User Type </th>
+                  </thead>
+                  <tbody id="list_of_accounts" style="text-align:center;"></tbody>
+                </table>
+              </div>
             </div>
-          </div>
-          <hr>
-          <!-- pagination -->
-          <div class="row mb-4">
-            <div class="col-sm-12 col-md-9 col-9">
-              <div class="dataTables_info pl-4" id="account_table_info" role="status" aria-live="polite"></div>
-              <input type="hidden" id="count_rows">
-            </div>
-            <div class="col-sm-12 col-md-1 col-1">
-              <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_prev_page()">Prev</button>
-            </div>
-            <div class="col-sm-12 col-md-1 col-1">
-              <input type="text" list="account_table_paginations" class="form-control" id="account_table_pagination">
-              <datalist id="account_table_paginations"></datalist>
-              <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
+            <hr>
+            <!-- pagination -->
+            <div class="row mb-4">
+              <div class="col-sm-12 col-md-9 col-9">
+                <div class="dataTables_info pl-4" id="account_table_info" role="status" aria-live="polite"></div>
+                <input type="hidden" id="count_rows">
+              </div>
+              <div class="col-sm-12 col-md-1 col-1">
+                <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_prev_page()">Prev</button>
+              </div>
+              <div class="col-sm-12 col-md-1 col-1">
+                <input type="text" list="account_table_paginations" class="form-control" id="account_table_pagination">
+                <datalist id="account_table_paginations"></datalist>
+                <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
                     </div> -->
-            </div>
-            <div class="col-sm-12 col-md-1 col-1">
-              <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
+              </div>
+              <div class="col-sm-12 col-md-1 col-1">
+                <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
+              </div>
             </div>
           </div>
-        </div>
         </div>
         <!-- /.card-body -->
 

@@ -1,14 +1,13 @@
 <?php
 include '../conn.php';
+include '../login.php';
 
 $method = $_POST['method'];
 
 function count_m_list($search_arr, $conn)
 {
-	$query = "SELECT COUNT(id) AS total FROM m_kanban WHERE partcode LIKE :search OR partname LIKE :search OR packing_quantity LIKE :search";
+	 $query = "SELECT COUNT(id) AS total FROM m_kanban WHERE partcode LIKE '" . $search_arr['search'] . "%' OR partname LIKE '" . $search_arr['search'] . "%' OR packing_quantity LIKE '" . $search_arr['search'] . "%' ";
 	$stmt = $conn->prepare($query);
-	$searchTerm = '%' . $search_arr['search'] . '%';
-	$stmt->bindParam(':search', $searchTerm, PDO::PARAM_STR);
 	$stmt->execute();
 
 	if ($stmt->rowCount() > 0) {
@@ -27,7 +26,9 @@ if ($method == 'count_mlist') {
 	$search_arr = array(
 		"search" => $mlist_search,
 	);
-	count_m_list($search_arr, $conn);
+	 $count = count_m_list($search_arr, $conn);
+	echo $count;
+
 }
 
 if ($method == 'kanban_mlist') {

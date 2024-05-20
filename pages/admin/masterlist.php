@@ -38,25 +38,28 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <div class="col-sm-12 mb-4">
+              <div class="col-12 col-md-6 col-lg-12 mb-4">
                 <div class="row align-items-center">
-                  <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()"><i class="fas fa-trash"></i></button>
-                  <div class="col-sm-6 mx-3">
-                    <div class="dt-buttons btn-group flex-wrap">
-                      <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#add_mlist" tabindex="0" type="button">
-                        <span><i class="fas fa-plus mr-1"></i> Add New</span>
-                      </button>
-                      <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#import_mlist" tabindex="0" type="button">
-                        <span><i class="fas fa-file-import mr-1"></i> Import</span>
-                      </button>
-                      <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('mlist_table')" type="button">
-                        <span><i class="fas fa-file-export mr-1"></i> Export</span>
-                      </button>
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <div class="row align-items-center">
+                      <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()"><i class="fas fa-trash"></i></button>
+                      <div class="dt-buttons btn-group flex-wrap">
+                        <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#add_mlist" tabindex="0" type="button">
+                          <span><i class="fas fa-plus mr-1"></i> Add New</span>
+                        </button>
+                        <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#import_mlist" tabindex="0" type="button">
+                          <span><i class="fas fa-file-import mr-1"></i> Import</span>
+                        </button>
+                        <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('mlist_table')" type="button">
+                          <span><i class="fas fa-file-export mr-1"></i> Export</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-sm-5">
-                    <div class="input-group input-group-sm" style="width: 300px; float:right;">
-                      <input type="search" name="table_search" id="mlist_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
+                  <div class="col-lg-3"></div>
+                  <div class="col-12 col-md-6 col-lg-3">
+                    <div class="input-group input-group-sm" style="margin: 8px;">
+                      <input type="search" name="table_search" id="mlist_search" class="form-control" style="height: 40px;" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
                         <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_mlist(1)">
                           <i class="fas fa-search"></i>

@@ -1,11 +1,11 @@
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        get_masterlist();
-    });
+    // document.addEventListener("DOMContentLoaded", () => {
+    // });
 
     $(document).ready(function() {
         $('#deleteBtn').attr('disabled', true);
         search_mlist(1);
+        get_masterlist();
         // get_masterlist();
     });
 
@@ -88,9 +88,9 @@
                 mlist_search: mlist_search,
             },
             success: function(response) {
+                sessionStorage.setItem('count_rows', response);
                 var count = `Total: ${response}`;
                 $('#mlist_table_info').html(count);
-                sessionStorage.setItem('count_rows', response);
 
                 if (response > 0) {
                     load_mlist_pagination();
@@ -103,6 +103,7 @@
                     document.getElementById("mlist_table_pagination").setAttribute('disabled', true);
 
                 }
+                console.log(count);
             }
         });
 

@@ -42,7 +42,7 @@
             <!-- /.card-header -->
             <div class="card-body">
               <div class="row align-items-center">
-                <div class="col-md-12 mb-3">
+                <div class="col-md-12 mb-4">
                   <div class="dt-buttons btn-group flex-wrap">
                     <!-- <form id="file_form" enctype="multipart/form-data">
                       <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_inv" tabindex="0" type="button">

@@ -8,6 +8,7 @@ function count_partsin($search_arr, $conn)
 {
 	$query = "SELECT COUNT(DISTINCT qr_code) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
 	$stmt = $conn->prepare($query);
+	
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
 		foreach ($stmt->fetchALL() as $row) {
@@ -85,7 +86,7 @@ if ($method == 'search_partsin') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode LIKE '$partsin%' OR b.partname LIKE '$partsin%' GROUP by partcode ASC LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin GROUP by partcode ) as b ON a.partcode = b.partcode WHERE concat(a.partname LIKE '$partsin%', b.partcode LIKE '$partsin%') GROUP BY partcode LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {

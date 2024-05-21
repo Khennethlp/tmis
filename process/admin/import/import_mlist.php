@@ -15,22 +15,23 @@ if (isset($_POST['upload'])) {
                 if (empty(implode('', $line))) {
                     continue; // Skip blank lines
                 }
+                $line = array_slice($line, 1);
 
-                $id = $line[0];
+                // $id = isset($line[0]) ? $line[0] : '';
                 $partcode = $line[1];
                 $partname = $line[2];
                 $packing_quantity = $line[3];
 
                 // Form validation
-                if (empty($id) || empty($partcode) || empty($partname) || empty($packing_quantity)) {
+                if ( empty($partcode) || empty($partname) || empty($packing_quantity)) {
                     $error++;
-                    continue;
+                    
                 }
 
                 // Prepared statement to prevent SQL injection
-                $sql = "INSERT INTO m_kanban(partcode, partname, packing_quantity) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO m_kanban(partcode, partname, packing_quantity) VALUES ('$partcode', '$partname', '$packing_quantity')";
                 $stmt = $conn->prepare($sql);
-                if ($stmt->execute([$partcode, $partname, $packing_quantity])) {
+                if ($stmt->execute()) {
                     $error = 0;
                 } else {
                     $error++;
@@ -48,7 +49,7 @@ if (isset($_POST['upload'])) {
             } else {
                   echo '<script>
                         alert("WITH ERROR! # OF ERRORS ' . $error . '");
-                        location.replace("../../../pages/admin/inventory.php");
+                        location.replace("../../../pages/admin/masterlist.php");
                     </script>';
             }
         } else {

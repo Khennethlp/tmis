@@ -89,7 +89,7 @@
     <!-- <p class="text-muted text-center" style="font-size: 11px;">Beta Version 1.0</p> -->
   </div>
   <div class="sidebar-bottom">
-    <p class="text-muted text-center" style="font-size: 11px; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">Beta Version 1.0</p>
+    <p class="text-muted text-center" style="font-size: 11px; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);">Version 1.0.0</p>
   </div>
   <!-- /.sidebar -->
 </aside>

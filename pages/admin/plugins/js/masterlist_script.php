@@ -103,7 +103,7 @@
                     document.getElementById("mlist_table_pagination").setAttribute('disabled', true);
 
                 }
-                console.log(count);
+                // console.log(count);
             }
         });
 
@@ -393,7 +393,7 @@
                         $('#update_mlist').modal('hide');
                         $('#partcode_edit').val('');
                         $('#partname_edit').val('');
-                        search_mlist();
+                        search_mlist(1);
                     } else {
                         Swal.fire({
                             icon: 'error',
@@ -484,12 +484,13 @@
         document.body.removeChild(link);
     }
 
-    const print = () => {
-        var from_date = document.getElementById("fromD_search").value;
-        var to_date = document.getElementById("toD_search").value;
-        window.open('../../process/admin/print/print.php?date_from=' + from_date + "&date_to=" + to_date, '_blank');
+    // const print = () => {
+    //     var from_date = document.getElementById("fromD_search").value;
+    //     var to_date = document.getElementById("toD_search").value;
+    //     window.open('../../process/admin/print/print.php?date_from=' + from_date + "&date_to=" + to_date, '_blank');
 
-    }
+    // }
+
     const selectAll = (checkbox) => {
         //check all data
         var select_all = document.getElementById('select_all');

@@ -6,7 +6,14 @@ $method = $_POST['method'];
 
 function count_m_list($search_arr, $conn)
 {
-	 $query = "SELECT COUNT(id) AS total FROM m_kanban WHERE partcode LIKE '" . $search_arr['search'] . "%' OR partname LIKE '" . $search_arr['search'] . "%' OR packing_quantity LIKE '" . $search_arr['search'] . "%' ";
+	$total = 0;
+
+	$query = "SELECT COUNT(id) AS total FROM m_kanban";
+	
+	if (!empty($search_arr['search'])) {
+        $query .= " WHERE partcode LIKE '" . $search_arr['search'] . "%' OR partname LIKE '" . $search_arr['search'] . "%' OR packing_quantity LIKE '" . $search_arr['search'] . "%' ";
+    }
+	
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 
@@ -26,9 +33,8 @@ if ($method == 'count_mlist') {
 	$search_arr = array(
 		"search" => $mlist_search,
 	);
-	 $count = count_m_list($search_arr, $conn);
-	echo $count;
 
+	echo count_m_list($search_arr, $conn);
 }
 
 if ($method == 'kanban_mlist') {
@@ -113,64 +119,64 @@ if ($method == 'search_mlist') {
 	}
 }
 
-if ($method == 'search_by_date') {
-	$from_date = $_POST['from_date'];
-	$to_date = $_POST['to_date'];
-	$c = 0;
+// if ($method == 'search_by_date') {
+// 	$from_date = $_POST['from_date'];
+// 	$to_date = $_POST['to_date'];
+// 	$c = 0;
 
-	$query = "SELECT * FROM m_kanban WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
-	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	$stmt->execute();
+// 	$query = "SELECT * FROM m_kanban WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
+// 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+// 	$stmt->execute();
 
-	$result['rows'] = []; // Initialize an array to store rows
+// 	$result['rows'] = []; // Initialize an array to store rows
 
-	if ($stmt->rowCount() > 0) {
-		foreach ($stmt->fetchAll() as $j) {
-			$c++;
-			$result['rows'][] = [
-				'id' => $j['id'],
-				'partcode' => $j['partcode'],
-				'partname' => $j['partname'],
-				'packing_quantity' => $j['packing_quantity']
-			];
-		}
-	}
+// 	if ($stmt->rowCount() > 0) {
+// 		foreach ($stmt->fetchAll() as $j) {
+// 			$c++;
+// 			$result['rows'][] = [
+// 				'id' => $j['id'],
+// 				'partcode' => $j['partcode'],
+// 				'partname' => $j['partname'],
+// 				'packing_quantity' => $j['packing_quantity']
+// 			];
+// 		}
+// 	}
 
-	// Output the total count of rows within the date range
-	// $count_rows = "SELECT COUNT(*) AS total_count FROM m_kanban WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
-	// $stmt = $conn->prepare($count_rows);
-	// $stmt->execute();
-	// $count_result = $stmt->fetch(PDO::FETCH_ASSOC);
-	// $result['count'] = $count_result['total_count'];
+// 	// Output the total count of rows within the date range
+// 	// $count_rows = "SELECT COUNT(*) AS total_count FROM m_kanban WHERE DATE(date_updated) BETWEEN '$from_date' AND '$to_date'";
+// 	// $stmt = $conn->prepare($count_rows);
+// 	// $stmt->execute();
+// 	// $count_result = $stmt->fetch(PDO::FETCH_ASSOC);
+// 	// $result['count'] = $count_result['total_count'];
 
-	// echo json_encode($result); // Return data as JSON
-}
+// 	// echo json_encode($result); // Return data as JSON
+// }
 
-if ($method == 'history_list') {
+// if ($method == 'history_list') {
 
-	$c = 0;
+// 	$c = 0;
 
-	$query = "SELECT * FROM t_partsin_history";
-	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	$stmt->execute();
-	if ($stmt->rowCount() > 0) {
-		foreach ($stmt->fetchALL() as $j) {
-			$c++;
-			echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_history" onclick="get_history_details(&quot;' . $j['id'] . '~!~' . $j['partcode'] . '~!~' . $j['partname'] . '~!~' . $j['packing_quantity'] . '~!~' . $j['lot_address'] . '~!~' . $j['updated_by'] . '&quot;)">';
-			echo '<td>' . $c . '</td>';
-			echo '<td>' . $j['partcode'] . '</td>';
-			echo '<td>' . $j['partname'] . '</td>';
-			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . $j['lot_address'] . '</td>';
-			// echo '<td>' . $j['updated_by'] . '</td>';
-			echo '</tr>';
-		}
-	} else {
-		echo '<tr>';
-		echo '<td colspan="5" style="text-align:center; color:red;">No Result !!!</td>';
-		echo '</tr>';
-	}
-}
+// 	$query = "SELECT * FROM t_partsin_history";
+// 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+// 	$stmt->execute();
+// 	if ($stmt->rowCount() > 0) {
+// 		foreach ($stmt->fetchALL() as $j) {
+// 			$c++;
+// 			echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_history" onclick="get_history_details(&quot;' . $j['id'] . '~!~' . $j['partcode'] . '~!~' . $j['partname'] . '~!~' . $j['packing_quantity'] . '~!~' . $j['lot_address'] . '~!~' . $j['updated_by'] . '&quot;)">';
+// 			echo '<td>' . $c . '</td>';
+// 			echo '<td>' . $j['partcode'] . '</td>';
+// 			echo '<td>' . $j['partname'] . '</td>';
+// 			echo '<td>' . $j['packing_quantity'] . '</td>';
+// 			echo '<td>' . $j['lot_address'] . '</td>';
+// 			// echo '<td>' . $j['updated_by'] . '</td>';
+// 			echo '</tr>';
+// 		}
+// 	} else {
+// 		echo '<tr>';
+// 		echo '<td colspan="5" style="text-align:center; color:red;">No Result !!!</td>';
+// 		echo '</tr>';
+// 	}
+// }
 
 if ($method == 'save_mlist') {
 	$partcode = $_POST['partcode'];
@@ -303,15 +309,6 @@ if ($method == 'del_history') {
 	}
 }
 
-if ($method == 'count_mlist') {
-
-	$count_rows = "SELECT COUNT(*) AS total_count FROM m_kanban";
-	$stmt = $conn->prepare($count_rows, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	$stmt->execute();
-	$result = $stmt->fetch(PDO::FETCH_ASSOC);
-	echo $result['total_count'];
-}
-
 if ($method == 'get_all_mlist') {
 	$query = "SELECT DISTINCT partname FROM m_kanban";
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
@@ -326,6 +323,7 @@ if ($method == 'get_all_mlist') {
 	echo $optionsHTML;
 	exit; // Terminate script execution
 }
+
 if ($method == 'delete_data_arr') {
 	$id_arr = [];
 	$id_arr = $_POST['id_arr'];

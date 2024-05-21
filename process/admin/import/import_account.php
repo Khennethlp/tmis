@@ -15,25 +15,26 @@ if (isset($_POST['upload'])) {
                 if (empty(implode('', $line))) {
                     continue; // Skip blank lines
                 }
+                // $line = array_slice($line, 1);
 
                 $id = $line[0];
                 $emp_id = $line[1];
                 $fullname = $line[2];
                 $username = $line[3];
-                $password = $line[4];
-                $section = $line[5];
-                $role = $line[6];
+                // $password = $line[4];
+                $section = $line[4];
+                $role = $line[5];
 
                 // Form validation
-                if (empty($id) || empty($emp_id) || empty($fullname) || empty($username) || empty($password) || empty($section) || empty($role)) {
+                if (empty($id) || empty($emp_id) || empty($fullname) || empty($username) || empty($section) || empty($role)) {
                     $error++;
-                    continue;
+                    // continue;
                 }
 
                 // Prepared statement to prevent SQL injection
-                $sql = "INSERT INTO m_accounts (emp_id, fullname, username, password, section, role) VALUES (?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO m_accounts (emp_id, fullname, username, password, section, role) VALUES ('$emp_id', '$fullname', '$username', '$password', '$section', '$role')";
                 $stmt = $conn->prepare($sql);
-                if ($stmt->execute([$emp_id, $fullname, $username, $password, $section, $role])) {
+                if ($stmt->execute()) {
                     $error = 0;
                 } else {
                     $error++;

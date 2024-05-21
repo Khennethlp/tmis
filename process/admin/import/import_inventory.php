@@ -22,26 +22,28 @@ if (isset($_POST['upload'])) {
                     continue; // Skip blank lines
                 }
 
-                // $id = $line[0];
-                $qr_code = isset($line[0]) ? $line[0] : '';
+                $id = $line[0];
+                // $qr_code = isset($line[0]) ? $line[0] : '';
                 $partcode = $line[1];
-                $partname = $line[2];
+                $partname = isset($line[2]) ? $line[2] : 'N/A';
                 $packing_quantity = $line[3];
                 $lot_address = $line[4];
                 $barcode_label = $line[5];
-                $quantity = $line[6];
-                $updated_by = $line[7];
+                // $quantity = $line[6];
+                // $updated_by = $line[7];
 
                 // Form validation
-                if (empty($partcode) || empty($partname) || empty($packing_quantity) || empty($quantity) || empty($lot_address) || empty($barcode_label) || empty($updated_by)) {
+                if (empty($partcode) || empty($partname) || empty($packing_quantity) || empty($lot_address) || empty($barcode_label) ) {
                     $error++;
-                    continue;
+                    // continue;
                 }
 
+                $query = "SELECT qr_code FROM t_part";
+
                 // Prepared statement to prevent SQL injection
-                $sql = "INSERT INTO t_partsin_history (qr_code, partcode, partname, packing_quantity, quantity, lot_address, barcode_label, updated_by) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO t_partsin_history (partcode, partname, packing_quantity, lot_address, barcode_label) VALUES ('$partcode', '$partname', '$packing_quantity', '$lot_address','$barcode_label')";
                 $stmt = $conn->prepare($sql);
-                if ($stmt->execute([$qr_code, $partcode, $partname, $packing_quantity, $quantity, $lot_address, $barcode_label, $updated_by])) {
+                if ($stmt->execute([])) {
                     $error = 0;
                 } else {
                     $error++;

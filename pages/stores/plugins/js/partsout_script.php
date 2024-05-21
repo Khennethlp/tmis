@@ -118,7 +118,7 @@
 
         // Check if a similar entry already exists
         var isDuplicate = store_out_entries.some(existingEntry =>
-            existingEntry.store_in_qr === store_out_entry.store_in_qr
+            existingEntry.store_out_qr === store_out_entry.store_out_qr
         );
 
         if(!isDuplicate) {

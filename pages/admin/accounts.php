@@ -28,7 +28,7 @@
         <div class="col-sm-12">
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="card-title"><i class="fas fa-users mr-2"></i>&nbsp; Accounts Management </h3>
+              <h3 class="card-title"><i class="fas fa-user-cog mr-2"></i>&nbsp; Accounts Management </h3>
               <!-- <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -50,7 +50,7 @@
                       <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_acc" tabindex="0" type="button">
                         <span><i class="fas fa-file-import mr-1"></i>Import</span>
                       </button>
-                      <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('accounts_table')" type="button">
+                      <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('search_accounts')" type="button">
                         <span><i class="fas fa-file-csv mr-1"></i>Export</span>
                       </button>
                     </div>
@@ -85,7 +85,7 @@
                     <th> Employee ID </th>
                     <th> Full Name </th>
                     <th> Username </th>
-                    <th> Section </th>
+                    <th> Dept/Section </th>
                     <th> User Type </th>
                   </thead>
                   <tbody id="list_of_accounts" style="text-align:center;"></tbody>

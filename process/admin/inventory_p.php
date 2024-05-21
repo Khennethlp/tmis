@@ -77,8 +77,8 @@ if ($method == 'inventory_list') {
 		</thead>';
 
 	//joined table of m_kanban tbl & partsin tbl
-	$get_inv = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode GROUP BY partcode LIMIT " . $page_first_result . ", " . $results_per_page;
-	$stmt = $conn->prepare($get_inv, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode WHERE b.partcode GROUP BY partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 
 	if ($stmt->rowCount() > 0) {
@@ -119,7 +119,7 @@ if($method == 'load_t_t2'){
 			</tr>
 		</thead>';
 
-		$query = "SELECT DISTINCT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin) as b ON a.partcode = b.partcode WHERE b.qr_code = '$qr_code'";
+		$query = "SELECT DISTINCT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin_history ) as b ON a.partcode = b.partcode WHERE b.qr_code = '$qr_code'";
 		$stmt = $conn->prepare($query);
 		$stmt->execute();
 		$rows = $stmt->fetchAll();
@@ -170,7 +170,7 @@ if ($method == 'inventory_search') {
 	$c = $page_first_result;
 
 	// $query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode  GROUP by partcode ASC LIMIT " . $page_first_result . ", " . $results_per_page;
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin GROUP by partcode ) as b ON a.partcode = b.partcode WHERE concat( b.partcode LIKE '$inventory_search%', a.partname LIKE '$inventory_search%') GROUP BY partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode WHERE concat( b.partcode LIKE '$inventory_search%', a.partname LIKE '$inventory_search%') GROUP BY partcode LIMIT " . $page_first_result . ", " . $results_per_page;
 
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();

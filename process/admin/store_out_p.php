@@ -86,7 +86,7 @@ if ($method == 'search_partsout') {
 	$c = $page_first_result;
 
 	// $query = "SELECT * FROM t_partsout WHERE partcode LIKE '$partsout%' OR partname LIKE '$partsout%' LIMIT " . $page_first_result . ", " . $results_per_page;
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated from t_partsout GROUP by partcode ) as b ON a.partcode = b.partcode WHERE concat(b.partcode LIKE '$partsout%', a.partname LIKE '$partsout%') LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated from t_partsout GROUP by partcode ) as b ON a.partcode = b.partcode WHERE concat(b.partcode LIKE '$partsout%', a.partname LIKE '$partsout%') GROUP By partcode LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {

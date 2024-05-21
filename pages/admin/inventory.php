@@ -119,20 +119,20 @@
             <hr>
                <!-- pagination -->
                <div class="row mb-4">
-                <div class="col-sm-12 col-md-9 col-9">
+               <div class="col-sm-5 col-md-9 col-6 col-lg-9">
                   <div class="dataTables_info pl-4" id="inv_table_info" role="status" aria-live="polite"></div>
                   <input type="hidden" id="count_rows">
                 </div>
-                <div class="col-sm-12 col-md-1 col-1">
+                <div class="col-sm-2 col-md-1 col-2 col-lg-1">
                   <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_prev_page()">Prev</button>
                 </div>
-                <div class="col-sm-12 col-md-1 col-1">
+                <div class="col-sm-3 col-md-1 col-2">
                   <input type="text" list="inv_table_paginations" class="form-control" id="inv_table_pagination">
                   <datalist id="inv_table_paginations"></datalist>
                   <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
                     </div> -->
                 </div>
-                <div class="col-sm-12 col-md-1 col-1">
+                <div class="col-sm-2 col-md-1 col-1 rounded">
                   <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
                 </div>
               </div>

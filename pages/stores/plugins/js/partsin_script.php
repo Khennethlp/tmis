@@ -5,6 +5,19 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         load_partsin();
+
+        // var store_address = document.getElementById('store_in_address');
+        // var store_qr = document.getElementById('store_in_qr');
+
+        // store_qr.disabled = true;
+
+        // store_address.addEventListener('input', function() {
+        //     if(store_address.value !== ''){
+        //         store_qr.disabled = false;
+        //     } else {
+        //         store_qr.disabled = true;
+        //     }
+        // });
     });
 
     const handleEnterKeyPress = (e) => {
@@ -61,6 +74,7 @@
             $('#store_in_qr').val('');
             $('#store_in_address').val('');
             $('#store_in_address').focus();
+            // $('#store_in_qr').disabled('true');
             load_partsin();
         } else {
             $.ajax({

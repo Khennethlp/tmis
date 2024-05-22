@@ -42,59 +42,59 @@ if ($_POST['method'] == 'partsin_list') {
    
 }
 
-if($method == 'insert_partsin'){
-    // $entries = json_decode($_POST['entries'], true);
-    $store_in_address = $_POST['store_in_address'];
-    $store_in_qr = $_POST['store_in_qr'];
+// if($method == 'insert_partsin'){
+//     // $entries = json_decode($_POST['entries'], true);
+//     $store_in_address = $_POST['store_in_address'];
+//     $store_in_qr = $_POST['store_in_qr'];
 
-    $updated_by = $_SESSION['name'];
-    $partname = 'N/A';
+//     $updated_by = $_SESSION['name'];
+//     $partname = ' ';
 
-    $qr = preg_replace('/\s+/', '', $store_in_qr);
-    $barcode_label = substr($qr, 5, 16);
-    $partscode = substr($qr, 21, 5);
-    $p_qty = substr($qr, 33, 3);
+//     $qr = preg_replace('/\s+/', '', $store_in_qr);
+//     $barcode_label = substr($qr, 5, 16);
+//     $partscode = substr($qr, 21, 5);
+//     $p_qty = substr($qr, 33, 3);
     
-    // Database operations
-    try {
-        $stmt_check = $conn->prepare("SELECT COUNT(*) FROM t_partsin WHERE qr_code = :qr");
-        $stmt_check->bindParam(':qr', $qr);
-        $stmt_check->execute();
-        $count = $stmt_check->fetchColumn();
+//     // Database operations
+//     try {
+//         $stmt_check = $conn->prepare("SELECT COUNT(*) FROM t_partsin WHERE qr_code = :qr");
+//         $stmt_check->bindParam(':qr', $qr);
+//         $stmt_check->execute();
+//         $count = $stmt_check->fetchColumn();
 
-    if ($count > 0) {
-        echo 'duplicate';
-    }else{
+//     if ($count > 0) {
+//         echo 'duplicate';
+//     }else{
 
-        $partsin_sql = "INSERT INTO t_partsin (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
-                        VALUES (:qr_code, :partcode, :partname, :packing_quantity, :lot_address, :barcode_label, :updated_by)";
-        $stmt1 = $conn->prepare($partsin_sql);
-        $stmt1->bindParam(':qr_code', $qr);
-        $stmt1->bindParam(':partcode', $partscode);
-        $stmt1->bindParam(':partname', $partname);
-        $stmt1->bindParam(':packing_quantity', $p_qty);
-        $stmt1->bindParam(':lot_address', $store_in_address);
-        $stmt1->bindParam(':barcode_label', $barcode_label);
-        $stmt1->bindParam(':updated_by', $updated_by);
-        $stmt1->execute();
+//         $partsin_sql = "INSERT INTO t_partsin (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
+//                         VALUES (:qr_code, :partcode, :partname, :packing_quantity, :lot_address, :barcode_label, :updated_by)";
+//         $stmt1 = $conn->prepare($partsin_sql);
+//         $stmt1->bindParam(':qr_code', $qr);
+//         $stmt1->bindParam(':partcode', $partscode);
+//         $stmt1->bindParam(':partname', $partname);
+//         $stmt1->bindParam(':packing_quantity', $p_qty);
+//         $stmt1->bindParam(':lot_address', $store_in_address);
+//         $stmt1->bindParam(':barcode_label', $barcode_label);
+//         $stmt1->bindParam(':updated_by', $updated_by);
+//         $stmt1->execute();
 
-        $partsin_history_sql = "INSERT INTO t_partsin_history (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
-                            VALUES (:qr_code, :partcode, :partname, :packing_quantity, :lot_address, :barcode_label, :updated_by)";
-        $stmt2 = $conn->prepare($partsin_history_sql);
-        $stmt2->bindParam(':qr_code', $qr);
-        $stmt2->bindParam(':partcode', $partscode);
-        $stmt2->bindParam(':partname', $partname);
-        $stmt2->bindParam(':packing_quantity', $p_qty);
-        $stmt2->bindParam(':lot_address', $store_in_address);
-        $stmt2->bindParam(':barcode_label', $barcode_label);
-        $stmt2->bindParam(':updated_by', $updated_by);
-        $stmt2->execute();
+//         $partsin_history_sql = "INSERT INTO t_partsin_history (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
+//                             VALUES (:qr_code, :partcode, :partname, :packing_quantity, :lot_address, :barcode_label, :updated_by)";
+//         $stmt2 = $conn->prepare($partsin_history_sql);
+//         $stmt2->bindParam(':qr_code', $qr);
+//         $stmt2->bindParam(':partcode', $partscode);
+//         $stmt2->bindParam(':partname', $partname);
+//         $stmt2->bindParam(':packing_quantity', $p_qty);
+//         $stmt2->bindParam(':lot_address', $store_in_address);
+//         $stmt2->bindParam(':barcode_label', $barcode_label);
+//         $stmt2->bindParam(':updated_by', $updated_by);
+//         $stmt2->execute();
 
-        echo 'success';
-    }
-    } catch (Exception $e) {
-        echo 'error: ' . $e->getMessage();
-    }
+//         echo 'success';
+//     }
+//     } catch (Exception $e) {
+//         echo 'error: ' . $e->getMessage();
+//     }
 
-}
+// }
 

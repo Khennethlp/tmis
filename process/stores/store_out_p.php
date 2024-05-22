@@ -121,7 +121,7 @@ if($method == 'insert_partsout'){
 				exit();
             }
 
-            $partnames = 'N/A';
+            $partnames = ' ';
             $partsin_sql = "INSERT INTO t_partsout (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
             VALUES (:qr, :partscode, :partsname, :qty, :lot_address, :barcode_label, :updated_by)";
             $stmt3 = $conn->prepare($partsin_sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));

@@ -6,7 +6,7 @@ $method = $_POST['method'];
 
 function count_partsout($search_arr, $conn)
 {
-	$query = "SELECT COUNT(DISTINCT qr_code) AS total FROM t_partsout WHERE partcode LIKE '" . $search_arr['partsout'] . "%' OR partname LIKE '" . $search_arr['partsout'] . "%'";
+	$query = "SELECT COUNT(DISTINCT partcode) AS total FROM t_partsout WHERE partcode LIKE '" . $search_arr['partsout'] . "%' OR partname LIKE '" . $search_arr['partsout'] . "%'";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {

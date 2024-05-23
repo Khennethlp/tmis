@@ -78,12 +78,6 @@ if($method == 'insert_partsout'){
 	$count = $stmt_duplicate->fetchColumn();
 
     if ($count > 0) {
-
-        // $del_qry = "DELETE FROM t_partsin_history WHERE qr_code = :qr LIMIT 1";
-        // $del_stmt = $conn->prepare($del_qry);
-        // $del_stmt->bindParam(':qr', $qr);
-        // $del_stmt->execute();
-
 		echo 'duplicate';
 	}else {
         try{
@@ -106,14 +100,16 @@ if($method == 'insert_partsout'){
             $check_store_in = "SELECT COUNT(*) AS count FROM t_partsin WHERE qr_code = :qr";
             $stmt = $conn->prepare($check_store_in);
             $stmt->bindParam(':qr', $qr);
+            // $stmt->bindParam(':lot_address', $lot_address);
             $stmt->execute();
             $count_store_out = $stmt->fetchColumn();
 
             if ($count_store_out > 0) {
                 // Data exists in t_partsin, perform deletion
-                $del_qry = "DELETE FROM t_partsin WHERE qr_code = :qr LIMIT 1";
+                $del_qry = "DELETE FROM t_partsin WHERE qr_code = :qr";
                 $del_stmt = $conn->prepare($del_qry);
                 $del_stmt->bindParam(':qr', $qr);
+                // $del_stmt->bindParam(':lot_address', $lot_address);
                 $del_stmt->execute();
             }else {
                 echo 'undefined';

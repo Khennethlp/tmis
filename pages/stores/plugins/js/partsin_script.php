@@ -5,19 +5,6 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         load_partsin();
-
-        // var store_address = document.getElementById('store_in_address');
-        // var store_qr = document.getElementById('store_in_qr');
-
-        // store_qr.disabled = true;
-
-        // store_address.addEventListener('input', function() {
-        //     if(store_address.value !== ''){
-        //         store_qr.disabled = false;
-        //     } else {
-        //         store_qr.disabled = true;
-        //     }
-        // });
     });
 
     const handleEnterKeyPress = (e) => {
@@ -112,6 +99,21 @@
                         });
 
                         $('#store_in_qr').val('');
+                        $('#store_in_address').val('');
+                        $('#store_in_address').focus();
+                        load_partsin();
+
+                    } else if (response == 'invalid') {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Invalid QR !!!',
+                            text: 'Information',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+
+                        $('#store_in_qr').val('');
+                        $('#store_in_address').focus();
                         load_partsin();
 
                     } else {
@@ -122,7 +124,7 @@
                             showConfirmButton: false,
                             timer: 1000
                         });
-
+    
                         load_partsin();
                     }
                 }
@@ -177,7 +179,9 @@
             existingEntry.store_in_qr === store_in_entry.store_in_qr
         );
 
-        if (!isDuplicate) {
+        if (store_in_qr.length < 59) {
+            console.log('Invalid QR!');
+        } else if (!isDuplicate) {
             // Add the new entry
             store_in_entries.push(store_in_entry);
 
@@ -186,12 +190,11 @@
             load_partsin();
             document.getElementById("store_in_address").value = '';
             document.getElementById("store_in_qr").value = '';
-            document.getElementById("store_in_address").focus;
+            document.getElementById("store_in_address").focus();
             console.log("Data saved to session storage");
         } else {
             console.log("Entry already exists in session storage");
         }
 
     }
-
 </script>

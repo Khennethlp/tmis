@@ -3,6 +3,9 @@
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       <b>Version</b> 1.0.0
+      <a href="#" class="text-secondary" data-target="#info" data-toggle="modal" title="Keyboard Shortcut">
+      <i class="fas fa-keyboard ml-3 pe-auto"></i>
+      </a>
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; <script>   
@@ -17,6 +20,7 @@
   </footer>
   <?php
   include '../../modals/logout_modal.php';
+  include '../../modals/info.php';
   ?>
 
   <!-- jQuery -->

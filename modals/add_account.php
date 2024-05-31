@@ -13,30 +13,30 @@
         <div class="row">
           <div class="col-sm-4">
             <!-- <span><b>Employee ID:</b></span> -->
-            <input type="text" id="add_emp_id" class="form-control" placeholder="Employee ID..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
+            <input type="text" id="add_emp_id" class="form-control mb-2" placeholder="Employee ID..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
           </div>
           <div class="col-sm-4">
             <!-- <span><b>Full Name:</b></span> -->
-            <input type="text" id="add_fullname" class="form-control" placeholder="Full Name..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
+            <input type="text" id="add_fullname" class="form-control mb-2" placeholder="Full Name..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
           </div>
           <div class="col-sm-4">
             <!-- <span><b>Username:</b></span> -->
-            <input type="text" id="add_username" class="form-control" placeholder="Username..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
+            <input type="text" id="add_username" class="form-control mb-2" placeholder="Username..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
           </div>
           <div class="col-sm-4 mt-2">
             <!-- <span><b>Password:</b></span> -->
-            <input type="password" id="add_password" class="form-control" placeholder="Password..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
+            <input type="password" id="add_password" class="form-control mb-2" placeholder="Password..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
           </div>
           <div class="col-sm-4 mt-2">
             <!-- <span><b>Password:</b></span> -->
-            <input type="text" list="section_list" id="add_section" class="form-control" placeholder="Select Section..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
+            <input type="text" list="section_list" id="add_section" class="form-control mb-2" placeholder="Select Section..." style="height:35px; border: 1px solid black; font-size: 15px;" autocomplete="off">
             <datalist id="section_list">
 
             </datalist>
           </div>
           <div class="col-sm-4 mt-2">
             <!-- <label>User Type:</label> -->
-            <select id="add_user_type" class="form-control">
+            <select id="add_user_type" class="form-control mb-2">
               <option value="" disabled selected>Select User Type</option>
               <option value="admin">Admin</option>
               <option value="user">User</option>

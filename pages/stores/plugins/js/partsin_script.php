@@ -1,4 +1,8 @@
 <script>
+    //  $(document).ready(function() {
+    //     load_partsin();
+    // });
+
     function trim_white_space(event) {
         document.getElementById('store_in_qr').value = document.getElementById('store_in_qr').value.trim();
     }
@@ -21,11 +25,112 @@
     document.getElementById('store_in_qr').addEventListener('keypress', handleEnterKeyPress);
     document.getElementById('store_in_address').addEventListener('keypress', handleEnterKeyPress);
 
-    // Call count_partsin function to initially populate total count
-    $(document).ready(function() {
-        load_partsin();
-    });
+    // QRCode Script Start ========================================
+    // const reader = document.getElementById('reader');
+    // const address = document.getElementById('store_in_address');
+    // const qr = document.getElementById('store_in_qr');
+    // let html5QrCode;
+    // let inputCount = 0;
+    
+    const startButton = document.getElementById('startButton');
+    const qrScanner = document.getElementById('reader');
+    const resultDiv = document.getElementById('result');
+    const codeReader = new ZXing.BrowserQRCodeReader();
 
+    startButton.addEventListener('click', () => {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then((stream) => {
+                        videoElement.srcObject = stream;
+                    })
+                    .catch((err) => {
+                        console.error('Error accessing camera: ', err);
+                        alert('Error accessing camera: ' + err.message);
+                    });
+            }else if (navigator.getUserMedia) {
+                // Polyfill for older browsers
+                navigator.getUserMedia({ video: true },
+                    (stream) => {
+                        videoElement.srcObject = stream;
+                    },
+                    (err) => {
+                        console.error('Error accessing camera: ', err);
+                        alert('Error accessing camera: ' + err.message);
+                    });
+            } else {
+                alert('getUserMedia is not supported by your browser');
+            }
+        });
+    // startButton.addEventListener('click', () => {
+    //         codeReader.getVideoInputDevices()
+    //             .then((videoInputDevices) => {
+    //                 if (videoInputDevices && videoInputDevices.length) {
+    //                     codeReader.decodeFromInputVideoDevice(videoInputDevices[0].deviceId, qrScanner, (result, err) => {
+    //                         if (result) {
+    //                             console.log('QR Code detected:', result.getText());
+    //                             resultDiv.innerText = result.getText();
+    //                             resultDiv.style.display = 'block';
+    //                         }
+    //                         if (err && !(err instanceof ZXing.NotFoundException)) {
+    //                             console.error('Error decoding QR code:', err);
+    //                             alert('Error decoding QR code:', err);
+    //                         }
+    //                     });
+    //                 } else {
+    //                     console.error('No video input devices found');
+    //                     alert('No video input devices found');
+    //                 }
+    //             })
+    //             .catch((err) => {
+    //                 console.error('Error getting video input devices:', err);
+    //                 alert('Error getting video input devices:', err.message);
+    //             });
+    //     });
+
+    // function onScanSuccess(scannedQrCode) {
+    //     if (inputCount === 0) {
+    //         address.value = scannedQrCode; // Insert the scanned QR code into the first input field
+    //         inputCount++;
+    //     } else if (inputCount === 1) {
+    //         qr.value = scannedQrCode; // Insert the scanned QR code into the second input field
+    //         html5QrCode.stop().then(ignore => {
+    //             console.log("QR Code scanning stopped.");
+    //             reader.style.display = 'none'; // Hide the reader element after scanning
+    //         }).catch(err => {
+    //             console.error("Failed to stop QR Code scanning.", err);
+    //             alert("Failed to stop QR Code scanning.", err);
+    //         });
+    //         inputCount = 0; // Reset the count after both inputs are filled
+    //     }
+    // }
+
+    // function onScanError(errorMessage) {
+    //     // handle scan error (optional)
+    //     console.log(`QR Code scan error: ${errorMessage}`);
+    //     alert(`QR Code scan error: ${errorMessage}`);
+    // }
+
+    // // Create instance of the Html5Qrcode class
+    // startButton.addEventListener('click', () => {
+    //     reader.style.display = 'block';
+    //     html5QrCode = new Html5Qrcode("reader");
+    //     html5QrCode.start({
+    //             facingMode: "environment"
+    //         }, {
+    //             fps: 10,
+    //             qrbox: 250
+    //         },
+    //         onScanSuccess,
+    //         onScanError
+    //     ).catch(err => {
+    //         console.error(`Unable to start scanning: ${err}`);
+    //         alert(`Unable to start scanning: ${err}`); 
+    //     });
+    // });
+    // QRCode Script End ========================================
+
+    // Call count_partsin function to initially populate total count
+   
     function clearSessionStorage() {
         sessionStorage.removeItem("store_in_entries");
         console.log("Local storage cleared");
@@ -124,7 +229,7 @@
                             showConfirmButton: false,
                             timer: 1000
                         });
-    
+
                         load_partsin();
                     }
                 }

@@ -43,7 +43,7 @@
               <div class="col-12 mb-2 mb-4">
                 <div class="row align-items-center">
                   <div class="col-12 col-md-6 col-lg-6">
-                    <div class="dt-buttons btn-group flex-wrap">
+                    <div class="dt-buttons btn-group flex-wrap mb-2">
                       <button class="btn btn-func buttons-add buttons-html5" data-toggle="modal" data-target="#add_acc" tabindex="0" type="button">
                         <span><i class="fas fa-user-plus mr-1"></i>New User</span>
                       </button>

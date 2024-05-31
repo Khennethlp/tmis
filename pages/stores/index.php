@@ -2,6 +2,9 @@
 include('plugins/header.php');
 include('plugins/preloader.php');
 include('plugins/navbar/index_navbar.php');
+// echo gethostname();
+echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
+// echo $_SERVER['HTTP_USER_AGENT'];
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -24,6 +27,9 @@ include('plugins/navbar/index_navbar.php');
 
   <!-- Main content -->
   <div class="content">
+  <button id="startButton">Start Camera</button>
+    <div id="reader" style="width:100px; height:100px; display: none;"></div>
+    <div id="result" style="display: none;"></div>
     <div class="row">
       <div class="col-md-12 mb-3">
         <div class="row">

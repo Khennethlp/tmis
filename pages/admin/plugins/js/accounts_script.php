@@ -142,7 +142,7 @@
         }
 
         $.ajax({
-            url: '../../prFocess/admin/accounts_p.php',
+            url: '../../process/admin/accounts_p.php',
             type: 'POST',
             cache: false,
             data: {

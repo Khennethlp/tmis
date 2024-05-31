@@ -1,14 +1,14 @@
 <?php 
 //SESSION
-include '../../process/login.php';
+// include '../../process/login.php';
 
-if (!isset($_SESSION['username'])) {
-  header('location:../../');
-  exit;
-} else if ($_SESSION['role'] == 'admin') {
-  header('location: ../../pages/admin/index.php');
-  exit;
-}
+// if (!isset($_SESSION['username'])) {
+//   header('location:../../');
+//   exit;
+// } else if ($_SESSION['role'] == 'admin') {
+//   header('location: ../../pages/admin/index.php');
+//   exit;
+// }
 ?>  
 <!DOCTYPE html>
 <html lang="en">

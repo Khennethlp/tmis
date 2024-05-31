@@ -22,7 +22,10 @@
   include '../../modals/logout_modal.php';
   include '../../modals/info.php';
   ?>
-
+  <!-- qrcode reader script link -->
+  <!-- <script src="https://unpkg.com/html5-qrcode/html5-qrcode.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.18.4"></script>
+  
   <!-- jQuery -->
 <script src="../../plugins/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->

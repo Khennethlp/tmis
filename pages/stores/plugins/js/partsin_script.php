@@ -31,35 +31,65 @@
     // const qr = document.getElementById('store_in_qr');
     // let html5QrCode;
     // let inputCount = 0;
-    
-    const startButton = document.getElementById('startButton');
-    const qrScanner = document.getElementById('reader');
+
+    const startButtonAddr = document.getElementById('startButtonAddr');
+    const startButtonKan = document.getElementById('startButtonKan');
+    // const qrScanner = document.getElementById('reader');
+    const videoElement = document.getElementById('reader');
     const resultDiv = document.getElementById('result');
+    const store_in_address = document.getElementById('store_in_address');
+    const store_in_qr = document.getElementById('store_in_qr');
     const codeReader = new ZXing.BrowserQRCodeReader();
 
-    startButton.addEventListener('click', () => {
+    // function stopVideoStream() {
+    //         if (stream) {
+    //             stream.getTracks().forEach(track => track.stop());
+    //             videoElement.srcObject = null;
+    //             console.log('Camera stream stopped.');
+    //         }
+    //     }
+
+    function startScanner(inputElement) {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia({ video: true })
+                navigator.mediaDevices.getUserMedia({
+                        video: { facingMode: 'environment' }
+                    })
                     .then((stream) => {
                         videoElement.srcObject = stream;
+                        videoElement.play();
+                        console.log('Camera stream started.');
+                        inputElement.focus();
+                        codeReader.decodeFromVideoElement(videoElement)
+                            .then(result => {
+                                console.log('QR code detected:', result);
+                              
+                                inputElement.value = result.text;
+                                inputElement.focus();
+                                // stopVideoStream();
+                                codeReader.reset();
+                                $('#qr').modal('hide');
+                            })
+                            .catch(err => {
+                                console.error('Error decoding QR code:', err);
+                                resultDiv.textContent = 'Error decoding QR code: ' + err.message;
+                            });
                     })
                     .catch((err) => {
-                        console.error('Error accessing camera: ', err);
-                        alert('Error accessing camera: ' + err.message);
-                    });
-            }else if (navigator.getUserMedia) {
-                // Polyfill for older browsers
-                navigator.getUserMedia({ video: true },
-                    (stream) => {
-                        videoElement.srcObject = stream;
-                    },
-                    (err) => {
-                        console.error('Error accessing camera: ', err);
+                        console.error('Error accessing camera:', err);
                         alert('Error accessing camera: ' + err.message);
                     });
             } else {
                 alert('getUserMedia is not supported by your browser');
             }
+        }
+
+        store_in_address.addEventListener('click', () => {
+            startScanner(store_in_address);
+        });
+
+        store_in_qr.addEventListener('click', () => {
+            startScanner(store_in_qr);
+            document.getElementById('store_in_qr').addEventListener('keypress', handleEnterKeyPress);
         });
     // startButton.addEventListener('click', () => {
     //         codeReader.getVideoInputDevices()
@@ -130,7 +160,7 @@
     // QRCode Script End ========================================
 
     // Call count_partsin function to initially populate total count
-   
+
     function clearSessionStorage() {
         sessionStorage.removeItem("store_in_entries");
         console.log("Local storage cleared");

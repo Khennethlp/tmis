@@ -7,18 +7,20 @@ echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
 // echo $_SERVER['HTTP_USER_AGENT'];
 ?>
 <style>
-    body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        #reader {
-            width: 100vw;
-            height: 100vh;
-            display: none;
-            object-fit: cover;
-        }
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #reader {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    object-fit: cover;
+  }
 </style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -40,21 +42,35 @@ echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
   <!-- Main content -->
   <div class="content">
-  <button id="startButtonAddr">Start Camera Address</button>
-  <button id="startButtonKan">Start Camera Kanban</button>
-  <video id="reader" style="width:200px; height:200px;" playsinline></video>
+    <!-- <button id="startButtonAddr">Start Camera Address</button>
+    <button id="startButtonKan">Start Camera Kanban</button> -->
     <!-- <div id="reader" style="width:100px; height:100px; display: block;"></div> -->
-    <div id="result" style="display: block;">here</div>
+    <!-- <video id="reader" style="width:200px; height:200px;" playsinline></video>
+    <div id="result" style="display: block;"></div> -->
     <div class="row">
       <div class="col-md-12 mb-3">
         <div class="row">
           <div class="col-md-6">
             <label for="">SCAN STOCK ADDRESS QR:</label>
-            <input type="text" class="form-control" name="" id="store_in_address"  data-target="#qr" data-toggle="modal" placeholder="Stock Address Qr here..." style=" height: 50px;" autocomplete="off" autofocus>
+            <div class="input-group">
+              <input type="text" class="form-control" name="" id="store_in_address" placeholder="Stock Address Qr here..." style="height: 50px;" autocomplete="off" autofocus>
+              <div class="input-group-append">
+                <span class="input-group-text bg-white" id="address_qr">
+                  <i class="fas fa-qrcode"></i>
+                </span>
+              </div>
+            </div>
           </div>
           <div class="col-md-6">
-          <label for="">SCAN KANBAN QR:</label>
-            <input type="text" class="form-control" id="store_in_qr"  data-target="#qr" data-toggle="modal" placeholder="Kanban Qr here..." onchange="insert_partsin(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style=" height: 50px;" autocomplete="off">
+            <label for="">SCAN KANBAN QR:</label>
+            <div class="input-group">
+              <input type="text" class="form-control" name="" id="store_in_qr" placeholder="Stock Address Qr here..." style="height: 50px;" onchange="insert_partsin(); save_to_local_storage();" oninput="trim_white_space(event)" autocomplete="off" autofocus>
+              <div class="input-group-append" >
+                <span class="input-group-text bg-white" id="kanban_qr">
+                  <i class="fas fa-qrcode"></i>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -86,4 +102,5 @@ echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
 include('plugins/footer.php');
 include('plugins/js/index_script.php');
 include('plugins/js/partsin_script.php');
+include('plugins/js/qrScanner_script.php');
 ?>

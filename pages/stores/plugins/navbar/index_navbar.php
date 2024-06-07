@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand-md navbar-dark bg-gray-dark text-light border-bottom-0">
+<nav class="main-header navbar navbar-expand-md navbar-dark  text-light border-bottom-0">
   <a href="" class="navbar-brand ml-2">
     <img src="../../dist/img/warehouse.png" alt="Web Template Logo" class="brand-image elevation-3 bg-light p-1 rounded" style="opacity: .8">
     <span class="brand-text font-weight-light text-light"><b>TMIS</b></span>

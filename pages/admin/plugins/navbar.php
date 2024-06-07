@@ -118,11 +118,11 @@ if (!isset($_SESSION['username'])) {
     } */
   </style>
 </head>
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed dark-mode">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark ">
+  <nav class="main-header navbar navbar-expand" id="navbar">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">

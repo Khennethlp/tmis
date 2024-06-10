@@ -52,25 +52,11 @@ include('plugins/navbar/index_navbar.php');
         <div class="row">
           <div class="col-md-6">
             <label for="">SCAN STOCK ADDRESS QR:</label>
-            <div class="input-group">
-              <input type="text" class="form-control" name="" id="store_in_address" placeholder="Stock Address Qr here..." style="height: 50px;" autocomplete="off" autofocus>
-              <div class="input-group-append">
-                <span class="input-group-text bg-white" id="address_qr">
-                  <i class="fas fa-qrcode"></i>
-                </span>
-              </div>
-            </div>
+            <input type="text" class="form-control" name="" id="store_in_address" placeholder="Stock Address Qr here..." style=" height: 50px;" autocomplete="off" autofocus>
           </div>
           <div class="col-md-6">
-            <label for="">SCAN KANBAN QR:</label>
-            <div class="input-group">
-              <input type="text" class="form-control" name="" id="store_in_qr" placeholder="Stock Address Qr here..." style="height: 50px;" onchange="insert_partsin(); save_to_local_storage();" oninput="trim_white_space(event)" autocomplete="off" autofocus>
-              <div class="input-group-append" >
-                <span class="input-group-text bg-white" id="kanban_qr">
-                  <i class="fas fa-qrcode"></i>
-                </span>
-              </div>
-            </div>
+          <label for="">SCAN KANBAN QR:</label>
+            <input type="text" class="form-control" id="store_in_qr" placeholder="Kanban Qr here..." onchange="insert_partsin(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style=" height: 50px;" autocomplete="off">
           </div>
         </div>
       </div>

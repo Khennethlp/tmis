@@ -21,6 +21,7 @@
 //MODALS
 include '../../modals/logout_modal.php';
 include '../../modals/info.php';
+include '../../modals/info.php';
 
 include '../../modals/history_modal.php';
 include '../../modals/view_accounts.php';

@@ -30,15 +30,7 @@ include('plugins/navbar/index_navbar.php');
       <div class="col-md-12 mb-3">
         <div class="row">
           <div class="col-md-12">
-          <label for="">SCAN KANBAN QR:</label>
-          <div class="input-group">
-              <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="Kanban Qr here..." onchange=" insert_partsout(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style=" height: 50px;" autofocus autocomplete="off">
-              <div class="input-group-append" >
-                <span class="input-group-text bg-white" id="kanban_qr_out">
-                  <i class="fas fa-qrcode"></i>
-                </span>
-              </div>
-            </div>
+            <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange=" insert_partsout(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autofocus autocomplete="off">
           </div>
         </div>
       </div>

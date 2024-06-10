@@ -194,6 +194,9 @@
 
     const search_inv = current_page => {
         var inventory_search = document.getElementById('inv_search').value;
+        var date_from = document.getElementById('inv_search').value;
+        var date_to = document.getElementById('inv_search').value;
+
         var savedSearch_inv = sessionStorage.getItem('inv_search');
 
         if (current_page > 1) {
@@ -213,6 +216,8 @@
             data: {
                 method: 'inventory_search',
                 inventory_search: inventory_search,
+                date_from: date_from,
+                date_to: date_to,
                 current_page: current_page,
             },
             success: function(response) {

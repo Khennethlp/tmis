@@ -29,16 +29,34 @@
           <div class="card card-primary card-outline">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-tasks mr-2"></i> Inventory</h3>
-              <!-- <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <div class="card-tools">
+                <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                </button> -->
+                <!-- <button type="button" class="btn btn-tool" data-card-widget="maximize">
                   <i class="fas fa-expand"></i>
-                </button>
-              </div> -->
+                </button> -->
+                <!-- <button type="button" class="btn btn-secondary">
+                  <i class="fas fa-calendar"></i> Search by Date
+                </button> -->
+              </div>
             </div>
             <!-- /.card-header -->
+            <div class="row">
+              <ul class="ml-auto mx-3">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Search By:
+                  </a>
+                  <div class="dropdown-menu searchBy-item dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <button class="dropdown-item btn" id="show_date">
+                      <i class="fas fa-calendar mr-2"></i>
+                      Date
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="card-body">
               <!-- <div class="row"> -->
               <div class="col-12 col-md-6 col-lg-12 mb-4">
@@ -57,6 +75,7 @@
                       </button>
                     </div>
                   </div>
+                  
                   <div class="col-lg-2"></div>
                   <div class="col-12 col-md-6 col-lg-3">
                     <div class="input-group input-group-sm" style="margin: 8px;">
@@ -67,11 +86,18 @@
                         </button>
                       </div>
                     </div>
+                    <div class="d-flex" >
+                      <input type="text" name="date_from" id="date_from" class="form-control mr-2" value="" style="height: 40px;" placeholder="Date From" onfocus="(this.type='date')" onblur="(this.type='text')">
+                      <input type="text" name="date_to" id="date_to" class="form-control mr-2" style="height: 40px; " placeholder="Date To" onfocus="(this.type='date')" onblur="(this.type='text')">
+                      <button type="submit" class="btn btn-default" id="search" onclick="search_inv(1);">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
-                </div>
+              </div>
 
-                <!-- <div class="input-group input-group-sm" style="width: 300px; float:right;">
+              <!-- <div class="input-group input-group-sm" style="width: 300px; float:right;">
                   <input type="date" id="fromD_search" class="form-control" style="height: 40px; " placeholder="From Date" autocomplete="off">
                   <input type="date" id="toD_search" class="form-control" style="height: 40px; " placeholder="To Date" autocomplete="off">
 
@@ -81,7 +107,7 @@
                   </button>
                   </div>
                 </div> -->
-                <div class="row mb-2" id="t_t1_breadcrumb">
+              <div class="row mb-2" id="t_t1_breadcrumb">
                 <div class="col-12">
                   <ol class="breadcrumb bg-dark mb-0">
                     <li class="breadcrumb-item"><a href="#" onclick="load_inventory()">Back</a></li>
@@ -89,27 +115,27 @@
                   </ol>
                 </div>
               </div>
-                <div class="table-responsive p-0" style="height: 350px;">
-                  <table class="table table-head-fixed text-nowrap table-hover" id="inv_tbl">
-                    <thead>
-                      <tr>
-                        <!-- <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th> -->
-                        <th>#</th>
-                        <th>Part Code</th>
-                        <th>Part Name</th>
-                        <th>Packing Qty</th>
-                        <th>Stock Address</th>
-                        <th>Barcode Label</th>
-                        <th>Quantity</th>
-                        <th>Date</th>
-                        <!-- <th>By</th> -->
-                      </tr>
-                    </thead>
-                    <tbody id="inventory_table"></tbody>
-                  </table>
-                </div>
+              <div class="table-responsive p-0" style="height: 350px;">
+                <table class="table table-head-fixed text-nowrap table-hover" id="inv_tbl">
+                  <thead>
+                    <tr>
+                      <!-- <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th> -->
+                      <th>#</th>
+                      <th>Part Code</th>
+                      <th>Part Name</th>
+                      <th>Packing Qty</th>
+                      <th>Stock Address</th>
+                      <th>Barcode Label</th>
+                      <th>Quantity</th>
+                      <th>Date</th>
+                      <!-- <th>By</th> -->
+                    </tr>
+                  </thead>
+                  <tbody id="inventory_table"></tbody>
+                </table>
+              </div>
 
-              
+
               <!-- </div> -->
               <!-- <div class="row">
                 <p>&nbsp;&nbsp;&nbsp;&nbsp; Total: &nbsp;<span id="count"></span></p>
@@ -117,25 +143,25 @@
               </div> -->
             </div>
             <hr>
-               <!-- pagination -->
-               <div class="row mb-4">
-               <div class="col-sm-5 col-md-9 col-6 col-lg-9">
-                  <div class="dataTables_info pl-4" id="inv_table_info" role="status" aria-live="polite"></div>
-                  <input type="hidden" id="count_rows">
-                </div>
-                <div class="col-sm-2 col-md-1 col-2 col-lg-1">
-                  <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_prev_page()">Prev</button>
-                </div>
-                <div class="col-sm-3 col-md-1 col-2">
-                  <input type="text" list="inv_table_paginations" class="form-control" id="inv_table_pagination">
-                  <datalist id="inv_table_paginations"></datalist>
-                  <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
-                    </div> -->
-                </div>
-                <div class="col-sm-2 col-md-1 col-1 rounded">
-                  <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
-                </div>
+            <!-- pagination -->
+            <div class="row mb-4">
+              <div class="col-sm-5 col-md-9 col-6 col-lg-9">
+                <div class="dataTables_info pl-4" id="inv_table_info" role="status" aria-live="polite"></div>
+                <input type="hidden" id="count_rows">
               </div>
+              <div class="col-sm-2 col-md-1 col-2 col-lg-1">
+                <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_prev_page()">Prev</button>
+              </div>
+              <div class="col-sm-3 col-md-1 col-2">
+                <input type="text" list="inv_table_paginations" class="form-control" id="inv_table_pagination">
+                <datalist id="inv_table_paginations"></datalist>
+                <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
+                    </div> -->
+              </div>
+              <div class="col-sm-2 col-md-1 col-1 rounded">
+                <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
+              </div>
+            </div>
             <!-- /.card-body -->
             <!-- </div> -->
             <!-- /.card -->

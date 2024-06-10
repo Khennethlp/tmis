@@ -162,6 +162,8 @@ if ($method == 'inv_pagination') {
 
 if ($method == 'inventory_search') {
 	$inventory_search = $_POST['inventory_search'];
+	$date_from = $_POST['date_from'];
+	$date_to = $_POST['date_to'];
 	$c = 0;
 
 	$current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
@@ -170,7 +172,7 @@ if ($method == 'inventory_search') {
 	$c = $page_first_result;
 
 	// $query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode  GROUP by partcode ASC LIMIT " . $page_first_result . ", " . $results_per_page;
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode WHERE concat( b.partcode LIKE '$inventory_search%', a.partname LIKE '$inventory_search%') GROUP BY partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin_history GROUP by partcode ) as b ON a.partcode = b.partcode WHERE concat( b.partcode LIKE '$inventory_search%', a.partname LIKE '$inventory_search%') OR  b.date_updated BETWEEN '$date_from' AND '$date_to' GROUP BY partcode LIMIT " . $page_first_result . ", " . $results_per_page;
 
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();

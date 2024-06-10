@@ -134,6 +134,26 @@ if (!isset($_SESSION['username'])) {
     .info:hover > .copy-icon {
       display: block;
     }
+
+    
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li a {
+      padding: 5px;
+      display: inline-flex;
+      /* Ensure the padding and width apply correctly */
+
+    }
+
+    .searchBy-item {
+      padding: 2px 0;
+      max-width: 100px;
+      /* margin: 0 0px; */
+    }
   </style>
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">

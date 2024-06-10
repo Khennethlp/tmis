@@ -11,11 +11,15 @@
         };</script>. 
         </strong>
       All rights reserved.
+      <a href="#" class="text-secondary" data-target="#info" data-toggle="modal" title="PC INFO">
+      <i class="fas fa-laptop ml-3 pe-auto"></i>
+    </a>
     </div>
   </footer>
 <?php
 //MODALS
 include '../../modals/logout_modal.php';
+include '../../modals/info.php';
 
 include '../../modals/history_modal.php';
 include '../../modals/view_accounts.php';

@@ -74,5 +74,27 @@ include '../../process/login.php';
     .nav-link.no-caret::after {
       display: none;
     }
+    input[type=text]:focus,
+    input[type=password]:focus {
+      border: 3px solid #379634 !important;
+    }
+
+    .info {
+      position: relative;
+      padding-right: 30px;
+      cursor: pointer;
+    }
+    .copy-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+      cursor: pointer;
+    }
+    
+    .info:hover > .copy-icon {
+      display: block;
+    }
   </style>
 </head>

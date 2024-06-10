@@ -28,10 +28,12 @@ include('plugins/navbar/index_navbar.php');
       <div class="col-md-12 mb-3">
         <div class="row">
           <div class="col-md-6">
-            <input type="text" class="form-control" name="" id="store_in_address" placeholder="SCAN STOCK QR..." style="border: 1px solid black; height: 50px;" autofocus>
+            <label for="">SCAN STOCK ADDRESS QR:</label>
+            <input type="text" class="form-control" name="" id="store_in_address" placeholder="Stock Address Qr here..." style=" height: 50px;" autocomplete="off" autofocus>
           </div>
           <div class="col-md-6">
-            <input type="password" class="form-control" name="" id="store_in_qr" placeholder="SCAN KANBAN QR TO STORE IN..." onchange="insert_partsin(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autocomplete="off">
+          <label for="">SCAN KANBAN QR:</label>
+            <input type="text" class="form-control" id="store_in_qr" placeholder="Kanban Qr here..." onchange="insert_partsin(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style=" height: 50px;" autocomplete="off">
           </div>
         </div>
       </div>

@@ -249,7 +249,22 @@
                     } else if (response == 'duplicate') {
                         Swal.fire({
                             icon: 'info',
-                            title: 'Duplicate Data !!!',
+                            title: 'Username already exist !!!',
+                            text: 'Information',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                        $('#add_acc').modal('hide');
+                        $('#add_emp_id').val('');
+                        $('#add_fullname').val('');
+                        $('#add_username').val('');
+                        $('#add_password').val('');
+                        $('#add_user_type').val('');
+                        search_accounts(1);
+                    } else if (response == 'emp_exists') {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Employee already exist !!!',
                             text: 'Information',
                             showConfirmButton: false,
                             timer: 1000

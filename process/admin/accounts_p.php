@@ -112,18 +112,32 @@ if ($method == 'add_account') {
 	$section = $_POST['section'];
 	$role = $_POST['role'];
 
-	$check_duplicate = "SELECT COUNT(*) FROM m_accounts WHERE emp_id = :emp_id ";
-	$stmt_duplicate = $conn->prepare($check_duplicate, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	$stmt_duplicate->bindParam(':emp_id', $emp_id);
+	// Check if emp_id and username already exist together
+	$check_duplicate = "SELECT COUNT(*) FROM m_accounts WHERE username = :username";
+	$stmt_duplicate = $conn->prepare($check_duplicate);
+	// $stmt_duplicate->bindParam(':emp_id', $emp_id);
+	$stmt_duplicate->bindParam(':username', $username);
 	$stmt_duplicate->execute();
 	$count = $stmt_duplicate->fetchColumn();
 
 	if ($count > 0) {
 		echo 'duplicate';
 	} else {
-		try {
-			$insert = "INSERT INTO m_accounts (emp_id, fullname, username, password, section,role) VALUES (:emp_id, :fullname, :username, :password, :section, :role)";
-			$stmt = $conn->prepare($insert, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+		// Check if emp_id exists with a different username
+		$check_emp_id = "SELECT COUNT(*) FROM m_accounts WHERE emp_id = :emp_id AND username != :username";
+		$stmt_emp_id = $conn->prepare($check_emp_id);
+		$stmt_emp_id->bindParam(':emp_id', $emp_id);
+		$stmt_emp_id->bindParam(':username', $username);
+		$stmt_emp_id->execute();
+		$count_emp_id = $stmt_emp_id->fetchColumn();
+
+		if ($count_emp_id > 0) {
+			// If emp_id exists with a different username, deny creation
+			echo 'emp_exists';
+		} else {
+			// Insert new account
+			$insert = "INSERT INTO m_accounts (emp_id, fullname, username, password, section, role) VALUES (:emp_id, :fullname, :username, :password, :section, :role)";
+			$stmt = $conn->prepare($insert);
 			$stmt->bindParam(':emp_id', $emp_id);
 			$stmt->bindParam(':fullname', $fullname);
 			$stmt->bindParam(':username', $username);
@@ -133,11 +147,10 @@ if ($method == 'add_account') {
 			$stmt->execute();
 
 			echo 'success';
-		} catch (Exception $e) {
-			echo 'fail';
 		}
 	}
 }
+
 
 if ($method == 'edit_account') {
 	$id = $_POST['id'];
@@ -155,8 +168,8 @@ if ($method == 'edit_account') {
 	$stmt->bindParam(':fullname', $fullname);
 	$stmt->bindParam(':username', $username);
 	$stmt->bindParam(':password', $password);
-	$stmt->bindParam(':section', $section );
-	$stmt->bindParam(':user_type', $user_type );
+	$stmt->bindParam(':section', $section);
+	$stmt->bindParam(':user_type', $user_type);
 
 	if ($stmt->execute()) {
 		echo 'success';

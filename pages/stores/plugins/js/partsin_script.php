@@ -28,7 +28,7 @@
 
     function clearSessionStorage() {
         sessionStorage.removeItem("store_in_entries");
-        console.log("Local storage cleared");
+        console.log("Session storage cleared");
     }
 
     const insert_partsin = () => {

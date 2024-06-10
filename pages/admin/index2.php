@@ -53,7 +53,7 @@
                       <span><i class="fas fa-file-csv mr-1"></i> Export</span>
                     </button>
                   </div>
-                  <div class="col-sm-6 float-right">
+                  <div class="col-12 col-md-6 col-lg-3 float-right">
                     <!-- <div class="input-group input-group-sm mb-1" style="width: 300px; float:right;">
                       <input type="date" id="fromD_search" class="form-control" style="height: 40px; " placeholder="From Date" autocomplete="off">
                       <input type="date" id="toD_search" class="form-control" style="height: 40px; " placeholder="To Date" autocomplete="off">
@@ -63,14 +63,15 @@
                         </button>
                       </div>
                     </div> -->
-                    <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 40px;">
-                      <input type="search" name="table_search" id="partsout_search" style="height: 40px; " class="form-control float-right" placeholder="Search" autocomplete="off">
+                    <div class="input-group input-group-sm" style="margin: 8px;">
+                      <input type="search" name="table_search" id="partsout_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
                         <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_partsout(1)">
                           <i class="fas fa-search"></i>
                         </button>
                       </div>
                     </div>
+                    
                   </div>
                 </div>
               </div>

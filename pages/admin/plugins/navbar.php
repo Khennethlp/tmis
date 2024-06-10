@@ -118,11 +118,11 @@ if (!isset($_SESSION['username'])) {
     } */
   </style>
 </head>
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed dark-mode">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark ">
+  <nav class="main-header navbar navbar-expand" id="navbar">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -133,9 +133,8 @@ if (!isset($_SESSION['username'])) {
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <div class="row">
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle no-caret" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <!-- <i class="fas fa-ellipsis-v mr-2"></i> -->
           Theme
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -146,7 +145,7 @@ if (!isset($_SESSION['username'])) {
             </div>
           </a>
         </div>
-      </li>
+      </li> -->
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>

@@ -24,15 +24,13 @@ include('plugins/navbar/index_navbar.php');
 
   <!-- Main content -->
   <div class="content">
+  <!-- <video id="reader" style="width:200px; height:200px;" playsinline></video> -->
+    <!-- <div id="result" style="display: block;"></div> -->
     <div class="row">
       <div class="col-md-12 mb-3">
         <div class="row">
-          <!-- <div class="col-md-6">
-              <input type="text" class="form-control" name="" id="store_in_address" placeholder="SCAN RACK QR..." style="border: 1px solid black;" autofocus>
-            </div> -->
           <div class="col-md-12">
-          <label for="">SCAN KANBAN QR:</label>
-            <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="Kanban Qr here..." onchange=" insert_partsout(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style=" height: 50px;" autofocus autocomplete="off">
+            <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange=" insert_partsout(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autofocus autocomplete="off">
           </div>
         </div>
       </div>
@@ -64,4 +62,5 @@ include('plugins/navbar/index_navbar.php');
 include('plugins/footer.php');
 include('plugins/js/index_script.php');
 include 'plugins/js/partsout_script.php';
+include('plugins/js/qrScanner_script.php');
 ?>

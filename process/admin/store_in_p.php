@@ -8,6 +8,7 @@ $method = $_POST['method'];
 function count_partsin($search_arr, $conn)
 {
 	$query = "SELECT COUNT(DISTINCT partcode) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
+	$query = "SELECT COUNT(DISTINCT partcode) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
 	$stmt = $conn->prepare($query);
 
 	$stmt->execute();
@@ -38,7 +39,7 @@ if ($method == 'partsin_list') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = t_partsin($conn, $page_first_result, $results_per_page);
+	$query = t_partsin($page_first_result, $results_per_page);
 	if ($query->rowCount() > 0) {
 		foreach ($query->fetchALL() as $j) {
 			$c++;

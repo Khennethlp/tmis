@@ -42,7 +42,7 @@ function t_partsin($page_first_result, $results_per_page) {
                         partcode
                 ) AS c ON t.partcode = c.partcode AND t.date_updated = c.latest_date
             ) AS b ON a.partcode = b.partcode
-            LIMIT  $page_first_result, $results_per_page";
+            LIMIT  " . $page_first_result . ", " . $results_per_page;
     
     // Prepare and execute the query with parameters
     $stmt = $conn->prepare($sql);

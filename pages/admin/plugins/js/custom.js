@@ -50,6 +50,34 @@ document.addEventListener("DOMContentLoaded", function () {
   applySystemTheme();
 });
 
+//copy text to clipboard
+const copy_pcname = () => {
+  var pc_name = document.getElementById('pc_name').innerText;
+  navigator.clipboard.writeText(pc_name);
+  // alert("Copied the text: " + pc_name);
+  var icon = document.querySelector('.pcn-icon');
+  icon.classList.remove('fa-copy');
+  icon.classList.add('fa-check');
+  setTimeout(() => {
+    icon.classList.remove('fa-check');
+    icon.classList.add('fa-copy');
+  }, 2000);
+}
+
+const copy_pcip = () => {
+  var pc_ip = document.getElementById('pc_ip').innerText;
+  navigator.clipboard.writeText(pc_ip);
+  // alert("Copied the text: " + pc_ip);
+  var icon = document.querySelector('.pcip-icon');
+  icon.classList.remove('fa-copy');
+  icon.classList.add('fa-check');
+  setTimeout(() => {
+    icon.classList.remove('fa-check');
+    icon.classList.add('fa-copy');
+  }, 2000);
+}
+
+// apply theme via switch toggle
     // document.addEventListener('DOMContentLoaded', function () {
     //   const toggleSwitch = document.getElementById('customSwitch1');
     //   const theme_label = document.getElementById('theme_label');

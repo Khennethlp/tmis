@@ -3,7 +3,7 @@ include('plugins/header.php');
 include('plugins/preloader.php');
 include('plugins/navbar/index_navbar.php');
 // echo gethostname();
-echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
+// echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
 // echo $_SERVER['HTTP_USER_AGENT'];
 ?>
 <style>
@@ -12,7 +12,7 @@ echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   #reader {
@@ -87,14 +87,10 @@ echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
           <th>Barcode Label</th>
 
         </thead>
-        <tbody id="partsin_table" style="text-align:center;">
-        </tbody>
+        <tbody id="partsin_table" style="text-align:center;"></tbody>
       </table>
     </div>
   </div>
-
-  <!-- /.content -->
-  <!-- pagination -->
 </div>
 <!-- /.content-wrapper -->
 

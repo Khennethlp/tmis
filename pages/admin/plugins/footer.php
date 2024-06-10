@@ -1,21 +1,26 @@
 <footer class="main-footer text-sm">
-    Developed by: Khennethlp
-    <div class="float-right d-none d-sm-inline-block">
-      <strong>Copyright &copy;
-        <script>   
+  Developed by: Khennethlp
+  <div class="float-right d-none d-sm-inline-block">
+    <strong>Copyright &copy;
+      <script>
         var currentYear = new Date().getFullYear();
         if (currentYear !== 2024) {
           document.write("2024 - " + currentYear);
         } else {
           document.write(currentYear);
-        };</script>. 
-        </strong>
-      All rights reserved.
-    </div>
-  </footer>
+        };
+      </script>.
+    </strong>
+    All rights reserved.
+    <a href="#" class="text-secondary" data-target="#info" data-toggle="modal" title="PC INFO">
+      <i class="fas fa-laptop ml-3 pe-auto"></i>
+    </a>
+  </div>
+</footer>
 <?php
 //MODALS
 include '../../modals/logout_modal.php';
+include '../../modals/info.php';
 
 include '../../modals/history_modal.php';
 include '../../modals/view_accounts.php';
@@ -54,4 +59,5 @@ include '../../modals/import_inventory.php';
 <script src="plugins/js/custom.js"></script>
 
 </body>
+
 </html>

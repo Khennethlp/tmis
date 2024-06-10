@@ -116,6 +116,24 @@ if (!isset($_SESSION['username'])) {
     /* .nav-link.no-caret::after {
       display: block;
     } */
+
+    .info {
+      position: relative;
+      padding-right: 30px;
+      cursor: pointer;
+    }
+    .copy-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+      cursor: pointer;
+    }
+    
+    .info:hover > .copy-icon {
+      display: block;
+    }
   </style>
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">

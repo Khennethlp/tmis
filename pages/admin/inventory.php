@@ -42,7 +42,7 @@
               </div>
             </div>
             <!-- /.card-header -->
-            <div class="row">
+            <!-- <div class="row">
               <ul class="ml-auto mx-3">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +56,7 @@
                   </div>
                 </li>
               </ul>
-            </div>
+            </div> -->
             <div class="card-body">
               <!-- <div class="row"> -->
               <div class="col-12 col-md-6 col-lg-12 mb-4">
@@ -86,13 +86,13 @@
                         </button>
                       </div>
                     </div>
-                    <div class="d-flex" >
+                    <!-- <div class="d-flex" >
                       <input type="text" name="date_from" id="date_from" class="form-control mr-2" value="" style="height: 40px;" placeholder="Date From" onfocus="(this.type='date')" onblur="(this.type='text')">
                       <input type="text" name="date_to" id="date_to" class="form-control mr-2" style="height: 40px; " placeholder="Date To" onfocus="(this.type='date')" onblur="(this.type='text')">
                       <button type="submit" class="btn btn-default" id="search" onclick="search_inv(1);">
                         <i class="fas fa-search"></i>
                       </button>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -124,10 +124,10 @@
                       <th>Part Code</th>
                       <th>Part Name</th>
                       <th>Packing Qty</th>
-                      <th>Stock Address</th>
+                      <!-- <th>Stock Address</th> -->
                       <th>Barcode Label</th>
                       <th>Quantity</th>
-                      <th>Date</th>
+                      <!-- <th>Date</th> -->
                       <!-- <th>By</th> -->
                     </tr>
                   </thead>

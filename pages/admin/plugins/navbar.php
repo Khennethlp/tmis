@@ -109,13 +109,20 @@ if (!isset($_SESSION['username'])) {
       cursor: pointer;
     }
 
+    .dropdown-item{
+      cursor: pointer;
+    }
+    .nav-link .i-user {
+      font-size: 28px;
+    }
+
     .custom-switch {
       display: flex;
       align-items: center;
     }
-    /* .nav-link.no-caret::after {
-      display: block;
-    } */
+    .nav-link.no-caret::after {
+      display: none;
+    }
 
     .info {
       position: relative;
@@ -184,11 +191,22 @@ if (!isset($_SESSION['username'])) {
           </a>
         </div>
       </li> -->
-        <li class="nav-item">
+      <li class="nav-item dropdown mx-4">
+        <a class="nav-link dropdown-toggle no-caret" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="far fa-user-circle i-user "></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item " data-toggle="modal" data-target="#logout_modal" >
+          <i class="fas fa-sign-out-alt mr-3 text-md"></i>
+            LOGOUT
+          </a>
+        </div>
+      </li>
+        <!-- <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
-        </li>
+        </li> -->
       </div>
     </ul>
   </nav>

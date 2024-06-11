@@ -82,7 +82,7 @@
               </p>
               </a>
         </li>
-        <?php include 'logout.php'; ?>
+     
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

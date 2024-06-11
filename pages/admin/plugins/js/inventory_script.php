@@ -125,7 +125,7 @@
     }
 
     const count_t2 = () => {
-        var get_qr =sessionStorage.getItem('qr_code');
+        var get_qr = sessionStorage.getItem('qr_code');
 
         $.ajax({
             url: '../../process/admin/inventory_p.php',
@@ -160,7 +160,7 @@
         var partcode = string[0];
         var qr_code = string[1];
 
-        var set_qr =sessionStorage.setItem('qr_code', qr_code);
+        var set_qr = sessionStorage.setItem('qr_code', qr_code);
 
         $.ajax({
             url: '../../process/admin/inventory_p.php',
@@ -194,20 +194,30 @@
 
     const search_inv = current_page => {
         var inventory_search = document.getElementById('inv_search').value;
-        var date_from = document.getElementById('inv_search').value;
-        var date_to = document.getElementById('inv_search').value;
+        var date_from = document.getElementById('date_from').value;
+        var date_to = document.getElementById('date_to').value;
 
         var savedSearch_inv = sessionStorage.getItem('inv_search');
+        var date_from_search = sessionStorage.getItem('date_from_search');
+        var date_to_search = sessionStorage.getItem('date_to_search');
 
         if (current_page > 1) {
             switch (true) {
                 case inventory_search !== savedSearch_inv:
                     inventory_search == savedSearch_inv;
                     break;
+                case date_from !== date_from_search:
+                    date_from == date_from_search;
+                    break;
+                case date_to !== date_to_search:
+                    date_to == date_to_search;
+                    break;
                 default:
             }
         } else {
             sessionStorage.setItem('inv_search', inventory_search);
+            sessionStorage.setItem('date_from_search', date_from);
+            sessionStorage.setItem('date_to_search', date_to);
         }
         $.ajax({
             url: '../../process/admin/inventory_p.php',
@@ -233,6 +243,48 @@
             }
         });
     }
+
+    // const get_date = current_page => {
+    //     var date_from = document.getElementById('inv_search').value;
+    //     var date_to = document.getElementById('inv_search').value;
+
+    //     var savedSearch_inv = sessionStorage.getItem('inv_search');
+
+    //     if (current_page > 1) {
+    //         switch (true) {
+    //             case search_by_date !== savedSearch_inv:
+    //                 search_by_date == savedSearch_inv;
+    //                 break;
+    //             default:
+    //         }
+    //     } else {
+    //         sessionStorage.setItem('inv_search', search_by_date);
+    //     }
+
+    //     $.ajax({
+    //         url: '../../process/admin/inventory_p.php',
+    //         type: 'POST',
+    //         cache: false,
+    //         data: {
+    //             method: 'inventory_search',
+    //             inventory_search: inventory_search,
+    //             // date_from: date_from,
+    //             // date_to: date_to,
+    //             current_page: current_page,
+    //         },
+    //         success: function(response) {
+    //             document.getElementById("inventory_table").innerHTML = response;
+    //             sessionStorage.setItem('inv_table_pagination', current_page);
+    //             count_inventory();
+    //             $('#t_t1_breadcrumb').hide();
+
+    //         },
+    //         error: function(xhr, status, error) {
+    //             console.error("AJAX request failed:", status, error);
+    //             // Handle AJAX errors (e.g., display an error message to the user).
+    //         }
+    //     });
+    // }
 
     // const search_by_date = () => {
     //     var from_date = document.getElementById("from_search").value;

@@ -143,7 +143,7 @@ if (!isset($_SESSION['username'])) {
     }
 
     li a {
-      padding: 5px;
+      /* padding: 5px; */
       display: inline-flex;
       /* Ensure the padding and width apply correctly */
 

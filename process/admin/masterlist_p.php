@@ -103,10 +103,10 @@ if ($method == 'search_mlist') {
 	if ($stmt->rowCount() > 0) {
 		foreach ($stmt->fetchALL() as $j) {
 			$c++;
-			echo '<tr >';
+			echo '<tr class="trow ">';
 			echo '<td><input type="checkbox" name="selected[]" class="selected" id="selected[]" value="' . $j['id'] . '" onclick="get_checked_length()"  style="cursor:pointer;"></td>';
 			echo '<td>' . $c . '</td>';
-			echo '<td style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_mlist" onclick="get_mlist_details(&quot;' . $j['id'] . '~!~' . $j['partcode'] . '~!~' . $j['partname'] . '~!~' . $j['packing_quantity'] . '&quot;)">' . $j['partcode'] . '</td>';
+			echo '<td style="cursor:pointer;" class="modal-trigger selected-check" data-toggle="modal" data-target="#update_mlist" onclick="get_mlist_details(&quot;' . $j['id'] . '~!~' . $j['partcode'] . '~!~' . $j['partname'] . '~!~' . $j['packing_quantity'] . '&quot;)">' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';

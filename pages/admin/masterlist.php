@@ -42,7 +42,7 @@
                 <div class="row align-items-center">
                   <div class="col-12 col-md-6 col-lg-6">
                     <div class="row align-items-center">
-                      <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()"><i class="fas fa-trash"></i></button>
+                      <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()">DEL</button>
                       <div class="dt-buttons btn-group flex-wrap">
                         <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#add_mlist" tabindex="0" type="button">
                           <span><i class="fas fa-plus mr-1"></i> Add New</span>
@@ -84,7 +84,7 @@
               <div class="table-responsive" style="height: 350px; overflow: auto; display:inline-block;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="mlist_table">
                   <thead style="text-align:center;">
-                    <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th>
+                    <th><input type="checkbox" name="" class="select_all" id="select_all" onclick="selectAll()" value=""></th>
                     <th> # </th>
                     <th> Part Code </th>
                     <th> Part Name </th>

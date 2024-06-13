@@ -161,6 +161,11 @@ if (!isset($_SESSION['username'])) {
       max-width: 100px;
       /* margin: 0 0px; */
     }
+    .select_all{
+      /* display: none; */
+      cursor:pointer; 
+    }
+  
   </style>
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">

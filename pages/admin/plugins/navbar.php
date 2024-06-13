@@ -83,13 +83,13 @@ if (!isset($_SESSION['username'])) {
     .btn-func{
       color: #3B83EF ;
       /* background-color: #275DAD !important; */
-      border-bottom: 1px solid #ccc !important;
+      border: 1px solid #5B616A !important;
     }
     
     .btn-func:hover{
-      /* background-color: #4881D5 !important;#275DAD */
-      border-bottom: 2px solid #5B616A !important;
-      color: #80B3FF;
+       background: rgba(255, 255, 255, 0.2);
+      border: 2px solid #5B616A !important;
+      color: #3B83EF;
     }
     .btn-del{
       font-size: 13px; 
@@ -165,7 +165,13 @@ if (!isset($_SESSION['username'])) {
       /* display: none; */
       cursor:pointer; 
     }
-  
+    input[type=text]:focus,
+    input[type=password]:focus, 
+    input[list]:focus, 
+    select:focus, input[type=number]:focus
+     {
+      border: 1px solid #458487 !important;
+    }
   </style>
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">

@@ -1,7 +1,7 @@
 <div class="modal fade bd-example-modal-xl" id="add_acc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-dark" >
+      <div class="modal-header " >
         <h5 class="modal-title " id="exampleModalLabel">
           <b>Add Account</b>
         </h5>
@@ -45,7 +45,7 @@
         </div>
         <br>
       </div>
-      <div class="modal-footer bg-dark">
+      <div class="modal-footer ">
         <div class="col-sm-3">
           <button class="btn  btn-block" onclick="add_account();" style="background: #3765AA !important;color:#fff;height:34px;border-radius:.25rem;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);">Submit</button>
         </div>

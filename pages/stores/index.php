@@ -28,7 +28,7 @@ include('plugins/navbar/index_navbar.php');
   <div class="content-header">
     <div class="row mb-2 ml-1 mr-1">
       <div class="col-sm-6">
-        <h1 class="m-0"> Store-in</h1>
+      <u><h1 class="m-0"> STORE IN</h1></u>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -52,7 +52,7 @@ include('plugins/navbar/index_navbar.php');
         <div class="row">
           <div class="col-md-6">
             <label for="">SCAN STOCK ADDRESS QR:</label>
-            <input type="text" class="form-control" name="" id="store_in_address" placeholder="Stock Address Qr here..." style=" height: 50px;" autocomplete="off" autofocus>
+            <input type="text" class="form-control" name="" id="store_in_address" placeholder="Stock Address Qr here..." autocomplete="off" autofocus>
           </div>
           <div class="col-md-6">
           <label for="">SCAN KANBAN QR:</label>

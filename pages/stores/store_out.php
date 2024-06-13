@@ -10,7 +10,7 @@ include('plugins/navbar/index_navbar.php');
   <div class="content-header">
     <div class="row mb-2 ml-1 mr-1">
       <div class="col-sm-6">
-        <h1 class="m-0"> Store-out</h1>
+        <u><h1 class="m-0 ">STORE OUT</h1></u>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@ include('plugins/navbar/index_navbar.php');
       <div class="col-md-12 mb-3">
         <div class="row">
           <div class="col-md-12">
-            <input type="text" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange=" insert_partsout(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autofocus autocomplete="off">
+            <input type="text" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange=" insert_partsout(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);"  autofocus autocomplete="off">
           </div>
         </div>
       </div>

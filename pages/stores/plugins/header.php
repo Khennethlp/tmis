@@ -72,10 +72,14 @@ include '../../process/login.php';
     .nav-link.no-caret::after {
       display: none;
     }
-
+    input[type=text]{
+      border: 1px solid black !important;
+      height: 50px;
+    }
     input[type=text]:focus,
     input[type=password]:focus {
-      border: 3px solid #379634 !important;
+      border: 4px solid #458487 !important;
+      /* background-color: #4F6D7A !important; */
     }
 
     .info {

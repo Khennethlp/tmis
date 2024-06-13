@@ -113,7 +113,7 @@ if (!isset($_SESSION['username'])) {
       cursor: pointer;
     }
     .nav-link .i-user {
-      font-size: 28px;
+      font-size: 22px;
     }
 
     .custom-switch {
@@ -193,7 +193,7 @@ if (!isset($_SESSION['username'])) {
       </li> -->
       <li class="nav-item dropdown mx-4">
         <a class="nav-link dropdown-toggle no-caret" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="far fa-user-circle i-user "></i>
+          <i class="far fa-user-circle i-user ">&nbsp;Logout</i> 
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item " data-toggle="modal" data-target="#logout_modal" >

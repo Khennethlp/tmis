@@ -124,10 +124,10 @@
                       <th>Part Code</th>
                       <th>Part Name</th>
                       <th>Packing Qty</th>
-                      <!-- <th>Stock Address</th> -->
+                      <th>Stock Address</th>
                       <th>Barcode Label</th>
                       <th>Quantity</th>
-                      <!-- <th>Date</th> -->
+                      <th>Date</th>
                       <!-- <th>By</th> -->
                     </tr>
                   </thead>

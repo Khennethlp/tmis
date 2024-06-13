@@ -75,9 +75,10 @@ if ($method == 'inventory_list') {
 			<th>Part Code</th>
 			<th>Part Name</th>
 			<th>Packing Qty</th>
-			
+			<th>Lot Address</th>
 			<th>Barcode Label</th>
 			<th>Quantity</th>
+			<th>Date</th>
 			
 			</tr>
 		</thead>';
@@ -131,10 +132,10 @@ if ($method == 'inventory_list') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			// echo '<td>' . $j['lot_address'] . '</td>';
+			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
 			echo '<td>' . $j['Qty'] . '</td>';
-			// echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}
@@ -161,7 +162,7 @@ if ($method == 'load_t_t2') {
 			</tr>
 		</thead>';
 
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin_history) as b ON a.partcode = b.partcode WHERE b.qr_code = '$qr_code' ORDER BY id DESC";
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin_history) as b ON a.partcode = b.partcode WHERE b.qr_code = '$qr_code' ";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	$rows = $stmt->fetchAll();
@@ -264,10 +265,10 @@ if ($method == 'inventory_search') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			// echo '<td>' . $j['lot_address'] . '</td>';
+			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
 			echo '<td>' . $j['Qty'] . '</td>';
-			// echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}

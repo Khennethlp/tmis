@@ -30,7 +30,7 @@ include('plugins/navbar/index_navbar.php');
       <div class="col-md-12 mb-3">
         <div class="row">
           <div class="col-md-12">
-            <input type="password" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange=" insert_partsout(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autofocus autocomplete="off">
+            <input type="text" class="form-control" name="store_out_qr" id="store_out_qr" placeholder="SCAN KANBAN QR TO STORE OUT..." onchange=" insert_partsout(); save_to_local_storage();" onkeydown="return true;" oninput="trim_white_space(event);" style="border: 1px solid black; height: 50px;" autofocus autocomplete="off">
           </div>
         </div>
       </div>

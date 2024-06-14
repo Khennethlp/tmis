@@ -28,7 +28,7 @@ if (isset($_SESSION['username'])) {
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page" id="index_body">
+<body class="hold-transition login-page">
   <div class="login-box">
     <div class="col-md-12">
       <?php if(isset($_SESSION['status']) && $_SESSION['status'] == 'error') { ?>

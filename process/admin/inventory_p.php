@@ -162,7 +162,7 @@ if ($method == 'load_t_t2') {
 			</tr>
 		</thead>';
 
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin_history) as b ON a.partcode = b.partcode WHERE b.qr_code = '$qr_code' ";
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin_history) as b ON a.partcode = b.partcode WHERE b.qr_code = '$qr_code' ORDER BY id DESC";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	$rows = $stmt->fetchAll();

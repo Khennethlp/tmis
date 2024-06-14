@@ -28,7 +28,7 @@ if (isset($_SESSION['username'])) {
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" id="index_body">
   <div class="login-box">
     <div class="col-md-12">
       <?php if(isset($_SESSION['status']) && $_SESSION['status'] == 'error') { ?>
@@ -80,13 +80,13 @@ if (isset($_SESSION['username'])) {
               <!-- <button type="button" href="#" target="_blank" class="btn bg-danger btn-block" id="wi">Work Instruction</button> -->
             </div>
           </div>
-          <!-- <div class="row">
+          <div class="row">
             <div class="col">
               <center>
-                <a href="pages/user/index.php">Go Back to Home Page</a>
+                <a href="TMIS - Work Instruction.xlsx" download title="Click to download">Work Instruction</a>
               </center>
             </div>
-          </div> -->
+          </div>
         </form>
       </div>
     </div>
@@ -99,6 +99,7 @@ if (isset($_SESSION['username'])) {
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+<script src="index_script.js"></script>
 
 <noscript>
     <br>

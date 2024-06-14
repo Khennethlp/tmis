@@ -2,7 +2,7 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center bg-dark">
+  <div class="preloader flex-column justify-content-center align-items-center ">
     <img class="animation__shake elevation-3 p-1 bg-light" src="../../dist/img/warehouse.png" alt="Web Template" height="60" width="60">
     <noscript>
       <br>

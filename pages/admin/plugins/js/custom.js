@@ -56,57 +56,95 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //copy text to clipboard
 const copy_pcname = () => {
-  var pc_name = document.getElementById("pc_name").innerText;
-  navigator.clipboard.writeText(pc_name);
-  // alert("Copied the text: " + pc_name);
-  var icon = document.querySelector(".pcn-icon");
-  icon.classList.remove("fa-copy");
-  icon.classList.add("fa-check");
-  setTimeout(() => {
-    icon.classList.remove("fa-check");
-    icon.classList.add("fa-copy");
-  }, 2000);
+  const pcNameElement = document.getElementById("pc_name");
+
+  // Check if the element exists
+  if (pcNameElement) {
+    const pcName = pcNameElement.innerText;
+
+    navigator.clipboard.writeText(pcName).then(() => {
+      // alert("Copied the text: " + pcName);
+      const icon = document.querySelector(".pcn-icon");
+
+      // Check if the icon element exists
+      if (icon) {
+        icon.classList.remove("fa-copy");
+        icon.classList.add("fa-check");
+
+        setTimeout(() => {
+          icon.classList.remove("fa-check");
+          icon.classList.add("fa-copy");
+        }, 2000);
+      }
+    }).catch(err => {
+      console.error("Could not copy text: ", err);
+      alert("Failed to copy text.");
+    });
+  } else {
+    console.error("Element with ID 'pc_name' not found.");
+    alert("Failed to copy text.");
+  }
 };
+
 
 const copy_pcip = () => {
-  var pc_ip = document.getElementById("pc_ip").innerText;
-  navigator.clipboard.writeText(pc_ip);
-  // alert("Copied the text: " + pc_ip);
-  var icon = document.querySelector(".pcip-icon");
-  icon.classList.remove("fa-copy");
-  icon.classList.add("fa-check");
-  setTimeout(() => {
-    icon.classList.remove("fa-check");
-    icon.classList.add("fa-copy");
-  }, 2000);
+  // Get the element by ID
+  const pcIpElement = document.getElementById("pc_ip");
+
+  if (pcIpElement) {
+    const pcIp = pcIpElement.innerText;
+    navigator.clipboard.writeText(pcIp).then(() => {
+      // alert("Copied the text: " + pcIp);
+
+      const icon = document.querySelector(".pcip-icon");
+
+      if (icon) {
+        icon.classList.remove("fa-copy");
+        icon.classList.add("fa-check");
+
+        // Change back the icon after 2 seconds
+        setTimeout(() => {
+          icon.classList.remove("fa-check");
+          icon.classList.add("fa-copy");
+        }, 2000);
+      }
+    }).catch(err => {
+      console.error("Could not copy text: ", err);
+      alert("Failed to copy text.");
+    });
+  } else {
+    console.error("Element with ID 'pc_ip' not found.");
+    alert("Failed to copy text.");
+  }
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-  const date_to = document.getElementById("date_to");
-  const date_from = document.getElementById("date_from");
-  const show_date = document.getElementById("show_date");
-  const searchbtn = document.getElementById("search");
-  const inv_search = document.getElementById("inv_search");
-  const inv_searchbtn = document.getElementById("searchReqBtn");
 
-  date_from.style.display = "none";
-  date_to.style.display = "none";
-  searchbtn.style.display = "none";
+// document.addEventListener("DOMContentLoaded", function () {
+//   const date_to = document.getElementById("date_to");
+//   const date_from = document.getElementById("date_from");
+//   const show_date = document.getElementById("show_date");
+//   const searchbtn = document.getElementById("search");
+//   const inv_search = document.getElementById("inv_search");
+//   const inv_searchbtn = document.getElementById("searchReqBtn");
 
-  let isDateVisible = false;
-  const toggleDates = () => {
-    isDateVisible = !isDateVisible; // Toggle the visibility state
+//   date_from.style.display = "none";
+//   date_to.style.display = "none";
+//   searchbtn.style.display = "none";
 
-    date_from.style.display = isDateVisible ? "block" : "none";
-    date_to.style.display = isDateVisible ? "block" : "none"; 
-    searchbtn.style.display = isDateVisible ? 'block' : 'none';
+//   let isDateVisible = false;
+//   const toggleDates = () => {
+//     isDateVisible = !isDateVisible; // Toggle the visibility state
+
+//     date_from.style.display = isDateVisible ? "block" : "none";
+//     date_to.style.display = isDateVisible ? "block" : "none"; 
+//     searchbtn.style.display = isDateVisible ? 'block' : 'none';
     
-    inv_search.style.display = isDateVisible ? 'none' : 'block';
-    inv_searchbtn.style.display = isDateVisible ? 'none' : 'block';
-  };
+//     inv_search.style.display = isDateVisible ? 'none' : 'block';
+//     inv_searchbtn.style.display = isDateVisible ? 'none' : 'block';
+//   };
 
-  show_date.addEventListener('click', toggleDates);
-});
+//   show_date.addEventListener('click', toggleDates);
+// });
 
 // apply theme via switch toggle
 // document.addEventListener('DOMContentLoaded', function () {

@@ -109,7 +109,7 @@ if ($method == 'search_mlist') {
 			echo '<td style="cursor:pointer;" class="modal-trigger selected-check" data-toggle="modal" data-target="#update_mlist" onclick="get_mlist_details(&quot;' . $j['id'] . '~!~' . $j['partcode'] . '~!~' . $j['partname'] . '~!~' . $j['packing_quantity'] . '&quot;)">' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
 			echo '</tr>';
 		}
 	} else {

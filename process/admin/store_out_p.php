@@ -6,7 +6,7 @@ $method = $_POST['method'];
 
 function count_partsout($search_arr, $conn)
 {
-	$query = "SELECT COUNT(DISTINCT partcode) AS total FROM t_partsout WHERE partcode LIKE '" . $search_arr['partsout'] . "%' OR partname LIKE '" . $search_arr['partsout'] . "%'";
+	$query = "SELECT COUNT(partcode) AS total FROM t_partsout WHERE partcode LIKE '" . $search_arr['partsout'] . "%' OR partname LIKE '" . $search_arr['partsout'] . "%'";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -35,7 +35,8 @@ if ($method == 'partsout_list') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated from t_partsout GROUP by partcode ORDER BY id DESC ) as b ON a.partcode = b.partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	// $query = "SELECT a.partcode,a.partname, a.packing_quantity, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated from t_partsout GROUP by partcode ORDER BY id DESC ) as b ON a.partcode = b.partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT * FROM t_partsout ORDER BY id DESC LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -86,53 +87,9 @@ if ($method == 'search_partsout') {
 	$c = $page_first_result;
 
 	// $query = "SELECT * FROM t_partsout WHERE partcode LIKE '$partsout%' OR partname LIKE '$partsout%' LIMIT " . $page_first_result . ", " . $results_per_page;
-	$query = "SELECT 
-    a.partcode,
-    a.partname, 
-    a.packing_quantity,  
-    b.partcode AS b_partcode,
-    b.Qty, 
-    b.qr_code, 
-    b.lot_address, 
-    b.barcode_label, 
-    b.packing_quantity AS b_packing_quantity, 
-    b.date_updated, 
-    b.updated_by 
-FROM 
-    m_kanban a 
-INNER  JOIN (
-    SELECT 
-        t.qr_code, 
-        t.partcode, 
-        t.partname, 
-        t.packing_quantity, 
-        t.lot_address, 
-        t.barcode_label, 
-        t.updated_by, 
-        t.date_updated, 
-        COUNT(t.partcode) AS Qty 
-    FROM 
-        t_partsout t
-    JOIN (
-        SELECT 
-            partcode, 
-            MAX(date_updated) AS latest_date 
-        FROM 
-            t_partsout 
-        GROUP BY 
-            partcode
-    ) AS c ON t.partcode = c.partcode AND t.date_updated = c.latest_date
-    GROUP BY 
-        t.qr_code, 
-        t.partcode, 
-        t.partname, 
-        t.packing_quantity, 
-        t.lot_address, 
-        t.barcode_label, 
-        t.updated_by, 
-        t.date_updated
-) AS b ON a.partcode = b.partcode WHERE concat(b.partcode LIKE '$partsout%', a.partname LIKE '$partsout%') GROUP By partcode ORDER BY id DESC LIMIT " . $page_first_result . ", " . $results_per_page;
-	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+
+$query = "SELECT * FROM t_partsout WHERE partname LIKE '$partsout%' OR partcode LIKE '$partsout%' ORDER BY id desc LIMIT " . $page_first_result . ", " . $results_per_page;	
+$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
 		foreach ($stmt->fetchALL() as $j) {

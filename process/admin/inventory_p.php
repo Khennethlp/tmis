@@ -28,7 +28,7 @@ function count_inv_list($search_arr, $conn)
 
 function count_t2($search_arr, $conn)
 {
-	$query = "SELECT count(qr_code) AS total FROM t_partsin_history WHERE qr_code = '" . $search_arr['get_qr'] . "' ";
+	$query = "SELECT count(partcode) AS total FROM t_partsin_history WHERE partcode = '" . $search_arr['get_partcode'] . "' ";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -43,9 +43,10 @@ function count_t2($search_arr, $conn)
 
 if ($method == 'count_t2') {
 	$get_qr = $_POST['get_qr'];
+	$get_partcode = $_POST['get_partcode'];
 
 	$search_arr = array(
-		"get_qr" => $get_qr,
+		"get_partcode" => $get_partcode,
 	);
 
 	echo count_t2($search_arr, $conn);
@@ -75,7 +76,7 @@ if ($method == 'inventory_list') {
 			<th>Part Code</th>
 			<th>Part Name</th>
 			<th>Packing Qty</th>
-			<th>Lot Address</th>
+			<th>Stock Address</th>
 			<th>Barcode Label</th>
 			<th>Quantity</th>
 			<th>Date</th>
@@ -148,6 +149,7 @@ if ($method == 'inventory_list') {
 
 if ($method == 'load_t_t2') {
 	$qr_code = $_POST['qr_code'];
+	$partcode = $_POST['partcode'];
 	$c = 0;
 
 	echo '<thead>
@@ -162,7 +164,7 @@ if ($method == 'load_t_t2') {
 			</tr>
 		</thead>';
 
-	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin_history) as b ON a.partcode = b.partcode WHERE b.qr_code = '$qr_code' ORDER BY id DESC";
+	$query = "SELECT a.partcode,a.partname, a.packing_quantity, b.id, b.qr_code, b.lot_address, b.barcode_label, b.date_updated, b.updated_by FROM m_kanban a left join (select id, partcode, qr_code, partname, lot_address, barcode_label, updated_by, date_updated from t_partsin_history ) as b ON a.partcode = b.partcode WHERE b.partcode = '$partcode' ";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	$rows = $stmt->fetchAll();

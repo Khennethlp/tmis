@@ -45,7 +45,7 @@ if ($method == 'insert_partsin') {
     $store_in_qr = $_POST['store_in_qr'];
 
     $updated_by = $_SESSION['name'];
-    $partname = ' ';
+    
 
     $qr = preg_replace('/\s+/', '', $store_in_qr);
     $barcode_label = substr($qr, 5, 16);
@@ -66,6 +66,18 @@ if ($method == 'insert_partsin') {
         } else if (strlen($qr) < 59) {
             echo 'invalid';
         } else {
+            $get_partname = "SELECT DISTINCT partname FROM m_kanban WHERE partcode = :partscode";
+            $stmt = $conn->prepare($get_partname);
+            $stmt->bindParam(':partscode', $partscode);
+            $stmt->execute();
+ 
+            $data = [];
+ 			while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
+ 				$data[] = $res;
+ 			}
+ 			foreach ($data as $row) {
+				$partname = $row['partname'];
+ 			}
 
             $partsin_sql = "INSERT INTO t_partsin (qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by)
                         VALUES (:qr_code, :partcode, :partname, :packing_quantity, :lot_address, :barcode_label, :updated_by)";

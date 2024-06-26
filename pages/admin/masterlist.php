@@ -89,7 +89,7 @@
                     <th> Part Code </th>
                     <th> Part Name </th>
                     <th> Packing Quantity </th>
-                    <th> Date </th>
+                    <!-- <th> Date </th> -->
                   </thead>
                   <tbody id="kanban_mlist" style="text-align:center;"></tbody>
                 </table>

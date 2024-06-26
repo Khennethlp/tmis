@@ -7,8 +7,8 @@ $method = $_POST['method'];
 
 function count_partsin($search_arr, $conn)
 {
-	$query = "SELECT COUNT(DISTINCT partcode) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
-	$query = "SELECT COUNT(DISTINCT partcode) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
+	// $query = "SELECT COUNT(DISTINCT partcode) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
+	$query = "SELECT COUNT(partcode) AS total FROM t_partsin WHERE partcode LIKE '" . $search_arr['partsin'] . "%' OR partname LIKE '" . $search_arr['partsin'] . "%'";
 	$stmt = $conn->prepare($query);
 
 	$stmt->execute();
@@ -39,9 +39,53 @@ if ($method == 'partsin_list') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = t_partsin($page_first_result, $results_per_page);
-	if ($query->rowCount() > 0) {
-		foreach ($query->fetchALL() as $j) {
+	// 	$query = "SELECT 
+	// 	a.partcode,
+	// 	a.partname, 
+	// 	a.packing_quantity, 
+	// 	b.id, 
+	// 	b.partcode AS b_partcode,
+	// 	b.Qty, 
+	// 	b.qr_code, 
+	// 	b.lot_address, 
+	// 	b.barcode_label, 
+	// 	b.packing_quantity AS b_packing_quantity, 
+	// 	b.date_updated, 
+	// 	b.updated_by 
+	// FROM 
+	// 	m_kanban a 
+	// LEFT JOIN (
+	// 	SELECT 
+	// 		t.id, 
+	// 		t.qr_code, 
+	// 		t.partcode, 
+	// 		t.partname, 
+	// 		t.packing_quantity, 
+	// 		t.lot_address, 
+	// 		t.barcode_label, 
+	// 		t.updated_by, 
+	// 		t.date_updated
+	// 	FROM 
+	// 		t_partsin t
+	// 	JOIN (
+	// 		SELECT 
+	// 			partcode, 
+	// 			MAX(date_updated) AS latest_date 
+	// 		FROM 
+	// 			t_partsin 
+	// 		GROUP BY 
+	// 			partcode
+	// 	) AS c ON t.partcode = c.partcode AND t.date_updated = c.latest_date
+	// ) AS b ON a.partcode = b.partcode ORDER BY b.date_updated DESC
+	// LIMIT  " . $page_first_result . ", " . $results_per_page;
+	
+	// $query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.qr_code, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select qr_code, partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated from t_partsin GROUP by partcode ) as b ON a.partcode = b.partcode LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT * FROM t_partsin ORDER BY id DESC LIMIT " . $page_first_result . ", " . $results_per_page;
+	$stmt = $conn->prepare($sql);
+	$stmt->execute();
+
+	if ($stmt->rowCount() > 0) {
+		foreach ($stmt->fetchALL() as $j) {
 			$c++;
 			// echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_account" onclick="get_accounts_details(&quot;'.$j['id'].'~!~'.$j['id_number'].'~!~'.$j['username'].'~!~'.$j['full_name'].'~!~'.$j['password'].'~!~'.$j['section'].'~!~'.$j['role'].'&quot;)">';
 			echo '<td>' . $c . '</td>';
@@ -86,9 +130,13 @@ if ($method == 'search_partsin') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = t_partsin_search($partsin, $page_first_result, $results_per_page);
-	if ($query->rowCount() > 0) {
-		foreach ($query->fetchALL() as $j) {
+	// $query = "SELECT a.partcode,a.partname, a.packing_quantity, b.Qty, b.lot_address, b.barcode_label, b.packing_quantity, b.date_updated, b.updated_by FROM m_kanban a left join (select partcode, partname, packing_quantity, lot_address, barcode_label, updated_by, date_updated, count(partcode) as Qty from t_partsin GROUP by partcode ) as b ON a.partcode = b.partcode WHERE concat(a.partname LIKE '$partsin%', b.partcode LIKE '$partsin%')  LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT * FROM t_partsin WHERE partname LIKE '$partsin%' OR partcode LIKE '$partsin%' ORDER BY id DESC LIMIT " . $page_first_result . ", " . $results_per_page;
+	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+	$stmt->execute();
+
+	if ($stmt->rowCount() > 0) {
+		foreach ($stmt->fetchALL() as $j) {
 			$c++;
 			// echo '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_account" onclick="get_accounts_details(&quot;'.$j['id'].'~!~'.$j['partcode'].'~!~'.$j['username'].'~!~'.$j['fullname'].'~!~'.$j['password'].'~!~'.$j['section'].'~!~'.$j['role'].'&quot;)">';
 			echo '<td>' . $c . '</td>';

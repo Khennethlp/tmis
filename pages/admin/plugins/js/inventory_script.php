@@ -126,6 +126,7 @@
 
     const count_t2 = () => {
         var get_qr =sessionStorage.getItem('qr_code');
+        var get_partcode =sessionStorage.getItem('partcode');
 
         $.ajax({
             url: '../../process/admin/inventory_p.php',
@@ -134,6 +135,7 @@
             data: {
                 method: 'count_t2',
                 get_qr: get_qr,
+                get_partcode: get_partcode,
             },
             success: function(response) {
                 sessionStorage.setItem('count_rows', response);
@@ -161,6 +163,7 @@
         var qr_code = string[1];
 
         var set_qr =sessionStorage.setItem('qr_code', qr_code);
+        var set_partcode =sessionStorage.setItem('partcode', partcode);
 
         $.ajax({
             url: '../../process/admin/inventory_p.php',
@@ -168,7 +171,8 @@
             cache: false,
             data: {
                 method: 'load_t_t2',
-                qr_code: qr_code
+                qr_code: qr_code,
+                partcode: partcode
             },
             success: function(response) {
                 document.getElementById("inv_tbl").innerHTML = response;

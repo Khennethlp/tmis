@@ -83,7 +83,7 @@ if (isset($_SESSION['username'])) {
           <div class="row">
             <div class="col">
               <center>
-                <a href="TMIS - Work Instruction.xlsx" download title="Click to download">Work Instruction</a>
+                <a href="work instruction/TMIS - Work Instruction.xlsx" download title="Click to download">Work Instruction</a>
               </center>
             </div>
           </div>

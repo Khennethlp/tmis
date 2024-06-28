@@ -31,7 +31,7 @@ if ($method == 'partsout_list') {
 	$current_page = intval($_POST['current_page']);
 	$c = 0;
 
-	$results_per_page = 10;
+	$results_per_page = 50;
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
@@ -68,7 +68,7 @@ if ($method == 'partsout_pagination') {
 		"partsout" => $partsout,
 	);
 
-	$results_per_page = 10;
+	$results_per_page = 50;
 	$number_of_result = intval(count_partsout($search_arr, $conn));
 	$number_of_page = ceil($number_of_result / $results_per_page);
 
@@ -82,7 +82,7 @@ if ($method == 'search_partsout') {
 	$current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
 	$c = 0;
 
-	$results_per_page = 10;
+	$results_per_page = 50;
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 

@@ -65,7 +65,7 @@ if($method == 'insert_partsout'){
 	$qty = substr($qr, 33, 3); 
 
     // Check if the data already exists in t_partsout 
-	$stmt_duplicate = "SELECT COUNT(*) AS count FROM t_partsout WHERE qr_code = :qr "; 
+	$stmt_duplicate = "SELECT COUNT(*) AS count FROM t_partsout WHERE qr_code = :qr AND DATE(date_updated) = CURDATE()"; 
 	$stmt_duplicate = $conn->prepare($stmt_duplicate, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL)); 
 	$stmt_duplicate->bindParam(':qr', $qr); 
 	$stmt_duplicate->execute(); 

@@ -91,7 +91,7 @@ if($method == 'insert_partsout'){
 
             $conn->beginTransaction(); 
 
-            $check_store_in = "SELECT COUNT(*) AS count FROM t_partsin WHERE qr_code = :qr"; 
+            $check_store_in = "SELECT COUNT(*) AS count FROM t_partsin WHERE qr_code = :qr AND DATE(date_updated) = CURDATE()"; 
             $stmt = $conn->prepare($check_store_in); 
             $stmt->bindParam(':qr', $qr); 
             // $stmt->bindParam(':lot_address', $lot_address); 

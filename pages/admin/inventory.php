@@ -58,55 +58,24 @@
               </ul>
             </div> -->
             <div class="card-body">
-              <!-- <div class="row"> -->
-              <div class="col-12 col-md-6 col-lg-12 mb-4">
-                <!-- <div class="card"> -->
-                <div class="row align-items-center">
-                  <!-- <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()"><i class="fas fa-trash"></i></button> -->
-                  <div class="col-sm-7">
-                    <div class="dt-buttons btn-group flex-wrap">
-                      <!-- <form id="file_form" enctype="multipart/form-data">
-                        <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_inv" tabindex="0" type="button">
-                          <span><i class="fas fa-file-import mr-1"></i> Import</span>
-                        </button>
-                      </form> -->
-                      <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
-                        <span><i class="fas fa-file-csv mr-1"></i> Export</span>
-                      </button>
-                    </div>
-                  </div>
-                  
-                  <div class="col-lg-2"></div>
-                  <div class="col-12 col-md-6 col-lg-3">
-                    <div class="input-group input-group-sm" style="margin: 8px;">
-                      <input type="search" name="table_search" id="inv_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
-                      <div class="input-group-append">
-                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_inv(1)">
-                          <i class="fas fa-search"></i>
-                        </button>
-                      </div>
-                    </div>
-                    <!-- <div class="d-flex" >
-                      <input type="text" name="date_from" id="date_from" class="form-control mr-2" value="" style="height: 40px;" placeholder="Date From" onfocus="(this.type='date')" onblur="(this.type='text')">
-                      <input type="text" name="date_to" id="date_to" class="form-control mr-2" style="height: 40px; " placeholder="Date To" onfocus="(this.type='date')" onblur="(this.type='text')">
-                      <button type="submit" class="btn btn-default" id="search" onclick="search_inv(1);">
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <div class="input-group input-group-sm" style="margin: 8px;">
+                    <input type="search" name="table_search" id="inv_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_inv(1)">
                         <i class="fas fa-search"></i>
                       </button>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <!-- <div class="input-group input-group-sm" style="width: 300px; float:right;">
-                  <input type="date" id="fromD_search" class="form-control" style="height: 40px; " placeholder="From Date" autocomplete="off">
-                  <input type="date" id="toD_search" class="form-control" style="height: 40px; " placeholder="To Date" autocomplete="off">
-
-                  <div class="input-group-append">
-                  <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_by_date()">
-                  <i class="fas fa-search"></i>
+                <div class="col-0 ml-auto mx-3 mt-2">
+                  <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
+                    <span><i class="fas fa-file-csv mr-1"></i> Export</span>
                   </button>
-                  </div>
-                </div> -->
+
+                </div>
+              </div>
               <div class="row mb-2" id="t_t1_breadcrumb">
                 <div class="col-12">
                   <ol class="breadcrumb bg-dark mb-0">

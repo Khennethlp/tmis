@@ -40,23 +40,9 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <div class="col-12 mb-2 mb-4">
-                <div class="row align-items-center">
-                  <div class="col-12 col-md-6 col-lg-6">
-                    <div class="dt-buttons btn-group flex-wrap mb-2">
-                      <button class="btn btn-func buttons-add buttons-html5" data-toggle="modal" data-target="#add_acc" tabindex="0" type="button">
-                        <span><i class="fas fa-user-plus mr-1"></i>New User</span>
-                      </button>
-                      <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_acc" tabindex="0" type="button">
-                        <span><i class="fas fa-file-import mr-1"></i>Import</span>
-                      </button>
-                      <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('search_accounts')" type="button">
-                        <span><i class="fas fa-file-csv mr-1"></i>Export</span>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="col-sm-3"></div>
-                  <div class="col-12 col-md-6 col-lg-3">
+              <div class="col-md-12">
+                <div class="row mb-3">
+                  <div class="col-md-3">
                     <div class="input-group input-group-sm">
                       <input type="search" name="table_search" id="acc_search" style="height: 40px;" class="form-control" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
@@ -66,8 +52,20 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-0 mx-3 ml-auto">
+                    <button class="btn btn-func buttons-add buttons-html5" data-toggle="modal" data-target="#add_acc" tabindex="0" type="button">
+                      <span><i class="fas fa-user-plus mr-1"></i>New User</span>
+                    </button>
+                    <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_acc" tabindex="0" type="button">
+                      <span><i class="fas fa-file-import mr-1"></i>Import</span>
+                    </button>
+                    <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('search_accounts')" type="button">
+                      <span><i class="fas fa-file-csv mr-1"></i>Export</span>
+                    </button>
+                  </div>
                 </div>
               </div>
+
 
 
               <!-- <div class="col-sm-2">
@@ -95,7 +93,7 @@
             <hr>
             <!-- pagination -->
             <div class="row mb-4">
-            <div class="col-sm-5 col-md-9 col-6 col-lg-9">
+              <div class="col-sm-5 col-md-9 col-6 col-lg-9">
                 <div class="dataTables_info pl-4" id="account_table_info" role="status" aria-live="polite"></div>
                 <input type="hidden" id="count_rows">
               </div>

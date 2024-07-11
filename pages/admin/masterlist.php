@@ -38,27 +38,10 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <div class="col-12 col-md-6 col-lg-12 mb-4">
-                <div class="row align-items-center">
-                  <div class="col-12 col-md-6 col-lg-6">
-                    <div class="row align-items-center">
-                      <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()">DEL</button>
-                      <div class="dt-buttons btn-group flex-wrap">
-                        <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#add_mlist" tabindex="0" type="button">
-                          <span><i class="fas fa-plus mr-1"></i> Add New</span>
-                        </button>
-                        <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#import_mlist" tabindex="0" type="button">
-                          <span><i class="fas fa-file-import mr-1"></i> Import</span>
-                        </button>
-                        <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('mlist_table')" type="button">
-                          <span><i class="fas fa-file-export mr-1"></i> Export</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3"></div>
-                  <div class="col-12 col-md-6 col-lg-3">
-                    <div class="input-group input-group-sm" style="margin: 8px;">
+              <div class="col-md-12">
+                <div class="row mb-3">
+                  <div class="col-md-3">
+                    <div class="input-group input-group-sm" >
                       <input type="search" name="table_search" id="mlist_search" class="form-control" style="height: 40px;" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
                         <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_mlist(1)">
@@ -67,20 +50,21 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-0 mx-3 ml-auto">
+                  <button class="btn btn-del mx-3" id="deleteBtn" onclick="delete_data_arr()">DEL</button>
+                  <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#add_mlist" tabindex="0" type="button">
+                      <span><i class="fas fa-plus mr-1"></i> Add New</span>
+                    </button>
+                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('mlist_table')" type="button">
+                      <span><i class="fas fa-file-export mr-1"></i> Export</span>
+                    </button>
+                     <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
+                      <span><i class="fas fa-file-csv mr-1"></i> Export</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              <!-- <div class="col-sm-5"></div> -->
-              <!-- <div class="input-group input-group-sm" style="width: 300px; float:right; margin-left: 515px;">
-                            <input type="date" id="fromD_search" class="form-control" style="height: 40px; " placeholder="From Date">
-                            <input type="date" id="toD_search" class="form-control" style="height: 40px; " placeholder="To Date">
-    
-                            <div class="input-group-append">
-                            <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_by_date()">
-                            <i class="fas fa-search"></i>
-                            </button>
-                            </div>
-                          </div> -->
               <div class="table-responsive" style="height: 350px; overflow: auto; display:inline-block;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="mlist_table">
                   <thead style="text-align:center;">
@@ -100,7 +84,7 @@
               <hr>
               <!-- pagination -->
               <div class="row mb-4">
-              <div class="col-sm-5 col-md-9 col-6 col-lg-9">
+                <div class="col-sm-5 col-md-9 col-6 col-lg-9">
                   <div class="dataTables_info pl-4" id="mlist_table_info" role="status" aria-live="polite"></div>
                   <input type="hidden" id="count_rows">
                 </div>

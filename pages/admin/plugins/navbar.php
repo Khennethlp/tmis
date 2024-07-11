@@ -81,15 +81,16 @@ if (!isset($_SESSION['username'])) {
       border-bottom: 2px solid #275DAD !important;
     }
     .btn-func{
-      color: #3B83EF ;
-      /* background-color: #275DAD !important; */
-      border: 1px solid #5B616A !important;
+      color: #fff ;
+      background-color: #3B83EF !important;
+      /* width: 100%; */
+      /* border: 1px solid #5B616A !important; */
     }
     
     .btn-func:hover{
-       background: rgba(255, 255, 255, 0.2);
-      border: 2px solid #5B616A !important;
-      color: #3B83EF;
+       /* background: rgba(255, 255, 255, 0.2); */
+      /* border: 2px solid #5B616A !important; */
+      color: #bbb;
     }
     .btn-del{
       font-size: 13px; 

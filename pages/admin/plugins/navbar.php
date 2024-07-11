@@ -174,7 +174,7 @@ if (!isset($_SESSION['username'])) {
     }
   </style>
 </head>
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->

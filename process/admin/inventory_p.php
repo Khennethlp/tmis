@@ -11,7 +11,7 @@ function count_inv_list($search_arr, $conn)
     JOIN m_kanban m ON t.partcode = m.partcode
     WHERE t.partcode LIKE :search 
         OR t.partname LIKE :search 
-        -- OR t.packing_quantity LIKE :search 
+       
         OR t.barcode_label LIKE :search 
         OR t.lot_address LIKE :search 
         OR m.packing_quantity LIKE :search
@@ -251,7 +251,7 @@ if ($method == 'inventory_search') {
         GROUP BY partcode)
 			 AS c ON t.partcode = c.partcode AND t.date_updated = c.latest_date) 
 			 AS b ON a.partcode = b.partcode 
-			 WHERE (b.partcode LIKE '$inventory_search%' OR a.partname LIKE '$inventory_search%') 
+			 WHERE (b.partcode LIKE '$inventory_search%' OR a.partname LIKE '$inventory_search%' OR b.lot_address LIKE '$inventory_search%') 
 			 OR (DATE(b.date_updated) BETWEEN '$date_from' AND '$date_to') GROUP BY partcode ORDER BY id DESC
 			 LIMIT " . $page_first_result . ", " . $results_per_page;
 

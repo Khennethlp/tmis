@@ -63,6 +63,19 @@
             $('#store_in_address').focus();
             // $('#store_in_qr').disabled('true');
             load_partsin();
+        } else if (store_in_address.length >= 7) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Invalid Stock Address.',
+                text: 'Information',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            $('#store_in_qr').val('');
+            $('#store_in_address').val('');
+            $('#store_in_address').focus();
+            // $('#store_in_qr').disabled('true');
+            load_partsin();
         } else {
             $.ajax({
                 type: "POST",

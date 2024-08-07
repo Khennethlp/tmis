@@ -29,57 +29,32 @@
           <div class="card card-primary card-outline">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-tasks mr-2"></i> Inventory</h3>
-              <div class="card-tools">
-                <!-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button> -->
-                <!-- <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                  <i class="fas fa-expand"></i>
-                </button> -->
-                <!-- <button type="button" class="btn btn-secondary">
-                  <i class="fas fa-calendar"></i> Search by Date
-                </button> -->
-              </div>
             </div>
-            <!-- /.card-header -->
-            <!-- <div class="row">
-              <ul class="ml-auto mx-3">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-sm" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Search By:
-                  </a>
-                  <div class="dropdown-menu searchBy-item dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <button class="dropdown-item btn" id="show_date">
-                      <i class="fas fa-calendar mr-2"></i>
-                      Date
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div> -->
+  
             <div class="card-body">
-              <div class="row mb-3">
-                <div class="col-md-3">
-                  <div class="input-group input-group-sm" style="margin: 8px;">
-                    <input type="search" name="table_search" id="inv_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
-                    <div class="input-group-append">
-                      <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_inv(1)">
-                        <i class="fas fa-search"></i>
-                      </button>
+              <div id="funcContainer">
+                <div class="row mb-3">
+                  <div class="col-md-3">
+                    <div class="input-group input-group-sm" style="margin: 8px;">
+                      <input type="search" name="table_search" id="inv_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_inv(1)">
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-0 ml-auto mx-3 mt-2">
-                  <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
-                    <span><i class="fas fa-file-csv mr-1"></i> Export</span>
-                  </button>
-
+                  <div class="col-0 ml-auto mx-3 mt-2">
+                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
+                      <span><i class="fas fa-file-csv mr-1"></i> Export</span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div class="row mb-2" id="t_t1_breadcrumb">
                 <div class="col-12">
-                  <ol class="breadcrumb bg-dark mb-0">
-                    <li class="breadcrumb-item"><a href="#" onclick="load_inventory()">Back</a></li>
+                  <ol class="breadcrumb mb-0" style="background-color: #bbb;">
+                    <li class="breadcrumb-item"><i class="fas fa-chevron-left"></i> <a href="#" onclick="load_inventory()">&nbsp;Back</a></li>
                     <li class="breadcrumb-item" id="lbl_c1"></li>
                   </ol>
                 </div>

@@ -2,7 +2,8 @@
   <!-- Brand Logo -->
   <a href="index.php" class="brand-link">
     <img src="../../dist/img/warehouse.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">TMS INVENTORY</span>
+    <span class="brand-text font-weight-bold text-dark">TUBE MAKING</span><br>
+    <center><span class="brand-text font-weight-bold text-dark">INVENTORY SYSTEM</span></center>
   </a>
 
   <!-- Sidebar -->
@@ -12,8 +13,8 @@
       <div class="image">
         <img src="../../dist/img/user.png" class="img-circle elevation-2" alt="User Image">
       </div>
-      <div class="info">
-        <a href="index.php" class="d-block"><?= htmlspecialchars($_SESSION['name']); ?></a>
+      <div class="info ">
+        <a href="index.php" class="d-block text-dark"><?= htmlspecialchars($_SESSION['name']); ?></a>
       </div>
     </div>
 
@@ -82,7 +83,7 @@
               </p>
               </a>
         </li>
-     
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -4,9 +4,9 @@
     <div class="float-right d-none d-sm-inline">
 
       <b>Version</b> 1.0.0
-      <a href="#" class="text-secondary" data-target="#info" data-toggle="modal" title="PC INFO">
+      <!-- <a href="#" class="text-secondary" data-target="#info" data-toggle="modal" title="PC INFO">
         <i class="fas fa-laptop ml-3 pe-auto"></i>
-      </a>
+      </a> -->
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; <script>
@@ -47,6 +47,6 @@
   <script src="../../dist/js/adminlte.js"></script>
   <!-- AdminLTE App -->
   <script src="../../dist/js/popup_center.js"></script>
-  <script src="plugins/js/custom.js"></script>
+  <!-- <script src="plugins/js/custom.js"></script> -->
   </div>
   <!-- ./wrapper -->

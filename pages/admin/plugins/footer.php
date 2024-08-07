@@ -12,9 +12,9 @@
       </script>.
     </strong>
     All rights reserved.
-    <a href="#" class="text-secondary" data-target="#info" data-toggle="modal" title="PC INFO">
+    <!-- <a href="#" class="text-secondary" data-target="#info" data-toggle="modal" title="PC INFO">
       <i class="fas fa-laptop ml-3 pe-auto"></i>
-    </a>
+    </a> -->
   </div>
 </footer>
 <?php
@@ -57,7 +57,7 @@ include '../../modals/import_inventory.php';
 <script src="../../dist/js/adminlte.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/popup_center.js"></script>
-<script src="plugins/js/custom.js"></script>
+<!-- <script src="plugins/js/custom.js"></script> -->
 
 </body>
 

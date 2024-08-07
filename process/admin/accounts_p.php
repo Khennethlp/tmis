@@ -5,7 +5,7 @@ $method = $_POST['method'];
 
 function count_account_list($search_arr, $conn)
 {
-	$query = "SELECT COUNT(id) AS total FROM m_accounts WHERE emp_id LIKE '" . $search_arr['account'] . "%' OR fullname LIKE '" . $search_arr['account'] . "%' OR username LIKE '" . $search_arr['account'] . "%' OR section LIKE '" . $search_arr['account'] . "%' ";
+	$query = "SELECT COUNT(id) AS total FROM m_accounts WHERE (emp_id LIKE '" . $search_arr['account'] . "%' OR fullname LIKE '" . $search_arr['account'] . "%' OR username LIKE '" . $search_arr['account'] . "%' OR section LIKE '" . $search_arr['account'] . "%') AND section != 'IT'";
 	$stmt = $conn->prepare($query);
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -35,7 +35,7 @@ if ($method == 'account_list') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = "SELECT * FROM m_accounts LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT * FROM m_accounts section != 'IT' LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {
@@ -82,7 +82,7 @@ if ($method == 'search_account_list') {
 	$page_first_result = ($current_page - 1) * $results_per_page;
 	$c = $page_first_result;
 
-	$query = "SELECT * FROM m_accounts WHERE emp_id LIKE '$account%' OR username LIKE '$account%' OR fullname LIKE '$account%' OR section LIKE '$account%' LIMIT " . $page_first_result . ", " . $results_per_page;
+	$query = "SELECT * FROM m_accounts WHERE (emp_id LIKE '$account%' OR username LIKE '$account%' OR fullname LIKE '$account%' OR section LIKE '$account%') AND section != 'IT' LIMIT " . $page_first_result . ", " . $results_per_page;
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 	$stmt->execute();
 	if ($stmt->rowCount() > 0) {

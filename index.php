@@ -5,7 +5,7 @@ if (isset($_SESSION['username'])) {
      header('location: pages/admin/index.php');
      exit;
  }elseif($_SESSION['role'] == 'user'){
-     header('location: pages/user/index.php');
+     header('location: pages/stores/index.php');
      exit;
  }
 }
@@ -28,7 +28,12 @@ if (isset($_SESSION['username'])) {
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"
+style="
+background-image: url('dist/img/tmis-bg.png');
+background-size: cover;
+background-repeat: no-repeat;
+">
   <div class="login-box">
     <div class="col-md-12">
       <?php if(isset($_SESSION['status']) && $_SESSION['status'] == 'error') { ?>
@@ -40,14 +45,14 @@ if (isset($_SESSION['username'])) {
       </div>
       <?php }  unset($_SESSION['status']); ?>
     </div>
-    <div class="login-logo">
-      <img src="dist/img/warehouse.png" style="height:10vh; width: 6vw;">
-      <h2><b>TUBE MAKING INVENTORY SYSTEM</b></h2>
-    </div>
     <!-- /.login-logo -->
     <div class="card">
+      <div class="login-logo mt-2">
+        <img src="dist/img/warehouse.png" style="height:100px; width: auto;">
+        <h2><b>TUBE MAKING INVENTORY SYSTEM</b></h2>
+      </div>
       <div class="card-body login-card-body rounded">
-        <p class="login-box-msg"><b>Sign in to start your session</b></p>
+        <!-- <p class="login-box-msg"><b>Sign in to start your session</b></p> -->
 
         <form action="<?=htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" id="login_form">
           <div class="form-group">
@@ -83,7 +88,7 @@ if (isset($_SESSION['username'])) {
           <div class="row">
             <div class="col">
               <center>
-                <a href="work instruction/TMIS - Work Instruction.xlsx" download title="Click to download">Work Instruction</a>
+                <a href="work instruction/TMIS - Work Instruction.xlsx" download title="Click to download" class="btn btn-danger w-100" style="font-size: 16px;">Work Instruction</a>
               </center>
             </div>
           </div>
@@ -99,7 +104,7 @@ if (isset($_SESSION['username'])) {
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<script src="index_script.js"></script>
+<!-- <script src="index_script.js"></script> -->
 
 <noscript>
     <br>

@@ -118,6 +118,7 @@
                 document.getElementById("inv_search").innerText = '';
                 document.getElementById("lbl_c1").innerHTML = '';
                 $('#t_t1_breadcrumb').hide();
+                document.getElementById('funcContainer').style.display = 'block';
                 count_inventory();
                 load_inv_pagination();
             }
@@ -125,8 +126,8 @@
     }
 
     const count_t2 = () => {
-        var get_qr =sessionStorage.getItem('qr_code');
-        var get_partcode =sessionStorage.getItem('partcode');
+        var get_qr = sessionStorage.getItem('qr_code');
+        var get_partcode = sessionStorage.getItem('partcode');
 
         $.ajax({
             url: '../../process/admin/inventory_p.php',
@@ -162,8 +163,10 @@
         var partcode = string[0];
         var qr_code = string[1];
 
-        var set_qr =sessionStorage.setItem('qr_code', qr_code);
-        var set_partcode =sessionStorage.setItem('partcode', partcode);
+        var set_qr = sessionStorage.setItem('qr_code', qr_code);
+        var set_partcode = sessionStorage.setItem('partcode', partcode);
+
+        
 
         $.ajax({
             url: '../../process/admin/inventory_p.php',
@@ -178,6 +181,7 @@
                 document.getElementById("inv_tbl").innerHTML = response;
                 document.getElementById("lbl_c1").innerHTML = partcode;
                 $('#t_t1_breadcrumb').show();
+                document.getElementById('funcContainer').style.display = 'none';
                 count_t2();
             }
         });

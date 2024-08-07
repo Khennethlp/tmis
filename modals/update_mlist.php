@@ -29,10 +29,10 @@
       </div>
       <div class="modal-footer ">
         <div class="col-sm-3">
-          <button class="btn btn-block btn-del" onclick="delete_mlist()" style="color:#111;height:34px;border-radius:.25rem;background: #DFE2E2;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Delete</button>
+          <button class="btn btn-block btn-del" onclick="delete_mlist()" style="height:34px;border-radius:.25rem;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Delete</button>
         </div>
         <div class="col-sm-3">
-          <button class="btn subBtn btn-block" id="update_btn" onclick="mlist_update()" style="color:#fff;height:34px;border-radius:.25rem;background: #3765AA;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);">Update</button>
+          <button class="btn subBtn btn-block" id="update_btn" onclick="mlist_update()" style="height:34px;border-radius:.25rem;font-size:15px;font-weight:normal; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);">Update</button>
         </div>
       </div>
     </div>

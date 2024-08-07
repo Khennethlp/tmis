@@ -77,6 +77,7 @@ if (!isset($_SESSION['username'])) {
       border-bottom: 2px solid #ffffff !important;
       color: #fff;
     }
+
     .b-border{
       border-bottom: 2px solid #275DAD !important;
     }
@@ -93,21 +94,32 @@ if (!isset($_SESSION['username'])) {
       color: #bbb;
     }
     .btn-del{
+      background-color: var(--danger) !important;
       font-size: 13px; 
       height: 35px; 
-      color: #FF7676;
+      color: #fff;
       background: none;
       border: 1px solid #ccc !important;
     }
     .btn-del:hover{
-      background-color: #FF7676 !important;
-      color: #fff !important;
+      background-color: var(--danger) !important;
+      color: #bbb !important;
+    }
+    .subBtn{
+      background-color: #3765AA;
+      color: #fff;
     }
     .subBtn:hover{
-      background-color: #29339B !important;
+      background-color: #3765AA !important;
+      color: #bbb;
     }
     .nav-link {
       cursor: pointer;
+    }
+    .nav-link:hover {
+      cursor: pointer;
+      background-color: #bbb;
+      color:red;
     }
 
     .dropdown-item{
@@ -183,36 +195,23 @@ if (!isset($_SESSION['username'])) {
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link text-dark" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <div class="row">
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle no-caret" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Theme
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item">
-            <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customSwitch1">
-              <label class="custom-control-label " id="theme_label" for="customSwitch1">Dark Mode</label>
-            </div>
-          </a>
-        </div>
-      </li> -->
       <li class="nav-item dropdown mx-4">
-        <a class="nav-link dropdown-toggle no-caret" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle no-caret btn" data-toggle="modal" data-target="#logout_modal" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#275DAD; color:#fff;">
           <i class="far fa-user-circle i-user ">&nbsp;Logout</i> 
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item " data-toggle="modal" data-target="#logout_modal" >
           <i class="fas fa-sign-out-alt mr-3 text-md"></i>
             LOGOUT
           </a>
-        </div>
+        </div> -->
       </li>
         <!-- <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">

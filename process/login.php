@@ -8,7 +8,7 @@ if (isset($_POST['Login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT emp_id, fullname, role FROM m_accounts WHERE BINARY username = '$username' AND BINARY password = '$password'";
+    $sql = "SELECT emp_id, fullname, role FROM m_accounts WHERE username = '$username' AND password = '$password'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     if ($stmt->rowCount() > 0) {

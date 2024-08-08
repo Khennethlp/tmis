@@ -17,7 +17,7 @@ if (isset($_SESSION['username'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TMS INVENTORY</title>
+  <title>TUBE MAKING INVENTORY SYSTEM</title>
 
   <link rel="icon" href="dist/img/warehouse.png" type="image/x-icon" />
   <!-- Google Font: Source Sans Pro -->
@@ -48,7 +48,7 @@ background-repeat: no-repeat;
     <!-- /.login-logo -->
     <div class="card">
       <div class="login-logo mt-2">
-        <img src="dist/img/warehouse.png" style="height:100px; width: auto;">
+        <img src="dist/img/warehouse.png" style="height:80px; width: auto;">
         <h2><b>TUBE MAKING INVENTORY SYSTEM</b></h2>
       </div>
       <div class="card-body login-card-body rounded">

@@ -119,7 +119,7 @@ if (!isset($_SESSION['username'])) {
     .nav-link:hover {
       cursor: pointer;
       background-color: #bbb;
-      color:red;
+      /* color:#275DAD !important; */
     }
 
     .dropdown-item{
@@ -129,10 +129,6 @@ if (!isset($_SESSION['username'])) {
       font-size: 22px;
     }
 
-    .custom-switch {
-      display: flex;
-      align-items: center;
-    }
     .nav-link.no-caret::after {
       display: none;
     }

@@ -88,7 +88,7 @@ background-repeat: no-repeat;
           <div class="row">
             <div class="col">
               <center>
-                <a href="work instruction/TMIS - Work Instruction.xlsx" download title="Click to download" class="btn btn-danger w-100" style="font-size: 16px;">Work Instruction</a>
+                <a href="work instruction/TMIS Work Instruction.pdf" download title="Click to download" class="btn btn-danger w-100" style="font-size: 16px;">Work Instruction</a>
               </center>
             </div>
           </div>

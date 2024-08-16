@@ -16,25 +16,35 @@
         <a href="" class="nav-link active"><i class="fas fa-home"></i> Homepage</a>
       </li> -->
       <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/stores/index.php") {?>
+        <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/stores/index.php") { ?>
           <a href="index.php" class="nav-link nav-active">
-          <?php } else {?>
-          <a href="index.php" class="nav-link">
-          <?php } ?>
+          <?php } else { ?>
+            <a href="index.php" class="nav-link">
+            <?php } ?>
             <i class="nav-icon fas fa-download text-success"></i>
-              Store-in
-          </a>
-        </li>
+            Store-in
+            </a>
+      </li>
       <li class="nav-item">
-          <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/stores/store_out.php") {?>
+        <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/stores/store_out.php") { ?>
           <a href="store_out.php" class="nav-link nav-active">
-          <?php } else {?>
-          <a href="store_out.php" class="nav-link">
-          <?php } ?>
+          <?php } else { ?>
+            <a href="store_out.php" class="nav-link">
+            <?php } ?>
             <i class="nav-icon fas fa-upload text-danger"></i>
-              Store-out
-          </a>
-        </li>
+            Store-out
+            </a>
+      </li>
+      <li class="nav-item">
+        <?php if ($_SERVER['REQUEST_URI'] == "/tmis/pages/stores/inventory.php") { ?>
+          <a href="inventory.php" class="nav-link nav-active">
+          <?php } else { ?>
+            <a href="inventory.php" class="nav-link">
+            <?php } ?>
+            <i class="nav-icon fas fa-file-alt text-info"></i>
+            Inventory
+            </a>
+      </li>
 
       <!-- <li class="nav-item">
         <a href="#" class="nav-link"><i class="fas fa-upload"></i> Store-out</a>
@@ -44,7 +54,7 @@
       </li>
       <li class="nav-item">
         <!-- <a href="/k_temp/" class="nav-link"><i class="fas fa-sign-out-alt"></i>  </a> -->
-        <?php include 'logout.php';?>
+        <?php include 'logout.php'; ?>
       </li>
     </ul>
   </div>

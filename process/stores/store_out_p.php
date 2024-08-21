@@ -103,7 +103,12 @@ if($method == 'insert_partsout'){
                 $del_qry = "DELETE FROM t_partsin WHERE qr_code = :qr"; 
                 $del_stmt = $conn->prepare($del_qry); 
                 $del_stmt->bindParam(':qr', $qr); 
-                // $del_stmt->bindParam(':lot_address', $lot_address); 
+                $del_stmt->execute(); 
+
+                // decreasing inventory
+                $del_qry = "DELETE FROM t_partsin_history WHERE qr_code = :qr"; 
+                $del_stmt = $conn->prepare($del_qry); 
+                $del_stmt->bindParam(':qr', $qr); 
                 $del_stmt->execute(); 
             }else { 
                 echo 'undefined'; 

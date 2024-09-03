@@ -58,9 +58,9 @@
                     <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('mlist_table')" type="button">
                       <span><i class="fas fa-file-export mr-1"></i> Export</span>
                     </button>
-                     <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
+                     <!-- <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
                       <span><i class="fas fa-file-csv mr-1"></i> Export</span>
-                    </button>
+                    </button> -->
                   </div>
                 </div>
               </div>

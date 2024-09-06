@@ -52,7 +52,7 @@ include('plugins/navbar/index_navbar.php');
                   </ol>
                 </div>
               </div>
-              <div class="table-responsive p-0" style="height: 550px;">
+              <div class="table-responsive p-0" style="height: 400px;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="inv_tbl">
                   <thead id="thead_t">
                     <tr>

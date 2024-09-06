@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 // alert('Why??');
     const videoElement = document.getElementById('reader');
     const resultDiv = document.getElementById('result');
@@ -75,4 +75,4 @@
         });
 
     // QRCode Script End ========================================
-</script>
+</script> -->

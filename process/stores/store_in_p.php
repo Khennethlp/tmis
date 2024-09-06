@@ -55,9 +55,9 @@ if ($method == 'insert_partsin') {
     // Database operations
     try {
 
-        $stmt_check = $conn->prepare("SELECT COUNT(*) FROM t_partsin WHERE qr_code = :qr AND lot_address = :lot_address");
+        $stmt_check = $conn->prepare("SELECT COUNT(*) FROM t_partsin WHERE qr_code = :qr");
         $stmt_check->bindParam(':qr', $qr);
-        $stmt_check->bindParam(':lot_address', $store_in_address);
+        // $stmt_check->bindParam(':lot_address', $store_in_address);
         $stmt_check->execute();
         $count = $stmt_check->fetchColumn();
 

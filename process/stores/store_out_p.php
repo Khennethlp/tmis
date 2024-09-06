@@ -8,6 +8,7 @@ $updated_by = $_SESSION['name'];
 if ($method == 'partsout_list') {
     $store_out_entries = json_decode($_POST['store_out_entries'], true);
     $store_in_entries = json_decode($_POST['store_in_entries'], true);
+    $storeOut = $_POST['store_out_qr'];
 
     $c = 0;
 
@@ -24,12 +25,12 @@ if ($method == 'partsout_list') {
             $qty = substr($qr, 33, 3); // packing_quantity
 
             // Fetch stock_address from the database
-            $select = "SELECT lot_address FROM t_partsin_history WHERE partcode = :partcode AND DATE(date_updated) = CURDATE()";
+            $select = "SELECT lot_address FROM t_partsout WHERE qr_code = :qr";
             $stmt = $conn->prepare($select);
-            $stmt->bindParam(':partcode', $partscode);
+            $stmt->bindParam(':qr', $qr);
             $stmt->execute();
 
-            $stock_address = 'N/A';
+            // $stock_address = 'Not found';
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $stock_address = $row['lot_address'];
             }
@@ -91,7 +92,7 @@ if($method == 'insert_partsout'){
 
             $conn->beginTransaction(); 
 
-            $check_store_in = "SELECT COUNT(*) AS count FROM t_partsin WHERE qr_code = :qr AND DATE(date_updated) = CURDATE()"; 
+            $check_store_in = "SELECT COUNT(*) AS count FROM t_partsin WHERE qr_code = :qr"; 
             $stmt = $conn->prepare($check_store_in); 
             $stmt->bindParam(':qr', $qr); 
             // $stmt->bindParam(':lot_address', $lot_address); 
@@ -105,11 +106,6 @@ if($method == 'insert_partsout'){
                 $del_stmt->bindParam(':qr', $qr); 
                 $del_stmt->execute(); 
 
-                // decreasing inventory
-                $del_qry = "DELETE FROM t_partsin_history WHERE qr_code = :qr"; 
-                $del_stmt = $conn->prepare($del_qry); 
-                $del_stmt->bindParam(':qr', $qr); 
-                $del_stmt->execute(); 
             }else { 
                 echo 'undefined'; 
 				$conn->rollBack(); 

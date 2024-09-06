@@ -49,7 +49,7 @@ if ($method == 'partsout_list') {
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>'; // barcode label
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 
 			echo '</tr>';
@@ -101,7 +101,7 @@ $stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}

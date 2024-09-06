@@ -103,6 +103,7 @@
     }
 
     const load_inventory = current_page => {
+        var search = document.getElementById('inv_search').value;
         $.ajax({
             url: '../../process/stores/inventory_p.php',
             type: 'POST',
@@ -110,7 +111,7 @@
             data: {
                 method: 'inventory_list',
                 current_page: current_page,
-                // inventory_search:inventory_search
+                search:search
             },
             success: function(response) {
                 document.getElementById("inv_tbl").innerHTML = response;
@@ -165,8 +166,6 @@
         var set_qr = sessionStorage.setItem('qr_code', qr_code);
         var set_partcode = sessionStorage.setItem('partcode', partcode);
 
-        
-
         $.ajax({
             url: '../../process/stores/inventory_p.php',
             type: 'POST',
@@ -180,6 +179,7 @@
                 document.getElementById("inv_tbl").innerHTML = response;
                 document.getElementById("lbl_c1").innerHTML = partcode;
                 $('#t_t1_breadcrumb').show();
+                // document.getElementById('thead_t').style.display = 'none';
                 document.getElementById('funcContainer').style.display = 'none';
                 count_t2();
             }
@@ -188,8 +188,8 @@
 
     const search_inv = current_page => {
         var inventory_search = document.getElementById('inv_search').value;
-        var date_from = document.getElementById('inv_search').value;
-        var date_to = document.getElementById('inv_search').value;
+        // var date_from = document.getElementById('inv_search').value;
+        // var date_to = document.getElementById('inv_search').value;
 
         var savedSearch_inv = sessionStorage.getItem('inv_search');
 
@@ -210,15 +210,16 @@
             data: {
                 method: 'inventory_search',
                 inventory_search: inventory_search,
-                date_from: date_from,
-                date_to: date_to,
+               
                 current_page: current_page,
             },
             success: function(response) {
-                document.getElementById("inventory_table").innerHTML = response;
+                document.getElementById("inv_tbl").innerHTML = response;
                 sessionStorage.setItem('inv_table_pagination', current_page);
                 count_inventory();
                 $('#t_t1_breadcrumb').hide();
+                // document.getElementById('thead_t').style.display = 'block';
+                document.getElementById('funcContainer').style.display = 'block';
 
             },
             error: function(xhr, status, error) {

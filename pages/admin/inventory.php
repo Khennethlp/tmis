@@ -54,7 +54,7 @@
               <div class="row mb-2" id="t_t1_breadcrumb">
                 <div class="col-12">
                   <ol class="breadcrumb mb-0" style="background-color: #bbb;">
-                    <li class="breadcrumb-item"><i class="fas fa-chevron-left"></i> <a href="#" onclick="load_inventory()">&nbsp;Back</a></li>
+                    <li class="breadcrumb-item"><i class="fas fa-chevron-left"></i> <a href="#" onclick="search_inv(1)">&nbsp;Back</a></li>
                     <li class="breadcrumb-item" id="lbl_c1"></li>
                   </ol>
                 </div>
@@ -94,7 +94,7 @@
                 <input type="hidden" id="count_rows">
               </div>
               <div class="col-sm-2 col-md-1 col-2 col-lg-1">
-                <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded mx-4" onclick="get_prev_page()">Prev</button>
+                <button type="button" id="btnPrevPage" class="btn bg-gray-dark btn-flat rounded ml-4" onclick="get_prev_page()">Prev</button>
               </div>
               <div class="col-sm-3 col-md-1 col-2">
                 <input type="text" list="inv_table_paginations" class="form-control" id="inv_table_pagination">
@@ -103,7 +103,7 @@
                     </div> -->
               </div>
               <div class="col-sm-2 col-md-1 col-1 rounded">
-                <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
+                <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-0 rounded" onclick="get_next_page()">Next</button>
               </div>
             </div>
             <!-- /.card-body -->

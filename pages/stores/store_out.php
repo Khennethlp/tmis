@@ -35,8 +35,8 @@ include('plugins/navbar/index_navbar.php');
         </div>
       </div>
     </div>
-    <a href="" class="float-right mx-3 my-2 btnClearSession" onclick="clearSessionStorage()">Clear All</a>
-    <div class="table-responsive dataTable dtr-inline collapsed" style="height: 400px; overflow: auto; display:inline-block;">
+    <!-- <a href="" class="float-right mx-3 my-2 btnClearSession" onclick="clearSessionStorage()">Clear All</a> -->
+    <div class="table-responsive dataTable dtr-inline collapsed" style="height: auto; overflow: auto; display:inline-block;">
       <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
         <thead style="text-align:center;">
           <th>#</th>
@@ -62,5 +62,4 @@ include('plugins/navbar/index_navbar.php');
 include('plugins/footer.php');
 include('plugins/js/index_script.php');
 include 'plugins/js/partsout_script.php';
-include('plugins/js/qrScanner_script.php');
 ?>

@@ -145,7 +145,7 @@ if ($method == 'search_partsin') {
 			echo '<td>' . $j['packing_quantity'] . '</td>';
 			echo '<td>' . $j['lot_address'] . '</td>';
 			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . date('Y/M/d', strtotime($j['date_updated'])) . '</td>';
+			echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}

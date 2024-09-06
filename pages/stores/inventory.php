@@ -29,7 +29,7 @@ include('plugins/navbar/index_navbar.php');
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-              <div id="funcContainer">
+              <div id="funcContainer" style="display:none;">
                 <div class="row mb-3">
                   <div class="col-md-3">
                     <div class="input-group input-group-sm" style="margin: 8px;">
@@ -47,14 +47,14 @@ include('plugins/navbar/index_navbar.php');
               <div class="row mb-2" id="t_t1_breadcrumb">
                 <div class="col-12">
                   <ol class="breadcrumb mb-0" style="background-color: #bbb;">
-                    <li class="breadcrumb-item"><i class="fas fa-chevron-left"></i> <a href="#" onclick="load_inventory()">&nbsp;Back</a></li>
+                    <li class="breadcrumb-item"><i class="fas fa-chevron-left"></i> <a href="#" onclick="search_inv(1);">&nbsp;Back</a></li>
                     <li class="breadcrumb-item" id="lbl_c1"></li>
                   </ol>
                 </div>
               </div>
-              <div class="table-responsive p-0" style="height: 350px;">
+              <div class="table-responsive p-0" style="height: 550px;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="inv_tbl">
-                  <thead>
+                  <thead id="thead_t">
                     <tr>
                       <th>#</th>
                       <th>Part Code</th>

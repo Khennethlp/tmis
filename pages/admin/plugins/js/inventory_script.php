@@ -1,13 +1,12 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        //load_inventory();
         search_inv(1);
-        // count_inventory();
     });
+
     document.querySelector('#inv_search').addEventListener("keyup", function(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            search_inv(1); // Call your search function
+            search_inv(1);
         }
     });
 
@@ -51,7 +50,7 @@
         var inv_search = sessionStorage.getItem('inv_search');
         var current_page = sessionStorage.getItem('inv_table_pagination');
         $.ajax({
-            url: '../../process/admin/inventory_p.php',
+            url: '../../process/stores/inventory_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -75,7 +74,7 @@
         var inv_search = sessionStorage.getItem('inv_search');
 
         $.ajax({
-            url: '../../process/admin/inventory_p.php',
+            url: '../../process/stores/inventory_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -104,14 +103,15 @@
     }
 
     const load_inventory = current_page => {
+        var search = document.getElementById('inv_search').value;
         $.ajax({
-            url: '../../process/admin/inventory_p.php',
+            url: '../../process/stores/inventory_p.php',
             type: 'POST',
             cache: false,
             data: {
                 method: 'inventory_list',
                 current_page: current_page,
-                // inventory_search:inventory_search
+                search:search
             },
             success: function(response) {
                 document.getElementById("inv_tbl").innerHTML = response;
@@ -130,7 +130,7 @@
         var get_partcode = sessionStorage.getItem('partcode');
 
         $.ajax({
-            url: '../../process/admin/inventory_p.php',
+            url: '../../process/stores/inventory_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -166,10 +166,8 @@
         var set_qr = sessionStorage.setItem('qr_code', qr_code);
         var set_partcode = sessionStorage.setItem('partcode', partcode);
 
-        
-
         $.ajax({
-            url: '../../process/admin/inventory_p.php',
+            url: '../../process/stores/inventory_p.php',
             type: 'POST',
             cache: false,
             data: {
@@ -181,29 +179,17 @@
                 document.getElementById("inv_tbl").innerHTML = response;
                 document.getElementById("lbl_c1").innerHTML = partcode;
                 $('#t_t1_breadcrumb').show();
+                // document.getElementById('thead_t').style.display = 'none';
                 document.getElementById('funcContainer').style.display = 'none';
                 count_t2();
             }
         });
     }
-    // const count_inventory = () => {
-    //     $.ajax({
-    //         type: "POST",
-    //         url: '../../process/admin/inventory_p.php',
-    //         data: {
-    //             method: 'count_list',
-    //             // count: count,
-    //         },
-    //         success: function (response) {
-    //             document.getElementById("count").innerHTML = response;
-    //         }
-    //     });
-    // }
 
     const search_inv = current_page => {
         var inventory_search = document.getElementById('inv_search').value;
-        var date_from = document.getElementById('inv_search').value;
-        var date_to = document.getElementById('inv_search').value;
+        // var date_from = document.getElementById('inv_search').value;
+        // var date_to = document.getElementById('inv_search').value;
 
         var savedSearch_inv = sessionStorage.getItem('inv_search');
 
@@ -218,21 +204,22 @@
             sessionStorage.setItem('inv_search', inventory_search);
         }
         $.ajax({
-            url: '../../process/admin/inventory_p.php',
+            url: '../../process/stores/inventory_p.php',
             type: 'POST',
             cache: false,
             data: {
                 method: 'inventory_search',
                 inventory_search: inventory_search,
-                date_from: date_from,
-                date_to: date_to,
+               
                 current_page: current_page,
             },
             success: function(response) {
-                document.getElementById("inventory_table").innerHTML = response;
+                document.getElementById("inv_tbl").innerHTML = response;
                 sessionStorage.setItem('inv_table_pagination', current_page);
                 count_inventory();
                 $('#t_t1_breadcrumb').hide();
+                // document.getElementById('thead_t').style.display = 'block';
+                document.getElementById('funcContainer').style.display = 'block';
 
             },
             error: function(xhr, status, error) {
@@ -242,112 +229,4 @@
         });
     }
 
-    // const search_by_date = () => {
-    //     var from_date = document.getElementById("from_search").value;
-    //     var to_date = document.getElementById("to_search").value;
-
-    //     if(from_date === '' && to_date === ''){
-    //         load_inventory();
-    //         count_inventory();
-    //     }else{
-    //     $.ajax({
-    //         url: '../../process/admin/inventory_p.php',
-    //         type: 'POST',
-    //         cache: false,
-    //         data: {
-    //             method: 'search_by_date',
-    //             from_date: from_date,
-    //             to_date: to_date,
-    //         },
-    //         success: function (response) {
-    //             var data = JSON.parse(response);
-    //             var rowsHTML = '';
-    //             var count = data.count;
-    //             data.rows.forEach(function (row, index) {
-    //                 // rowsHTML += '<tr style="cursor:pointer;" class="modal-trigger" data-toggle="modal" data-target="#update_mlist" onclick="get_mlist_details(&quot;' + row.id + '~!~' + row.partcode + '~!~' + row.partname + '~!~' + row.packing_quantity + '&quot;)">';
-    //                 rowsHTML += '<td><input type="checkbox" name="selected[]" class="selected" id="selected_' + row.id + '" value="' + row.id + '" onclick="get_checked_length()"  style="cursor:pointer;"></td>';                
-    //                 rowsHTML += '<td>' + (index + 1) + '</td>';
-    //                 rowsHTML += '<td>' + row.partcode + '</td>';
-    //                 rowsHTML += '<td>' + row.partname + '</td>';
-    //                 rowsHTML += '<td>' + row.packing_quantity + '</td>';
-    //                 rowsHTML += '<td>' + row.lot_address + '</td>';
-    //                 rowsHTML += '<td>' + row.barcode_label + '</td>';
-    //                 rowsHTML += '<td>' + row.quantity + '</td>';
-    //                 rowsHTML += '<td>' + row.date_updated + '</td>';
-    //                 rowsHTML += '<td>' + row.updated_by + '</td>';
-    //                 rowsHTML += '</tr>';
-    //             });
-    //             document.getElementById("inventory_table").innerHTML = rowsHTML;
-    //             document.getElementById("count").innerHTML = count;
-    //         }
-    //     });
-    //     }
-    // }
-
-
-
-    const export_csv = (table_id, separator = ',') => {
-        // Select rows from table_id
-        var rows = document.querySelectorAll('table#' + table_id + ' tr');
-        // Construct csv
-        var csv = [];
-        for (var i = 0; i < rows.length; i++) {
-            var row = [],
-                cols = rows[i].querySelectorAll('td, th');
-            for (var j = 0; j < cols.length; j++) {
-                var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
-                data = data.replace(/"/g, '""');
-                // Push escaped string
-                row.push('"' + data + '"');
-            }
-            csv.push(row.join(separator));
-        }
-        var csv_string = csv.join('\n');
-        // Download it
-        var filename = 'Export-Inventory' + '_' + new Date().toLocaleDateString() + '.csv';
-        var link = document.createElement('a');
-        link.style.display = 'none';
-        link.setAttribute('target', '_blank');
-        link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv_string));
-        link.setAttribute('download', filename);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    const print = () => {
-        var from_date = document.getElementById("from_search").value;
-        var to_date = document.getElementById("to_search").value;
-
-        if (from_date === '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'No selected date',
-                text: 'Please select date from',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        } else if (to_date === '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'No selected date',
-                text: 'Please select date to',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        } else if (from_date === '' && to_date === '') {
-            Swal.fire({
-                icon: 'info',
-                title: 'No selected date',
-                text: 'Please select date from and to',
-                showConfirmButton: false,
-                timer: 2000
-            });
-            return false;
-        } else {
-            window.open('../../process/admin/print/print.php?date_from=' + from_date + "&date_to=" + to_date, '_blank');
-
-        }
-
-    }
 </script>

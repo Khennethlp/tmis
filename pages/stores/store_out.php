@@ -11,14 +11,8 @@ include('plugins/navbar/index_navbar.php');
     <div class="row mb-2 ml-1 mr-1">
       <div class="col-sm-6">
         <u><h1 class="m-0 ">STORE OUT</h1></u>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="">Home</a></li>
-          <li class="breadcrumb-item active">Store-out</li>
-        </ol>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
+      </div>
+    </div>
   </div>
   <!-- /.content-header -->
 

@@ -40,12 +40,12 @@
             <div class="card-body">
               <div class="col-md-12">
                 <div class="row mb-3">
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="input-group input-group-sm" >
                       <input type="search" name="table_search" id="mlist_search" class="form-control" style="height: 40px;" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
-                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_mlist(1)">
-                          <i class="fas fa-search"></i>
+                        <button type="button" class="btn btn-info" style="width: 80px; background-color:#275DAD;" id="searchReqBtn" onclick="search_mlist(1)">
+                          <i class="fas fa-search"></i> Search
                         </button>
                       </div>
                     </div>

@@ -42,12 +42,12 @@
             <div class="card-body">
               <div class="col-md-12">
                 <div class="row mb-3">
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="input-group input-group-sm">
                       <input type="search" name="table_search" id="acc_search" style="height: 40px;" class="form-control" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
-                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_accounts(1)">
-                          <i class="fas fa-search"></i>
+                        <button type="button" class="btn btn-info" style="width: 80px; background-color:#275DAD;" id="searchReqBtn" onclick="search_accounts(1)">
+                          <i class="fas fa-search"></i>&nbsp;Search
                         </button>
                       </div>
                     </div>

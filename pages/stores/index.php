@@ -29,24 +29,12 @@ include('plugins/navbar/index_navbar.php');
     <div class="row mb-2 ml-1 mr-1">
       <div class="col-sm-6">
       <u><h1 class="m-0"> STORE IN</h1></u>
-      </div><!-- /.col -->
-      <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="">Home</a></li>
-          <li class="breadcrumb-item active">Store-in</li>
-        </ol>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
+      </div>
+    </div>
   </div>
-  <!-- /.content-header -->
 
-  <!-- Main content -->
+
   <div class="content">
-    <!-- <button id="startButtonAddr">Start Camera Address</button>
-    <button id="startButtonKan">Start Camera Kanban</button> -->
-    <!-- <div id="reader" style="width:100px; height:100px; display: block;"></div> -->
-    <!-- <video id="reader" style="width:200px; height:200px;" playsinline></video>
-    <div id="result" style="display: block;"></div> -->
     <div class="row">
       <div class="col-md-12 mb-3">
         <div class="row">

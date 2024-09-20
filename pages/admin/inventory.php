@@ -34,12 +34,12 @@
             <div class="card-body">
               <div id="funcContainer">
                 <div class="row mb-3">
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="input-group input-group-sm" style="margin: 8px;">
                       <input type="search" name="table_search" id="inv_search" style="height: 40px;" class="form-control float-right" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
-                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_inv(1)">
-                          <i class="fas fa-search"></i>
+                        <button type="button" class="btn btn-info" style="width: 80px; background-color:#275DAD;" id="searchReqBtn" onclick="search_inv(1)">
+                          <i class="fas fa-search"></i>&nbsp; Search
                         </button>
                       </div>
                     </div>

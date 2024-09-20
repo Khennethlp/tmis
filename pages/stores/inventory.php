@@ -11,20 +11,13 @@ include('plugins/navbar/index_navbar.php');
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <!-- <h1 class="m-0" style="text-transform: uppercase;"><i class="fas fa-file-alt"></i>&nbsp; Inventory</h1> -->
+         <u><h1 class="m-0" style="text-transform: uppercase;">Inventory</h1></u>
         </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item ">Inventory</li>
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+       
+      </div>
+    </div>
   </div>
-  <!-- /.content-header -->
 
-  <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -33,10 +26,10 @@ include('plugins/navbar/index_navbar.php');
                 <div class="row mb-3">
                   <div class="col-md-3">
                     <div class="input-group input-group-sm" style="margin: 8px;">
-                      <input type="search" name="table_search" id="inv_search" style="height:45px;" class="form-control float-right" placeholder="Search" autocomplete="off">
+                      <input type="search" name="table_search" id="inv_search" style="height:43px;" class="form-control float-right" placeholder="Search" autocomplete="off">
                       <div class="input-group-append">
-                        <button type="button" class="btn btn-default" id="searchReqBtn" onclick="search_inv(1)">
-                          <i class="fas fa-search"></i>
+                        <button type="button" class="btn btn-info" style="width: 80px; background-color:#275DAD;" id="searchReqBtn" onclick="search_inv(1)">
+                          <i class="fas fa-search"></i>&nbsp; Search
                         </button>
                       </div>
                     </div>

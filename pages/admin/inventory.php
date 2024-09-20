@@ -9,19 +9,17 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <!-- <h1 class="m-0" style="text-transform: uppercase;"><i class="fas fa-file-alt"></i>&nbsp; Inventory</h1> -->
-        </div><!-- /.col -->
+        </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item ">Inventory</li>
           </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /.content-header -->
 
-  <!-- Main content -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -30,7 +28,7 @@
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-tasks mr-2"></i> Inventory</h3>
             </div>
-  
+
             <div class="card-body">
               <div id="funcContainer">
                 <div class="row mb-3">
@@ -74,13 +72,6 @@
                   <tbody id="inventory_table"></tbody>
                 </table>
               </div>
-
-
-              <!-- </div> -->
-              <!-- <div class="row">
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; Total: &nbsp;<span id="count"></span></p>
-               
-              </div> -->
             </div>
             <hr>
             <!-- pagination -->
@@ -95,20 +86,13 @@
               <div class="col-sm-3 col-md-1 col-2">
                 <input type="text" list="inv_table_paginations" class="form-control" id="inv_table_pagination">
                 <datalist id="inv_table_paginations"></datalist>
-                <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
-                    </div> -->
               </div>
               <div class="col-sm-2 col-md-1 col-1 rounded">
                 <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-0 rounded" onclick="get_next_page()">Next</button>
               </div>
             </div>
-            <!-- /.card-body -->
-            <!-- </div> -->
-            <!-- /.card -->
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
       </div>
   </section>
 </div>

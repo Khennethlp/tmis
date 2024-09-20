@@ -14,12 +14,8 @@ include('plugins/navbar/index_navbar.php');
       </div>
     </div>
   </div>
-  <!-- /.content-header -->
 
-  <!-- Main content -->
   <div class="content">
-  <!-- <video id="reader" style="width:200px; height:200px;" playsinline></video> -->
-    <!-- <div id="result" style="display: block;"></div> -->
     <div class="row">
       <div class="col-md-12 mb-3">
         <div class="row">
@@ -35,22 +31,16 @@ include('plugins/navbar/index_navbar.php');
         <thead style="text-align:center;">
           <th>#</th>
           <th>Part Code</th>
-          <!-- <th>Part Name</th> -->
           <th>Packing Qty</th>
           <th>Stock Address</th>
           <th>Barcode Label</th>
-
         </thead>
         <tbody id="partsout_table" style="text-align:center;">
         </tbody>
       </table>
     </div>
   </div>
-  <!-- /.content -->
-  <!-- pagination -->
-
 </div>
-<!-- /.content-wrapper -->
 
 <?php
 include('plugins/footer.php');

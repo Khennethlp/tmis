@@ -9,19 +9,17 @@
       <div class="row">
         <div class="col-sm-6">
           <!-- <h1 class="m-0">Accounts Management</h1> -->
-        </div><!-- /.col -->
+        </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item "> Accounts Management</li>
-
           </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- /.content-header -->
-  <!-- Main content -->
+
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -29,14 +27,6 @@
           <div class="card card-primary card-outline">
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-user-cog mr-2"></i>&nbsp; Accounts Management </h3>
-              <!-- <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="maximize">
-                  <i class="fas fa-expand"></i>
-                </button>
-              </div> -->
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -65,17 +55,6 @@
                   </div>
                 </div>
               </div>
-
-
-
-              <!-- <div class="col-sm-2">
-              <label>User Type:</label>
-                <select id="user_type_search" class="form-control">
-                  <option value="">Select User Type</option>
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                </select>
-              </div> -->
               <div class="table-responsive dataTable dtr-inline collapsed" style="height: 350px; overflow: auto; display:inline-block;">
                 <table class="table table-head-fixed text-nowrap table-hover" id="search_accounts">
                   <thead style="text-align:center;">
@@ -103,8 +82,6 @@
               <div class="col-sm-3 col-md-1 col-2">
                 <input type="text" list="account_table_paginations" class="form-control" id="account_table_pagination">
                 <datalist id="account_table_paginations"></datalist>
-                <!-- <div class="dataTables_paginate paging_simple_numbers" id="accounts_table_pagination">
-                    </div> -->
               </div>
               <div class="col-sm-2 col-md-1 col-1 rounded">
                 <button type="button" id="btnNextPage" class="btn bg-gray-dark btn-flat mr-3 rounded" onclick="get_next_page()">Next</button>
@@ -112,18 +89,11 @@
             </div>
           </div>
         </div>
-        <!-- /.card-body -->
-
       </div>
-      <!-- /.card -->
     </div>
-    <!-- /.col -->
 </div>
-<!-- /.row -->
 </div>
 
 
 <?php include 'plugins/footer.php'; ?>
-<?php //include 'plugins/js/script.php';
-?>
 <?php include 'plugins/js/accounts_script.php'; ?>

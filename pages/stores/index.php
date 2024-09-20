@@ -2,9 +2,6 @@
 include('plugins/header.php');
 include('plugins/preloader.php');
 include('plugins/navbar/index_navbar.php');
-// echo gethostname();
-// echo gethostbyaddr($_SERVER['REMOTE_ADDR']);
-// echo $_SERVER['HTTP_USER_AGENT'];
 ?>
 <style>
   body,
@@ -33,7 +30,6 @@ include('plugins/navbar/index_navbar.php');
     </div>
   </div>
 
-
   <div class="content">
     <div class="row">
       <div class="col-md-12 mb-3">
@@ -55,18 +51,15 @@ include('plugins/navbar/index_navbar.php');
         <thead style="text-align:center;">
           <th>#</th>
           <th>Part Code</th>
-          <!-- <th>Part Name</th> -->
           <th>Packing Qty</th>
           <th>Stock Address</th>
           <th>Barcode Label</th>
-
         </thead>
         <tbody id="partsin_table" style="text-align:center;"></tbody>
       </table>
     </div>
   </div>
 </div>
-<!-- /.content-wrapper -->
 
 <?php
 include('plugins/footer.php');

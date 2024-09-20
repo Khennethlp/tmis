@@ -76,10 +76,7 @@ if ($method == 'inventory_list') {
 			<th>Part Code</th>
 			<th>Part Name</th>
 			<th>Packing Qty</th>
-			<th>Stock Address</th>
-			<th>Barcode Label</th>
 			<th>Quantity</th>
-			<th>Date</th>
 			
 			</tr>
 		</thead>';
@@ -121,13 +118,13 @@ if ($method == 'inventory_list') {
 				AS b ON a.partcode = b.partcode 
 				WHERE 1=1 ";
 
-	if(!empty($search)){
+	if (!empty($search)) {
 		$query .= " AND a.partcode LIKE :search";
 	}
 	$query .= "GROUP BY partcode ORDER BY id DESC LIMIT " . $page_first_result . ", " . $results_per_page;
 
 	$stmt = $conn->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-	
+
 	if (!empty($search)) {
 		$stmt->bindValue(':search', "%$search%", PDO::PARAM_STR);
 	}
@@ -142,10 +139,10 @@ if ($method == 'inventory_list') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . $j['lot_address'] . '</td>';
-			echo '<td>' . $j['barcode_label'] . '</td>';
+			// echo '<td>' . $j['lot_address'] . '</td>';
+			// echo '<td>' . $j['barcode_label'] . '</td>';
 			echo '<td>' . $j['Qty'] . '</td>';
-			echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}
@@ -186,9 +183,9 @@ if ($method == 'load_t_t2') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . $j['lot_address'] . '</td>';
-			echo '<td>' . $j['barcode_label'] . '</td>';
-			echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . $j['lot_address'] . '</td>';
+			// echo '<td>' . $j['barcode_label'] . '</td>';
+			// echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
 			echo '</tr>';
 		}
 	} else {
@@ -225,14 +222,11 @@ if ($method == 'inventory_search') {
 	<th>Part Code</th>
 	<th>Part Name</th>
 	<th>Packing Qty</th>
-	<th>Stock Address</th>
-	<th>Barcode Label</th>
 	<th>Quantity</th>
-	<th>Date</th>
 	
 	</tr>
 </thead>';
-	
+
 	$current_page = isset($_POST['current_page']) ? max(1, intval($_POST['current_page'])) : 1;
 	$results_per_page = 50;
 	$page_first_result = ($current_page - 1) * $results_per_page;
@@ -290,10 +284,10 @@ if ($method == 'inventory_search') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . $j['lot_address'] . '</td>';
-			echo '<td>' . $j['barcode_label'] . '</td>';
+			// echo '<td>' . $j['lot_address'] . '</td>';
+			// echo '<td>' . $j['barcode_label'] . '</td>';
 			echo '<td>' . $j['Qty'] . '</td>';
-			echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}
@@ -303,4 +297,3 @@ if ($method == 'inventory_search') {
 		echo '</tr>';
 	}
 }
-

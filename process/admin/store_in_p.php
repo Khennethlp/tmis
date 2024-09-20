@@ -1,7 +1,6 @@
 <?php
 include '../conn.php';
 include '../login.php';
-include '../../functions/partsin_query.php';
 
 $method = $_POST['method'];
 

@@ -76,11 +76,7 @@ if ($method == 'inventory_list') {
 			<th>Part Code</th>
 			<th>Part Name</th>
 			<th>Packing Qty</th>
-			<th>Stock Address</th>
-			<th>Barcode Label</th>
 			<th>Quantity</th>
-			<th>Date</th>
-			
 			</tr>
 		</thead>';
 
@@ -142,10 +138,7 @@ if ($method == 'inventory_list') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . $j['lot_address'] . '</td>';
-			echo '<td>' . $j['barcode_label'] . '</td>';
 			echo '<td>' . $j['Qty'] . '</td>';
-			echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}
@@ -225,10 +218,8 @@ if ($method == 'inventory_search') {
 	<th>Part Code</th>
 	<th>Part Name</th>
 	<th>Packing Qty</th>
-	<th>Stock Address</th>
-	<th>Barcode Label</th>
 	<th>Quantity</th>
-	<th>Date</th>
+
 	
 	</tr>
 </thead>';
@@ -290,10 +281,10 @@ if ($method == 'inventory_search') {
 			echo '<td>' . $j['partcode'] . '</td>';
 			echo '<td>' . $j['partname'] . '</td>';
 			echo '<td>' . $j['packing_quantity'] . '</td>';
-			echo '<td>' . $j['lot_address'] . '</td>';
-			echo '<td>' . $j['barcode_label'] . '</td>';
+			// echo '<td>' . $j['lot_address'] . '</td>';
+			// echo '<td>' . $j['barcode_label'] . '</td>';
 			echo '<td>' . $j['Qty'] . '</td>';
-			echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
+			// echo '<td>' . date('Y/m/d', strtotime($j['date_updated'])) . '</td>';
 			// echo '<td>' . $j['updated_by'] . '</td>';
 			echo '</tr>';
 		}

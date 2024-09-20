@@ -60,7 +60,7 @@
                 </div>
               </div>
               <div class="table-responsive p-0" style="height: 350px;">
-                <table class="table table-head-fixed text-nowrap table-hover" id="inv_tbl">
+                <table class="table table-head-fixed text-nowrap table-hover text-center" id="inv_tbl">
                   <thead>
                     <tr>
                       <!-- <th><input type="checkbox" name="" id="select_all" onclick="selectAll()" value="" style="cursor:pointer;"></th> -->
@@ -68,11 +68,7 @@
                       <th>Part Code</th>
                       <th>Part Name</th>
                       <th>Packing Qty</th>
-                      <th>Stock Address</th>
-                      <th>Barcode Label</th>
                       <th>Quantity</th>
-                      <th>Date</th>
-                      <!-- <th>By</th> -->
                     </tr>
                   </thead>
                   <tbody id="inventory_table"></tbody>

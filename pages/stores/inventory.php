@@ -53,8 +53,8 @@ include('plugins/navbar/index_navbar.php');
                 </div>
               </div>
               <div class="table-responsive p-0" style="height: 400px;">
-                <table class="table table-head-fixed text-nowrap table-hover" id="inv_tbl">
-                  <thead id="thead_t">
+                <table class="table table-head-fixed text-nowrap table-hover text-center" id="inv_tbl">
+                  <thead id="thead_t" >
                     <tr>
                       <th>#</th>
                       <th>Part Code</th>

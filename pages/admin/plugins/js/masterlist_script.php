@@ -455,41 +455,56 @@
     });
   };
 
-  const export_csv = (table_id, separator = ',') => {
-    // Select rows from table_id
-    var rows = document.querySelectorAll('table#' + table_id + ' tr');
-    // Construct csv
-    var csv = [];
-    for (var i = 0; i < rows.length; i++) {
-      var row = [],
-        cols = rows[i].querySelectorAll('td, th');
-      for (var j = 0; j < cols.length; j++) {
-        var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
-        data = data.replace(/"/g, '""');
-        // Push escaped string
-        row.push('"' + data + '"');
-      }
-      csv.push(row.join(separator));
-    }
-    var csv_string = csv.join('\n');
-    // Download it
-    var filename = 'Export-Mlist' + '_' + new Date().toLocaleDateString() + '.csv';
-    var link = document.createElement('a');
-    link.style.display = 'none';
-    link.setAttribute('target', '_blank');
-    link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv_string));
-    link.setAttribute('download', filename);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  // const print = () => {
-  //     var from_date = document.getElementById("fromD_search").value;
-  //     var to_date = document.getElementById("toD_search").value;
-  //     window.open('../../process/admin/print/print.php?date_from=' + from_date + "&date_to=" + to_date, '_blank');
-
+  // const export_csv = (table_id, separator = ',') => {
+  //   // Select rows from table_id
+  //   var rows = document.querySelectorAll('table#' + table_id + ' tr');
+  //   // Construct csv
+  //   var csv = [];
+  //   for (var i = 0; i < rows.length; i++) {
+  //     var row = [],
+  //       cols = rows[i].querySelectorAll('td, th');
+  //     for (var j = 0; j < cols.length; j++) {
+  //       var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, '').replace(/(\s\s)/gm, ' ')
+  //       data = data.replace(/"/g, '""');
+  //       // Push escaped string
+  //       row.push('"' + data + '"');
+  //     }
+  //     csv.push(row.join(separator));
+  //   }
+  //   var csv_string = csv.join('\n');
+  //   // Download it
+  //   var filename = 'Export-Mlist' + '_' + new Date().toLocaleDateString() + '.csv';
+  //   var link = document.createElement('a');
+  //   link.style.display = 'none';
+  //   link.setAttribute('target', '_blank');
+  //   link.setAttribute('href', 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv_string));
+  //   link.setAttribute('download', filename);
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
   // }
+
+  const export_mlist = () => {
+    var search = document.getElementById('mlist_search').value;
+
+    // Create a hidden form for submission
+    var form = $('<form></form>').attr({
+        method: 'POST',
+        action: '../../process/admin/export/export_masterlist.php'
+    });
+
+    // Append search field to the form
+    form.append($('<input>').attr({
+        type: 'hidden',
+        name: 'search',
+        value: search
+    }));
+
+    // Append the form to the body and submit
+    $('body').append(form);
+    form.submit();
+};
+
 
   const selectAll = (checkbox) => {
     //check all data

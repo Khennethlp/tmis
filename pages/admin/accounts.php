@@ -49,7 +49,8 @@
                     <button class="btn btn-func buttons-import buttons-html5" data-toggle="modal" data-target="#import_acc" tabindex="0" type="button">
                       <span><i class="fas fa-file-import mr-1"></i>Import</span>
                     </button>
-                    <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('search_accounts')" type="button">
+                    <!-- <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('search_accounts')" type="button"> -->
+                    <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_mlist();" type="button">
                       <span><i class="fas fa-file-csv mr-1"></i>Export</span>
                     </button>
                   </div>

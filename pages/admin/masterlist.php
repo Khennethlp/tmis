@@ -46,7 +46,8 @@
                     <button class="btn btn-func buttons-csv buttons-html5" data-toggle="modal" data-target="#add_mlist" tabindex="0" type="button">
                       <span><i class="fas fa-plus mr-1"></i> Add New</span>
                     </button>
-                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('mlist_table')" type="button">
+                    <!-- <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('mlist_table')" type="button"> -->
+                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_mlist();" type="button">
                       <span><i class="fas fa-file-export mr-1"></i> Export</span>
                     </button>
                   </div>

@@ -43,7 +43,7 @@
                     </div>
                   </div>
                   <div class="col-0 ml-auto mx-3 mt-2">
-                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_csv('inv_tbl')" type="button">
+                    <button class="btn btn-func buttons-excel buttons-html5" data-toggle="modal" data-target="#" tabindex="0" onclick="export_inventory();" type="button">
                       <span><i class="fas fa-file-csv mr-1"></i> Export</span>
                     </button>
                   </div>
@@ -51,6 +51,7 @@
               </div>
               <div class="row mb-2" id="t_t1_breadcrumb">
                 <div class="col-12">
+                  <button class="btn btn-func mb-2" onclick="export_inventory_t2();"><i class="fas fa-file-csv mr-1"></i> Export</button>
                   <ol class="breadcrumb mb-0" style="background-color: #bbb;">
                     <li class="breadcrumb-item"><i class="fas fa-chevron-left"></i> <a href="#" onclick="search_inv(1)">&nbsp;Back</a></li>
                     <li class="breadcrumb-item" id="lbl_c1"></li>

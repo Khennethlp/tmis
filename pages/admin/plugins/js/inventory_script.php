@@ -111,7 +111,7 @@
             data: {
                 method: 'inventory_list',
                 current_page: current_page,
-                search:search
+                search: search
             },
             success: function(response) {
                 document.getElementById("inv_tbl").innerHTML = response;
@@ -210,7 +210,7 @@
             data: {
                 method: 'inventory_search',
                 inventory_search: inventory_search,
-               
+
                 current_page: current_page,
             },
             success: function(response) {
@@ -229,4 +229,45 @@
         });
     }
 
+    const export_inventory = () => {
+        var search = document.getElementById('inv_search').value;
+
+        // Create a hidden form for submission
+        var form = $('<form></form>').attr({
+            method: 'POST',
+            action: '../../process/admin/export/export_inventory.php'
+        });
+
+        // Append search field to the form
+        form.append($('<input>').attr({
+            type: 'hidden',
+            name: 'search',
+            value: search
+        }));
+
+        // Append the form to the body and submit
+        $('body').append(form);
+        form.submit();
+    };
+
+    const export_inventory_t2 = () => {
+        var partcode = sessionStorage.getItem('partcode');
+
+        // Create a hidden form for submission
+        var form = $('<form></form>').attr({
+            method: 'POST',
+            action: '../../process/admin/export/export_inv_t2.php'
+        });
+
+        // Append search field to the form
+        form.append($('<input>').attr({
+            type: 'hidden',
+            name: 'partcode',
+            value: partcode
+        }));
+
+        // Append the form to the body and submit
+        $('body').append(form);
+        form.submit();
+    };
 </script>
